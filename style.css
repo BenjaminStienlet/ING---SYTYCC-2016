@@ -1,4 +1,19 @@
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
 
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: #ff6600;
+  stroke-width: 1.5px;
+}
 
 div.logindiv{
 	
@@ -37,7 +52,27 @@ p.normal-text{
 
 li.Sitem{
 	list-style-type:none;
+	cursor: pointer;
 }
+
+li.visItem{
+	list-style-type:none;
+}
+
+li.buyItem{
+	list-style-type:none;
+	cursor: pointer;
+	font-size: 20px;
+	color: #000066;
+	margin-left: 50px;
+}
+
+p.searchField{
+	padding-top: 10px;
+	padding-left: 50px;
+}
+
+
 
 .bold{
 	font-weight: bold;

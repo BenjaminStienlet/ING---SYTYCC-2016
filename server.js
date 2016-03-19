@@ -10,6 +10,8 @@ var io = require('socket.io')(app);
 var fs = require('fs');
 var port = process.env.port || 1337;
 var path = require('path');
+var db = require('./db');
+var socketList = [];
 
 
 
@@ -45,25 +47,48 @@ io.on('connection', function (socket) {
 	
 	//login(username) -> uid
     socket.on('login', function(data){
-		socket.emit("loginResult", {uid:"LoginOK"});
+		socket.emit("loginResult", {uid : "LoginOK"});
 	});
 	
 	//getUserInfo(uid)  -> name, pictureid, amount
 	socket.on('getUserInfo', function(data){
-		socket.emit("getUserInfoResult", {name:"GetUserDataOK", pictureid:"003", amount:"9999"});
+		console.log("++++++ getUserInfoResult");
+		socketList.push(socket);
+		db.getUserInfo(data.uid, function(res){ 
+			socketList[0].emit("getUserInfoResult", {name : res.name, pictureid : res.pictureid, amount: res.amount});
+			socketList.pop();
+		});
+		console.log("------ getUserInfoResult");
+		//var = getUserInfo();
+		//socket.emit("getUserInfoResult", {name:"GetUserDataOK", pictureid:"003", amount:"9999"});
 	});
 	
-	//buyStock(sid, amount) -> boolean : buyStockResult
+	//buyStock(uid, sid, amount) -> boolean : buyStockResult
 	socket.on('buyStock', function(data){
-		socket.emit("buyStockResult", {buyStockSucceeded:"trueBuyStockTest"});
+		//TODO: checken of ge genoeg geld hebt => nog functie voor nodig in db.js
+		var price = 99; //opzoeken
+		//var timestamp = Date.now() / 1000 | 0;
+		var enoughMoney = true;
+		if(enoughMoney){
+			db.buytStocks(data.uid, stockId, Date.now() / 1000 | 0, price, data.amount); //TIMESTAMP OPVRAGEN, amount is het AANTAL STOCKS
+		}
+		else{
+			socket.emit("buyStocksResult", true);
+		}
+		
+		//socket.emit("buyStockResult", {buyStockSucceeded:"trueBuyStockTest"});
 	});
 	
 	//getStocks() -> [strings] : stocksList
 	socket.on('getStocks', function(data){
-		var result = [];
-		result.push("stockName1");
-		result.push("stockName2");
-		socket.emit("getStocksResult", {stocksList : result});
+		db.getStocks(function(res){ 
+			socket.emit("getStocksResult", {stocksList : res});
+		});
+		
+		//var result = [];
+		//result.push("stockName1");
+		//result.push("stockName2");
+		//socket.emit("getStocksResult", {stocksList : result});
 	});
 	
 	//getAchievement(uid) -> [achievement] : listOfAchievements
