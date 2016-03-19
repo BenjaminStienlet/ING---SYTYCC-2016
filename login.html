@@ -115,12 +115,15 @@ Login pagina
 		//////////////////////////////////////////////////////////
 		//getHistoryForStock(sid) -> [data] : stockHistory
 		function getHistoryForStock() {
+			console.log("### -");
             socket.emit('getHistoryForStock', {uid : uid});
+			console.log("### *");
         }
 		
 		socket.on("getHistoryForStockResult", function(data){
 			console.log("### getHistoryForStock");
             console.log(data.stockHistoryList);
+			console.log("### /");
         });
 		
 		//////////////////////////////////////////////////////////
