@@ -65,11 +65,12 @@ function requestHandler(req, res) {
 	getFile((localFolder + fileName),res,page404);
 };
 	
+	/*
 function handler(req, res) {
 	
 	var fileName = path.basename(req.url) || 'index.html',
 	
-	
+	/*
     fs.readFile(fileName,
         function (err, data) {
             if (err) {
@@ -79,8 +80,10 @@ function handler(req, res) {
 
             res.writeHead(200);
             res.end(data);
-        });
+        });*/
+		/*
 }
+*/
 
 io.on('connection', function (socket) {
 	socket.on('get', function(data){
