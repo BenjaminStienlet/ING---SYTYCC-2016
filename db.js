@@ -116,14 +116,14 @@ function getUsers(callback) {
     });
 }
 
-function login(username, callback) {
+function login(username, socket) {
     var connection = new Connection(config);
     connection.on('connect', function(err) {
         request = new Request('SELECT * FROM users WHERE name = @username', function(err, rc, rows) {
             if (err) {
                 console.log(err);
             }
-            callback(columnsToJson(rows[0]));
+            socket.emit("loginResult",rows);
             connection.close();
         });
         request.addParameter("username", TYPES.VarChar, username);

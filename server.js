@@ -13,6 +13,7 @@ var path = require('path');
 var db = require('./db');
 var socketList = [];
 
+db.getFriendList(7, function(res) { console.log(res) });
 
 
 app.listen(port);
@@ -49,11 +50,11 @@ io.on('connection', function (socket) {
     socket.on('login', function(data){
 		//socket.emit("loginResult", {uid : 1});
 		//socketList.push(socket);
-		db.getUserInfo(data.username, function(res){ 
+		db.getUserInfo(data.username,socket);
 			//socketList[0].emit("loginResult", {uid : res.uid});
-			socket.emit("loginResult", {"uid": res.uid});
+			//socket.emit("loginResult", {"uid": res.uid});
 			//socketList.pop();
-		});
+		//});
 		//socket.emit("loginResult", {uid : "LoginOK"});
 
 	});
