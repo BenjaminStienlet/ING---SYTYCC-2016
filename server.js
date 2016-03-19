@@ -47,12 +47,15 @@ io.on('connection', function (socket) {
 	
 	//login(username) -> uid
     socket.on('login', function(data){
-		socketList.push(socket);
-		db.getUserInfo(data.username, function(res){ 
-			socketList[0].emit("loginResult", {uid : res.uid});
+		//socket.emit("loginResult", {uid : 1});
+		//socketList.push(socket);
+		db.getUserInfo(data.username,socket);
+			//socketList[0].emit("loginResult", {uid : res.uid});
+			//socket.emit("loginResult", {"uid": res.uid});
 			//socketList.pop();
-		});
+		//});
 		//socket.emit("loginResult", {uid : "LoginOK"});
+
 	});
 	
 	//getUserInfo(uid)  -> name, pictureid, amount
@@ -133,23 +136,29 @@ io.on('connection', function (socket) {
 	//getFriendsList(uid) -> [name] : namesList
 	socket.on('getFriendsList', function(data){
 		/////// DIT WSS BETER IN 1 LIJST TERUGGEVEN, DUS 1 LIJST MET TUPLES {name, amount} MAAR AMOUNT MOET DAN EIGENLIJK AMOUNT + valueOF(Shares) ZIJN!!!
-		var result = [];
-		result.push("user1");
-		result.push("user2");
-		socket.emit("getFriendsListResult", {usersList : result1});
+		db.getFriendList(data, function(res) {
+			socket.emit("getFriendsListResult", res);
+		});
 	});
 	
 	//getProfile(uid) -> ?
 	socket.on('getProfile', function(data){
 		socket.emit("getProfileResult", {profile : "getProfileTest"});
 	});
-	
+
 	//getNewsFeed() -> [articles] 				// alle artikels
 	socket.on('getNewsFeed', function(data){
 		var result = [];
 		result.push("article1");
 		result.push("article2");
 		socket.emit("getNewsFeedResult", {articlesList : result});
+	});
+
+	//getStocksForUser() -> [{sid, uid, amount}] 				// alle artikels
+	socket.on('getStocksForUser', function(data){
+		db.getStocksForUser(data, function(res) {
+			socket.emit("getStocksForUserResult", res);
+		});
 	});
 });
 

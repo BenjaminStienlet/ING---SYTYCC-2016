@@ -28,14 +28,14 @@ Login pagina
 		//////////////////////////////////////////////////////////		
 		//login(username) -> uid
         function login () {
-            var username = $("#usernameInput").val();
-            socket.emit('login', {username : username});
+            var usern = $("#usernameInput").val();
+            socket.emit('login', {"username" : usern});
         }
 		
         socket.on("loginResult", function(data){
 			console.log(data.uid);
 			uid = data.uid;
-			getUserInfo();
+			//getUserInfo();
 			// DIT IS ENKEL OM TE TESTEN!!!
 			//buyStock();
 			//getStocks();

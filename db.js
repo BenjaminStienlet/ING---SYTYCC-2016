@@ -44,7 +44,8 @@ module.exports =  {
 
     increaseUserAmount : increaseUserAmount,
     getHistoryForUser : getHistoryForUser,
-    getNewsfeed : getNewsfeed
+    getNewsfeed : getNewsfeed,
+    getStocksForUser : getStocksForUser
 };
 
 
@@ -64,6 +65,7 @@ module.exports =  {
 // insertNewUser("Ben", "ben.jpg", 1000);
 // addFriendship(4, 7, 15);
 // getFriendList(7, function(res) { console.log(res) });
+// getStocksForUser(1, function(res) { console.log(res) });
 
 // ===============
 // ==== USERS ====
@@ -114,14 +116,14 @@ function getUsers(callback) {
     });
 }
 
-function login(username, callback) {
+function login(username, socket) {
     var connection = new Connection(config);
     connection.on('connect', function(err) {
         request = new Request('SELECT * FROM users WHERE name = @username', function(err, rc, rows) {
             if (err) {
                 console.log(err);
             }
-            callback(columnsToJson(rows[0]));
+            socket.emit("loginResult",rows);
             connection.close();
         });
         request.addParameter("username", TYPES.VarChar, username);
@@ -305,8 +307,19 @@ function getHistoryForUser(userID) {
     // TODO
 }
 
-function getStocksForUser(userId) {
-    // TODO
+function getStocksForUser(userId, callback) {
+    var connection = new Connection(config);
+    connection.on('connect', function(err) {
+        request = new Request('SELECT * FROM owenedshares WHERE uid = @userId', function(err, rc, rows) {
+            if (err) {
+                console.log(err);
+            }
+            callback(rowsToJson(rows));
+            connection.close();
+        });
+        request.addParameter("userId", TYPES.Int, userId);
+        connection.execSql(request);
+    });
 }
 
 
