@@ -60,7 +60,10 @@ io.on('connection', function (socket) {
 	
 	//getStocks() -> [strings] : stocksList
 	socket.on('getStocks', function(data){
-		socket.emit("getStocksResult", {stocksList : [string1 : "stockName1", string2 : "stockName2"]});
+		var result = [];
+		result.push("stockName1");
+		result.push("stockName2");
+		socket.emit("getStocksResult", {stocksList : result});
 	});
 	
 	//getAchievement() -> [achievement] : listOfAchievements
