@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login pagina</title>
+	
+	 <script src="libs/js/jquery.min.js"></script>
+        <script src="libs/js/jquery-ui.min.js"></script>
+        <script src="libs/js/socket.io.js"></script>
+        <script src="libs/js/d3.min.js"></script>
+        <script src="libs/js/hammer.min.js"></script>
+		
+	<link rel="stylesheet" href="style/jquery-ui.css" media="screen">
+        <link rel="stylesheet" href="style/style-buttons.css" media="screen">
+</head>
+<body>
+Login pagina
+
+<form action="#" onsubmit="return false;">
+  Username: <input id="usernameInput" type="text"><br>
+  <input type="submit" value="Login" onclick="login();">
+</form>
+
+
+    <script>
+        var socket = io('http://capitalize.azurewebsites.net');
+        var uid;
+		
+				
+		//login(username) -> uid
+        function login () {
+            var username = $("#usernameInput").val();
+            socket.emit('login', {username : username});
+        }
+		
+        socket.on("loginResult", function(data){
+			console.log(data);
+			uid = data.uid;
+			getUserInfo();
+        });
+		
+		//getUserInfo(uid)  -> name, pictureid, amount
+		function getUserInfo () {
+            socket.emit('getUserInfo', {uid : uid});
+        }
+		
+		socket.on("getUserInfoResult", function(data){
+            console.log(data.name);
+			console.log(data.pictureid);
+			console.log(data.amount);
+        });
+		
+		//buyStock(sid, amount) -> boolean
+		function buyStock () {
+            socket.emit('buyStock', {sid : sid}, {amount : amount});
+        }
+		
+		socket.on("buyStockResult", function(data){
+			console.log("BuyStockTest");
+            console.log(data.purchaseSucceeded);
+        });
+		
+		//getStocks() -> [strings]
+		function getStocks () {
+            socket.emit('getStocks', {});
+        }
+		
+		socket.on("getStocksResult", function(data){
+            console.log(data.stocksList);
+        });
+		
+		
+    </script>    
+</body>
+</html>

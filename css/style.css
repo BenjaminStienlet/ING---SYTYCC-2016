@@ -1,34 +1,3 @@
-
-
-div.logindiv{
-	
-	color: #000066;
-	background-color:#ff6600;
-	margin-left: auto ;
-	margin-right: auto ;
-	width: 450px;
-	border-radius: 25px;
-}
-
-img.center{
-	 display: block;
-    margin: 0 auto;
-}
-
-div.padding-top{
-	padding-top: 20px;
-}
-
-div.center{
-	text-align: center;
-}
-
-h2.header{
-	color: white;
-	text-align: center;
-	padding-top: 10px;
-}
-
 /*--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -95,7 +64,7 @@ body{
 	font-family: 'Voltaire', sans-serif;
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-    color: #000066; 
+    color: #7277d5;
     background:none !important;
     border-radius: 5px;
 }
@@ -105,7 +74,7 @@ body{
 	font-family: 'Voltaire', sans-serif;
 }
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    color: #000066;
+    color: #7277d5;
     background:none !important;
     border-radius: 5px;
 }
@@ -114,7 +83,7 @@ body{
     padding-bottom: 10px;
 }
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    color: #000066;
+    color: #7277d5;
     background-color: #fff;
 }
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
@@ -131,7 +100,7 @@ body{
 }
 /*banner*/
 .banner {
-    background: #000066;
+    background: #7277d5;
 }
 .banner-grids {
     padding-top: 5em;
@@ -194,7 +163,7 @@ a.button:hover {
 }
 .brilliant-left i {
     font-size: 1.3em;
-    background: #000066;
+    background: #7277d5;
     padding: 1em 1em;
     color: #fff;
 	border-radius: 2px;
@@ -248,7 +217,7 @@ background: #e7663f;
 }
 .da-thumbs li a div {
     position: absolute;
-    /*background:rgba(231, 102, 63, 0.75);*/
+    background:rgba(231, 102, 63, 0.75);
     width: 100%;
     height: 100%;
 }
@@ -285,7 +254,10 @@ background: #e7663f;
     text-align: center;
 	margin-top:4em;
 }
-
+.pricing {
+    background: #7277d5;
+	 border-top: 4px solid #4E5298;
+}
 .price-top {
    padding: 1.5em 1em;
   
@@ -409,7 +381,7 @@ a.button1:hover {
 	border-radius: 3px;
 }
 .footer-grid ul li a:hover {
-	background: #000066;
+	background: #7277d5;
 }
 .second {
     margin-top: .5em;
@@ -500,7 +472,7 @@ a.button1:hover {
 }
 .what-left i {
     font-size: 2em;
-    background: #000066;
+    background: #7277d5;
     padding: 1em 1em;
     color: #fff;
     border-radius: 2px;
@@ -1074,7 +1046,7 @@ a.button3{
     margin-top: 1em;
 }
 a.button3:hover{
-background: #000066;
+background: #7277d5;
 }
 .blog-grids {
     margin-top: 4em;
@@ -1082,8 +1054,8 @@ background: #000066;
 /**single**/
 ul.blog-ic {
     margin-top: 1.5em;
-	border-top: 1px solid #000066;
-    border-bottom: 1px solid #000066;
+	border-top: 1px solid #7277d5;
+    border-bottom: 1px solid #7277d5;
     padding: 1em 0;
 }
 ul.blog-ic li {
@@ -1253,7 +1225,7 @@ ul.blog-ic li span i {
 }
 .detailed-top:hover {
     background: #e7663f;
-	border-bottom: 5px solid #000066;
+	border-bottom: 5px solid #7277d5;
 }
 .detailed-grid {
     transition: 0.5s all;
@@ -1357,7 +1329,7 @@ a.button4 {
     text-align: right;
 }
 a.button4:hover {
-    background: #000066;
+    background: #7277D5;
 }
 .table-grids {
     margin-top: 3em;
@@ -1380,7 +1352,7 @@ a.button4:hover {
     background: #e7663f;
 }
 .simple-left:hover {
-    background: #000066;
+    background: #7277D5;
 }
 .simple-right {
     width: 50%;
@@ -1411,7 +1383,7 @@ a.button4:hover {
     margin-top: 2em;
     display: block;
     text-transform: uppercase;
-    background: #000066;
+    background: #7277d5;
     width: 100%;
     padding: 1em;
 }
@@ -2687,11 +2659,1005 @@ a.button2 {
     border-radius: 4px;
 }
 .navbar-default .navbar-toggle .icon-bar {
-    background-color: #ff6600;
+    background-color: #fff;
 }
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
     background-color: #e7663f;
 }
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
     border-color: #fff;
+}
+.banner-grid {
+    float: left;
+    width: 100%;
+}
+.banner-grid:nth-child(2) {
+    margin-top: 2em;
+}
+a.button {
+    width: 25%;
+}
+.banner-grid h3 {
+    font-size: 2em;
+}
+.brilliant-section h2, .about-section h2, .hosting-section h2, h2.type, .blog h2, .detailed-section h2, .testimonials h2, .faq-section h2, .history-section h2, .setting-section h2, .contact h2, .support-section h2, .linux-grid h2 {
+    font-size: 2.5em;
+}
+.team h3, .price-section h3, .post-section h3, .whatdo h3, .statistics h3, .feature-section h3, .related h3, .clients h3, .features h3, .solution-section h3, .responses h3, .coment-form h3, .date-table h3, .simple-prices h3, .supp-grid h3 {
+    font-size: 2.2em;
+}
+.brilliant-section h5, .team h5, .price-section h5, .browse-section h5, .post-section h5 {
+    font-size: 1em;
+}
+.da-thumbs li a div h5 {
+    margin: .6em 0 0 0;
+}
+.brilliant-right h4, .footer-grid h4, .about-grid1 h4, .what-right h4, .post-grid h4, .solution-grid h4, .blog-grid1 h4, .admin h4, .testimonials-grid h4, .history-left h4, .support-grid h4, .setting-grid h4, .hosting-grid h4, .feature-grid h4, .services-price h4, .features-grid h4,.client-grid h4 {
+    font-size: 1.3em;
+}
+.banner-grid p, .brilliant-right p, .post-grid p, .about-grid1 p, .what-right p, .statistic p, .blog-grid1 p, .admin-right p, .responses-right p, .simple-right p, .faq-grids p, .testimonials-grid p, .history-right p, .support-grid p, .login-left p, .login-right p, .hosting-grid p, .feature-grid p, .services-price p, .features-grid p, .contact-left p ,.client-grid p{
+    font-size: 0.96em;
+}
+.brilliant-grid {
+    float: left;
+    width: 100%;
+}
+.brilliant-left {
+    width: 12%;
+}
+.brilliant-right {
+    width: 87%;
+}
+.brilliant-grids {
+    margin-top: 3em;
+}
+.brilliant-grid:nth-child(2) {
+    margin: 2em 0;
+}
+.price-top h4 {
+    font-size: 2em;
+}
+.price-bottom h6 {
+    font-size: 1.5em;
+}
+.team ,.post-section,.price-section {
+    padding: 0 0 3em;
+}
+.face-top h5 {
+    font-size: 1em;
+}
+.footer-grid ul li {
+    display: inline-block;
+    margin: .8em .5em;
+}
+.footer-grid ul li a {
+    padding: .5em 1em;
+}
+.about-bottomgrid {
+    width: 100%;
+}
+.about-bottomgrid1 {
+    width: 100%;
+	margin-top:2em;
+}
+.what-grid {
+   width: 100%;
+}
+.what-left {
+  width: 11%;
+}
+.what-right {
+ width: 87%;
+}
+.what-grid:nth-child(2) {
+    margin: 2em 0;
+}
+.statistic {
+    width: 100%;
+}
+.statistic h4 {
+    font-size: 2.5em;
+}
+.blog-grids {
+    margin-top: 3em;
+}
+a.button3 {
+    width: 25%;
+}
+.blog-grid h4 {
+    font-size: 2em;
+}
+.blog-grid h6 {
+    font-size: 1.3em;
+}
+ul.blog-ic li span {
+    color: #777;
+    padding: 0.4em 0.8em 0.2em 0.9em;
+    display: block;
+    font-size: 1em;
+}
+.admin-left {
+    width: 13%;
+	margin-right: 3%;
+}
+.admin-right {
+    width: 84%;
+}
+.responses-left {
+    width: 13%;
+    margin-right: 2%;
+}
+.respon-right {
+    margin-left: 2em;
+}
+.coment-form input[type="text"], .coment-form textarea, .coment-form input[type="email"], .coment-form textarea {
+    width: 100%;
+}
+.coment-form form {
+    margin-top: 2em;
+}
+.coment-form input[type="submit"] {
+    width: 25%;
+}
+.table-grid {
+    width: 100%;
+}
+.table-grid:nth-child(2) {
+    margin: 2em 0;
+}
+.detailed-top h4, .table-top h4 {
+    font-size: 2em;
+}
+.detailed-bottom h5, .table-bottom h5 {
+    font-size: 1.5em;
+}
+.detailed-top h4, .table-top h4.simple-left h4 {
+    font-size: 1.8em;
+}
+.faq-grids {
+    margin-top: 2em;
+}
+.faq-grids h5 {
+    font-size: 1.2em;
+}
+.social-icons a i {
+    margin: 0 2px;
+}
+.history-left {
+    width: 25%;
+    padding: 2em 1em;
+}
+.history-grids {
+    margin-top: 3em;
+}
+.support-grid h5 {
+    font-size: 1em;
+    line-height: 1.5em;
+}
+.client-grid {
+    margin-top: 1em;
+}
+.supp-grid1 a {
+  font-size: .95em;
+}
+.acount-btn {
+    font-size: .965em;
+}
+.login-right input[type="submit"]{
+    font-size: .965em;
+}
+.register-but form input[type="submit"] {
+    font-size: 1em;
+}
+.zoom-icon {
+    width: 168px;
+    height: 91px;
+}
+.servicesprices-grid {
+    float: left;
+    width: 50%;
+}
+.servicesprices-grid:nth-child(3) {
+    margin-top: 2em;
+}
+a.button2 {
+    width: 58%;
+}
+.linux-grid a {
+    font-size: 0.95em;
+   padding: .8em 1.5em;
+}
+.linux-grid1 {
+    margin-top: 3em;
+}
+.left-tab {
+    width: 47%;
+}
+.contact-left input[type="text"], .contact-left input[type="email"] {
+    width: 32.5%;
+}
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 55%!important;
+}
+.clients img {
+    width: 73%;
+}
+.clients ul li {
+    display: inline-block;
+    margin-right: 0;
+}
+}
+@media(max-width:480px){
+.header {
+    padding: 1.5em 0;
+}
+.navbar-brand h1 a {
+    font-size: 1em;
+}
+.banner-grids {
+    padding: 3em 0 3em;
+}
+a.button {
+    width: 28%;
+	padding: 1em 1em;
+}
+.brilliant-section h5, .team h5, .price-section h5, .browse-section h5, .post-section h5 {
+    font-size: 0.96em;
+}
+.brilliant-left {
+    width: 14%;  
+	margin-right: 2%;
+}
+.brilliant-right {
+    width: 83%;
+}
+.brilliant-section h2, .about-section h2, .hosting-section h2, h2.type, .blog h2, .detailed-section h2, .testimonials h2, .faq-section h2, .history-section h2, .setting-section h2, .contact h2, .support-section h2, .linux-grid h2 {
+    font-size: 2.2em;
+}
+.team h3, .price-section h3, .post-section h3, .whatdo h3, .statistics h3, .feature-section h3, .related h3, .clients h3, .features h3, .solution-section h3, .responses h3, .coment-form h3, .date-table h3, .simple-prices h3, .supp-grid h3 {
+    font-size: 2em;
+}
+.team-grids,.price-grids,.brilliant-grids,.what-grids,.responses-grids,.table-grids,.simple-grids,.history-grids,.feature-grids,.blog-grids,.related-grids,.hosting-grids,.features-grids   {
+    margin-top: 2em;
+}
+.da-thumbs li {
+    width: 50%;
+}
+.da-thumbs li a div h5 {
+    margin: 1em 0 0 0;
+}
+.post-grid {
+    width: 100%;
+}
+.post-grid:nth-child(2){
+	margin:2em 0
+}
+.face-top span {
+    margin-left: 0;
+    display: block;
+    line-height: 2em;
+}
+.footer-grid {
+    width: 100%;
+}
+.footer-grid:nth-child(2){
+	margin-top:2em;
+}
+.footer-grids {
+    padding: 2em 0 0;
+}
+.face-top h5 {
+    font-size: .95em;
+}
+.about-grid {
+    width: 100%;
+}
+.about-grid img {
+    margin: 0 auto;
+}
+.about-grid1 {
+      width: 100%;
+	  margin-top:2em;
+}
+.brilliant-section, .about-section, .whatdo, .statistics, .solution-section, .blog, .responses, .related, .detailed-section, .date-table, .simple-prices, .faq-section, .testimonials, .history-section, .support-section, .our-client, .setting-section, .hosting-section, .feature-section, .linux-section, .tab-prices, .clients, .features, .typography, .contact, .register, .login-page {
+    padding: 2em 0;
+}
+.what-left {
+    width: 16%;
+}
+.what-right {
+    width: 82%;
+}
+.solution-grid {
+    width: 100%;
+}
+.solution-grid img {
+    margin: 0 auto;
+}
+.solution-grid:nth-child(2){
+	margin:2em 0;
+}
+.statistics-grid {
+      width: 100%;
+}
+.statistic h4 {
+    font-size: 2em;
+}
+.statistic {
+    width: 64%;
+}
+.statistics-grid:nth-child(2) {
+    margin-top: 2em;
+}
+.blog-grid h4 {
+    font-size: 1.8em;
+}
+a.button3 {
+    width: 28%;
+	    padding: 1em 1em;
+}
+.admin-left {
+    width: 18%;
+    margin-right: 3%;
+}
+.admin-right {
+    width: 79%;
+}
+.related-grid {
+    float: left;
+    width: 50%;
+}
+.related-grid:nth-child(3) {
+    margin-top: 2em;
+}
+.related-grid:nth-child(4) {
+    margin-top: 2em;
+}
+.responses-right {
+    float: left;
+    width: 80%;
+}
+.responses-left {
+    width: 18%;
+    margin-right: 2%;
+}
+.respon-right {
+    margin-left: 0em;
+}
+.responses-right ul li {
+    font-size: 0.965em;
+}
+.coment-form input[type="submit"] {
+    width: 33%;
+    font-size: 0.965em;
+}
+.coment-form input[type="text"], .coment-form textarea, .coment-form input[type="email"] {
+   font-size: 0.96em;
+}
+.simple-left {
+    padding: 2em 1em;
+}
+.testimonials-grid {
+    width: 100%;
+}
+.testimonials-grid:nth-child(2) {
+    margin: 2em 0;
+}
+.history-grid {
+    width: 100%;
+}
+.support-grid {
+    width: 100%;
+}
+.support-grid:nth-child(2) {
+    margin: 2em 0;
+}
+.client-grid1 {
+    margin-top: 5em;
+}
+.setting-grid {
+    width: 100%;
+}
+.setting-grid:nth-child(2) {
+    margin: 2em 0;
+}
+.hosting-grid {
+    width: 100%;
+}
+.login-left h3, .login-right h3,.register-top-grid h3, .register-bottom-grid h3 {
+    font-size: 1.8em;
+}
+.zoom-icon {
+    width: 403px;
+    height: 220px;
+}
+.hosting-grid:nth-child(2) {
+    margin: 2em 0;
+}
+.feature-grid {
+    width: 100%;
+}
+.feature-grid:nth-child(2) {
+    margin-top: 2em;
+}
+.servicesprices-grid {
+    width: 100%;
+}
+a.button2 {
+    width: 35%;
+    padding: 1em 1em;
+}
+.servicesprices-grid:nth-child(2) {
+    margin-top: 2em;
+}
+.services-price {
+    padding: 2em 3em;
+}
+.linux-grid {
+    width: 100%;
+}
+.linux-grid1 {
+    width: 100%;
+}
+.linux-grid {
+    width: 100%;
+}
+.linux-grid1 {
+    width: 100%;
+}
+.linux-grid1 img {
+    width: 50%;
+    margin: 0 auto;
+}
+.left-tab {
+    width: 57%;
+}
+.linux-bottom h5 {
+    font-size: 1.5em;
+}
+.linux-bottom h6 {
+    font-size: 1.3em;
+}
+.linux-prices {
+    margin-top: 2em;
+}
+.left-tab > li > a {
+    font-size: 1.25em;
+}
+.features-grid {
+    width: 100%;
+}
+.features-grid img {
+    width: 22%;
+}
+.features-grid:nth-child(2) {
+   margin:2em 0;
+}
+.contact-bottom iframe {
+    width: 100%;
+    min-height: 240px;
+}
+.contact-left input[type="text"], .contact-left input[type="email"] {
+    width: 100%;
+}
+.contact-left input[type="email"] {
+    margin: 1em 0px;
+}
+.contact-left input[type="submit"], .contact-left input[type="reset"] {
+    font-size: .965em;
+    width: 22.68%;
+}
+}
+@media (max-width: 375px){
+a.button {
+    width: 34%;
+}
+.banner-grid {
+    padding: 0;
+}
+.brilliant-grid {
+    padding: 0;
+}
+.brilliant-left {
+    width: 21%;
+    margin-right: 2%;
+}
+.brilliant-right {
+    width: 77%;
+}
+.da-thumbs li {
+    width: 100%;
+}
+.da-thumbs li a div h5 {
+    margin: 3.2em 0 0 0;
+}
+.price-grid {
+    width: 100%;
+    padding: 0;
+}
+.price-grid:nth-child(2) {
+    margin-top: 1em;
+}
+.price-grid:nth-child(3) {
+    margin-top: 1em;
+}
+.price-grid:nth-child(4) {
+    margin-top: 1em;
+}
+.price-bottom ul li {
+    font-size: .9em;
+}
+.post-grids {
+    margin-top: 2em;
+}
+.post-grid {
+    padding: 0;
+}
+.footer-grid {
+    padding: 0;
+}
+.footer-grid:nth-child(3) {
+    padding: 0 0;
+}
+.recent-great {
+    padding: 0 7px;
+}
+.copy-section {
+    padding: 1em 0;
+}
+.post-section {
+    padding: 0 0 2em;
+}
+.about-grid {
+    padding: 0;
+}
+.about-grid1 {
+    padding: 0;
+}
+.about-bottomgrid {
+    padding: 0;
+}
+.about-bottomgrid1 {
+    padding: 0;
+}
+.what-grid {
+    padding: 0;
+}
+.what-left {
+    width: 23%;
+}
+.what-right {
+    width: 75%;
+}
+.solution-grid {
+    padding: 0;
+}
+.statistic {
+     width: 78%;
+    padding: 2em 2em;
+}
+.blog-grid {
+   width: 100%;
+}
+.blog-grid1 {
+    width: 100%;
+}
+a.button3 {
+    width: 38%;
+}
+.detailed-grid {
+    width: 100%;
+    padding: 0;
+}
+.admin-left {
+    width: 100%;
+    margin-right: 0;
+	text-align: center;
+}
+.admin-right {
+    width: 100%;
+}
+.related-grid {
+    width: 100%;
+	padding:0;
+}
+.related-grid:nth-child(2),.related-grid:nth-child(3),.related-grid:nth-child(4) {
+    margin-top: 1em;
+}
+.responses-left {
+    width: 100%;
+    margin-right: 0;
+    text-align: center;
+}
+.responses-right {
+    width: 100%;
+    padding:0;
+}
+.coment-form input[type="submit"] {
+    width: 50%;
+    margin:0 0em 1em 1em;
+}
+
+.setting-grids {
+    margin-top: 2em;
+}
+.table-grid {
+    padding: 0;
+}
+.simple-left {
+    width: 100%;
+}
+.simple-right {
+    width: 100%;
+}
+.simple-grid {
+    padding: 0;
+}
+
+.history-grid {
+    padding: 0;
+}
+.support-grid {
+    padding: 0;
+}
+.supp-grids {
+    margin: 2em 0;
+}
+.client-grid {
+    width: 100%;
+	padding:0;
+}
+.client-grid1 {
+    width: 100%;
+	padding:0;
+	margin-top: 2em;
+}
+.setting-grid {
+        padding: 0 15px;
+}
+.login-right {
+    padding: 0;
+}
+.login-right form {
+    padding: 0em 0;
+}
+.hosting-grid {
+    padding: 0;
+}
+.zoom-icon {
+    width: 328px;
+    height: 177px;
+}
+.feature-grid {
+    padding: 0;
+}
+.servicesprices-grid {
+	padding: 0;
+}
+.services-price {
+    padding: 2em 1em;
+}
+a.button2 {
+    width: 45%;
+}
+.linux-grid {
+    padding: 0;
+}
+.linux-grid1 {
+    padding: 0;
+	margin-top: 2em;
+}
+.linux-grid ul {
+    margin: 1em 0;
+}
+.left-tab {
+    width: 90.2%;
+}
+.linux-prices {
+    margin-top: 1em;
+}
+.linux-price {
+    width: 100%;
+    padding: 0;
+}
+.features-grid {
+    padding: 0;
+}
+.contact-bottom {
+    padding: 0;
+}
+.contact-left {
+    padding: 0;
+}
+.contact-left input[type="submit"], .contact-left input[type="reset"] {
+    width: 30%;
+}
+}
+@media (max-width: 320px){
+.navbar-brand h1 a {
+    font-size: .95em;
+}
+.header {
+    padding: 1em 0;
+}
+.banner-grids {
+    padding: 1em 0 1em;
+}
+a.button {
+    width: 41%;
+}
+.banner-grid {
+    padding: 0;
+}
+.banner-grid h3 {
+    font-size: 1.8em;
+}
+.brilliant-section h2, .about-section h2, .hosting-section h2, h2.type, .blog h2, .detailed-section h2, .testimonials h2, .faq-section h2, .history-section h2, .setting-section h2, .contact h2, .support-section h2, .linux-grid h2 {
+    font-size: 2.2em;
+}
+.team h3, .price-section h3, .post-section h3, .whatdo h3, .statistics h3, .feature-section h3, .related h3, .clients h3, .features h3, .solution-section h3, .responses h3, .coment-form h3, .date-table h3, .simple-prices h3, .supp-grid h3 {
+    font-size: 1.8em;
+}
+.brilliant-section, .about-section, .whatdo, .statistics, .solution-section, .blog, .responses, .related, .detailed-section, .date-table, .simple-prices, .faq-section, .testimonials, .history-section, .support-section, .our-client, .setting-section, .hosting-section, .feature-section, .linux-section, .tab-prices, .clients, .features, .typography, .contact, .register, .login-page,.coment-form {
+    padding: 1.2em 0;
+}
+.brilliant-right h4, .footer-grid h4, .about-grid1 h4, .what-right h4, .post-grid h4, .solution-grid h4, .blog-grid1 h4, .admin h4, .testimonials-grid h4, .history-left h4, .support-grid h4, .setting-grid h4, .hosting-grid h4, .feature-grid h4, .services-price h4, .features-grid h4, .client-grid h4 {
+    font-size: 1.2em;
+}
+.brilliant-grid {
+    padding: 0;
+}
+.brilliant-left {
+    width: 21%;
+    margin-right: 2%;
+}
+.brilliant-right {
+    width: 77%;
+}
+.da-thumbs li {
+    width: 100%;
+}
+.da-thumbs li a div h5 {
+    margin: 2.2em 0 0 0;
+}
+.team ,.price-section{
+    padding: 0 0 2em;
+}
+.price-grid {
+    width: 100%;
+    padding: 0;
+}
+.price-grid:nth-child(2) {
+    margin-top: 1em;
+}
+.price-grid:nth-child(3) {
+    margin-top: 1em;
+}
+.price-grid:nth-child(4) {
+    margin-top: 1em;
+}
+.price-bottom ul li {
+    font-size: .9em;
+}
+.post-grids {
+    margin-top: 2em;
+}
+.post-grid {
+    padding: 0;
+}
+.footer-grid {
+    padding: 0;
+}
+.footer-grid:nth-child(3) {
+    padding: 0 0;
+}
+.recent-great {
+    padding: 0 7px;
+}
+.copy-section {
+    padding: 1em 0;
+}
+.post-section {
+    padding: 0 0 2em;
+}
+.about-grid {
+    padding: 0;
+}
+.about-grid1 {
+    padding: 0;
+}
+.about-bottomgrid {
+    padding: 0;
+}
+.about-bottomgrid1 {
+    padding: 0;
+}
+.what-grid {
+    padding: 0;
+}
+.what-left {
+    width: 23%;
+}
+.what-right {
+    width: 75%;
+}
+.solution-grid {
+    padding: 0;
+}
+.statistic {
+    width: 100%;
+    padding: 2em 2.5em;
+}
+.blog-grid {
+   width: 100%;
+}
+.blog-grid1 {
+    width: 100%;
+}
+.blog-grid h4 {
+    font-size: 1.5em;
+}
+a.button3 {
+    width: 38%;
+}
+.detailed-grid {
+    width: 100%;
+    padding: 0;
+}
+.admin-left {
+    width: 100%;
+    margin-right: 0;
+	text-align: center;
+}
+.admin-right {
+    width: 100%;
+}
+ul.blog-ic li span {
+    font-size: 0.95em;
+}
+.related-grid {
+    width: 100%;
+	padding:0;
+}
+.related-grid:nth-child(2),.related-grid:nth-child(3),.related-grid:nth-child(4) {
+    margin-top: 1em;
+}
+.responses-left {
+    width: 100%;
+    margin-right: 0;
+    text-align: center;
+}
+.responses-right {
+    width: 100%;
+    padding:0;
+}
+.coment-form input[type="submit"] {
+    width: 50%;
+    margin:0 0em 1em 1em;
+}
+.detailed-grid:nth-child(2),.detailed-grid:nth-child(3),.detailed-grid:nth-child(4) {
+    margin-top: 1em;
+}
+.setting-grids {
+    margin-top: 2em;
+}
+.table-grid {
+    padding: 0;
+}
+.simple-left {
+    width: 100%;
+}
+.simple-right {
+    width: 100%;
+}
+.simple-grid {
+    padding: 0;
+}
+.detailed-top h4, .table-top h4 {
+    font-size: 1.6em;
+}
+.detailed-bottom h5, .table-bottom h5 {
+    font-size: 1.2em;
+}
+.table-bottom ul li {
+    font-size: .95em;
+}
+.simple-left h4 {
+    font-size: 1.75em;
+}
+.simple-left h5 {
+    font-size: 1.4em;
+}
+.faq-grids p {
+  margin-left: 0em; 
+}
+.faq-grids {
+    margin-top: 1em;
+}
+.testimonials-grid {
+    padding: 0;
+}
+.testimonials-grid:nth-child(2) {
+    margin: 1em 0;
+}
+.history-grid {
+    padding: 0;
+}
+.support-grid {
+    padding: 0;
+}
+.supp-grids {
+    margin: 2em 0;
+}
+.client-grid {
+    width: 100%;
+	padding:0;
+}
+.client-grid1 {
+    width: 100%;
+	padding:0;
+	margin-top: 2em;
+}
+.setting-grid {
+        padding: 0 15px;
+}
+.login-left h3, .login-right h3, .register-top-grid h3, .register-bottom-grid h3 {
+    font-size: 1.5em;
+}
+.login-right {
+    padding: 0;
+}
+.login-right form {
+    padding: 0em 0;
+}
+.hosting-grid {
+    padding: 0;
+}
+.zoom-icon {
+    width: 273px;
+    height: 149px;
+}
+.feature-grid {
+    padding: 0;
+}
+.servicesprices-grid {
+	padding: 0;
+}
+.services-price {
+    padding: 2em 1em;
+}
+a.button2 {
+    width: 45%;
+}
+.linux-grid {
+    padding: 0;
+}
+.linux-grid1 {
+    padding: 0;
+	margin-top: 2em;
+}
+.linux-grid ul {
+    margin: 1em 0;
+}
+.left-tab {
+    width: 90.2%;
+}
+.linux-prices {
+    margin-top: 1em;
+}
+.linux-top h4, .contact-left h4 {
+    font-size: 1.5em;
+}
+.linux-price {
+    width: 100%;
+    padding: 0;
+}
+.linux-price:nth-child(3),.linux-price:nth-child(4){
+    margin-top: 1em;
+}
+.contact-left input[type="submit"], .contact-left input[type="reset"] {
+    width: 30%;
+}
 }

@@ -26,18 +26,41 @@ function requestHandler(req, res) {
 				if(!err){
 					//if there was no error
 					//send the contents with the default 200/ok header
+					res.writeHead(200);
 					res.end(contents);
 				} else {
 					//for our own troubleshooting
 					console.dir(err);
+					res.writeHead(404);
+					res.end("404 Not Found");
 				};
 			});
 };
 	
 
 io.on('connection', function (socket) {
-	socket.on('get', function(data){
+	socket.on('get', function(data){		
 		socket.emit("data", {data:"test"});
+	});
+	
+	//login(username) -> uid
+    socket.on('login', function(data){
+		socket.emit("loginResult", {uid:"LoginOK"});
+	});
+	
+	//getUserInfo(uid)  -> name, pictureid, amount
+	socket.on('getUserInfo', function(data){
+		socket.emit("getUserInfoResult", {name:"GetUserDataOK", pictureid:"003", amount:"9999"});
+	});
+	
+	//buyStock(sid, amount) -> boolean : buyStockResult
+	socket.on('buyStock', function(data){
+		socket.emit("buyStockResult", {purchaseSucceeded:"trueTest"});
+	});
+	
+	//getStocks() -> [strings] : stocksList
+	socket.on('getStocks', function(data){
+		socket.emit("getStocksResult", {stocksList : [string1 : "stockName1", string2 : "stockName2"]});
 	});
 });
 
