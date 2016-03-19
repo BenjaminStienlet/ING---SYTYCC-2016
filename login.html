@@ -28,9 +28,10 @@ Hello world
             var username = $("#usernameInput").value();
             socket.emit('login', {username : username});
         }
-            socket.on("data", function(data){
-                console.log(data);
-            });
+		
+        socket.on("data", function(data){
+            console.log(data);
+        });
     </script>    
 </body>
 </html>
