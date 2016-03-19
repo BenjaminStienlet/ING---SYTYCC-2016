@@ -1,5 +1,5 @@
 /**
- * Created by tom on 19/03/16.
+ * Created by Benjamin on 19/03/16.
  */
 
 var nconf = require('nconf');
@@ -24,7 +24,33 @@ var config = {
 var Request = require('tedious').Request;
 var TYPES = require('tedious').TYPES;
 
-// TESTS
+
+module.exports =  {
+    insertNewUser : insertNewUser,
+    getUserInfo : getUserInfo,
+    getUsers : getUsers,
+    login : login,
+    getFriendList : getFriendList,
+    addFriendship : addFriendship,
+
+    getAchievementIds : getAchievementIds,
+    getAchievementInfo : getAchievementInfo,
+    achieveAchievement : achieveAchievement,
+    getAchievedIds : getAchievedIds,
+
+    getStocks : getStocks,
+    buyStock : buyStock,
+    sellStock : sellStock,
+
+    increaseUserAmount : increaseUserAmount,
+    getHistoryForUser : getHistoryForUser,
+    getNewsfeed : getNewsfeed
+};
+
+
+// ===============
+// ==== TESTS ====
+// ===============
 // increaseUserAmount(1, 500);
 // getUserInfo(1, function(result){ console.log("Result: "); console.log(result); });
 // printTable("users");
@@ -33,7 +59,11 @@ var TYPES = require('tedious').TYPES;
 // printTable("history");
 // printTable("users");
 // printTable("owenedshares");
-
+// login("Tom", function(res) { console.log(res); });
+// getUsers(function(res) { console.log(res); });
+// insertNewUser("Ben", "ben.jpg", 1000);
+// addFriendship(1, 7, 15);
+// getFriendList(7, function(res) { console.log(res) });
 
 // ===============
 // ==== USERS ====
@@ -70,16 +100,65 @@ function getUserInfo(userId, callback) {
     });
 }
 
-function login(username) {
-    // TODO
+function getUsers(callback) {
+    var connection = new Connection(config);
+    connection.on('connect', function(err) {
+        request = new Request('SELECT * FROM users', function(err, rc, rows) {
+            if (err) {
+                console.log(err);
+            }
+            callback(rowsToJson(rows));
+            connection.close();
+        });
+        connection.execSql(request);
+    });
 }
 
-function getLeaderBoard(amount) {
-    // TODO
+function login(username, callback) {
+    var connection = new Connection(config);
+    connection.on('connect', function(err) {
+        request = new Request('SELECT * FROM users WHERE name = @username', function(err, rc, rows) {
+            if (err) {
+                console.log(err);
+            }
+            callback(columnsToJson(rows[0]));
+            connection.close();
+        });
+        request.addParameter("username", TYPES.VarChar, username);
+        connection.execSql(request);
+    });
 }
 
-function getFriendList(userId) {
-    // TODO
+function getFriendList(userId, callback) {
+    var connection = new Connection(config);
+    connection.on('connect', function(err) {
+        request = new Request('SELECT * FROM users WHERE uid = @userId', function(err, rc, rows) {
+            if (err) {
+                console.log(err);
+            }
+            callback(columnsToJson(rows[0]));
+            connection.close();
+        });
+        request.addParameter("userId", TYPES.VarChar, userId);
+        connection.execSql(request);
+    });
+}
+
+function addFriendship(userId1, userId2, timestamp) {
+    var connection = new Connection(config);
+    connection.on('connect',function(err) {
+        request = new Request('INSERT INTO friend (uid1,uid2,timestamp) ' +
+                            'VALUES (@userId1,@userId2,@timestamp)', function(err) {
+            if (err) {
+                console.log(err);
+            }
+            connection.close();
+        });
+        request.addParameter("userId1", TYPES.Int, userId1);
+        request.addParameter("userId2", TYPES.Int, userId2);
+        request.addParameter("timestamp", TYPES.Int, timestamp);
+        connection.execSql(request);
+    });
 }
 
 
