@@ -271,11 +271,12 @@ function type(d) {
 			 
 			 function loadBuyStack(){
 			 stocksNames.forEach(function(d,i){
-				$("#buyList").append('<li class="buyItem"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+')</li>');
-				$("#buyVis").append('<li class="visItem" onclick="clickedOnBuy('+i+')"><div class="vis" id="vg'+i+'"></div></li>');
+				$("#buyList").append('<li class="buyItem" onclick="clickedOnBuy('+i+');"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+')</li>');
+				$("#buyVis").append('<li class="visItem" ><div class="vis" id="vg'+i+'"></div></li>');
+				
 				callD3("#vg"+i, d.ab);
 				$("#vg"+i).hide();
-				console.log(i,"oke");
+				
 			 });
 			 
 			 
@@ -313,6 +314,7 @@ function type(d) {
 			}
 			
 			function clickedOnBuy(i){
+			
 				if($("#p"+i).html() == "▼"){
 					$("#p"+i).html("►");
 					$("#vg"+i).hide();
