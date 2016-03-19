@@ -47,12 +47,14 @@ io.on('connection', function (socket) {
 	
 	//login(username) -> uid
     socket.on('login', function(data){
-		socketList.push(socket);
+		socket.emit("loginResult", {uid : 1});
+		/*socketList.push(socket);
 		db.getUserInfo(data.username, function(res){ 
 			socketList[0].emit("loginResult", {uid : res.uid});
 			//socketList.pop();
 		});
 		//socket.emit("loginResult", {uid : "LoginOK"});
+		*/
 	});
 	
 	//getUserInfo(uid)  -> name, pictureid, amount
