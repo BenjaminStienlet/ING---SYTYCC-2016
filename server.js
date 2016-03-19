@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-
+var nconf = require('nconf');
 
 var app = require('http').createServer(handler)
 var io = require('socket.io')(app);
@@ -25,4 +25,12 @@ function handler(req, res) {
             res.end("Tom is zotjes");
         });
 }
+
+nconf.file('settings.json')
+    .env();
+
+var username = nconf.get('username'),
+    password = nconf.get('password');
+
+
 
