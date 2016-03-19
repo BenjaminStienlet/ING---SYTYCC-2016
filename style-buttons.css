@@ -1,0 +1,137 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 4-nov-2015, 20:42:24
+    Author     : Sigert
+*/
+
+.ui-slider-horizontal .ui-slider-handle{
+    border-radius: 8px;
+    width: 20px;
+    height: 20px;
+    background-color: #0B85FF;
+}
+
+#tabnames{
+    font-size: 26px;
+}
+
+#timebar{
+    border-radius: 8px;
+    display:block;
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -o-user-select:none;
+    user-select:none;
+}
+
+#slidercontainer {
+    background-color: #336699;
+    margin: auto;
+    border-radius: 8px;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+}
+
+#slider{
+    width: 95%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#slidertext{
+    text-shadow: 2px 2px #222222;
+    color: white;
+    font-family: Helvetica;
+    font-size: 26px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#minyear{
+    float: left;
+}
+
+#maxyear{
+    float: right;
+}
+
+#title{
+    font-family: Helvetica;
+    color: #0B85FF;
+    text-shadow: 2px 2px #222222;
+    font-weight: bold;
+    font-size: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+}
+
+table, tr, td{
+    padding: 5px;
+    font-family: Helvetica;
+    font-size: 26px;
+}
+
+table td:first-child{
+    background: #0B85FF;
+    text-shadow: 2px 2px #222222;
+    color: white;
+    max-width:1%;
+    white-space: nowrap;
+    padding: 10px;
+}
+
+.ui-tabs .ui-tabs-panel {
+    padding: 1em 1.4em 1em 0;
+}
+
+button{
+    display: inline-block;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+}
+
+#theYear{
+    color: black;
+    font-size: 40px;
+    display: block;
+}
+
+#lowerbuttons{
+    display: block;
+    padding-top: 10px;
+}
+
+#topbuttons{
+    display: block;
+    padding-bottom: 10px;
+}
+
+.arrowbutton {
+    width: 100px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.digit {
+    padding-left: 34px;
+    padding-right: 34px;
+    display: inline;
+    width: 100px;
+    background: white;
+    border-radius: 5px;
+    border: 3px solid black;
+}
