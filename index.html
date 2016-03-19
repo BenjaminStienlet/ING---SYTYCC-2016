@@ -162,9 +162,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h2 class="header">Friends & Competitions</h2>
 				<div class="context-text" >
 				<h4 class="center" >Add a Friends</h4>
-				<p class="searchField normal-text" ><label class="bold"> <input type="text" placeholder="Friend name" ></label>  </p>
-				  <p><image id="loginimg" src="addfriend.png" onclick="addFriend();"></p>
+				<p class="searchField normal-text addfriend" ><label class="bold"> <input type="text" placeholder="Friend name" ></label> <image id="addfriend" src="addfriend.png" onclick="addFriend();"></p>
 			    <h4 class="center">Your Friends</h4>
+				<div class="center">
+					<ol class="centerF">
+					<li>Jeroen - 105</li>
+					<li><label class="bold">You - 90</label></li>
+					<li>Sigert - 75</li>
+					<li>Benjamin - 50</li>
+					</ol>
+				</div>
 				</div>
 				<div></div>
 				<div></div>
@@ -349,6 +356,10 @@ function type(d) {
 			socket.on("data", function(data){
 				console.log(data);
 			});
+			
+			function generateTip(text){
+			$("#tip").html(text);
+			}
 		</script>    
 		
 		
