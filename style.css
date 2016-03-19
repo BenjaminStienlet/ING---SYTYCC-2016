@@ -64,7 +64,7 @@ body{
 	font-family: 'Voltaire', sans-serif;
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-    color: #7277d5;
+    color: #000066;
     background:none !important;
     border-radius: 5px;
 }
