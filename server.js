@@ -11,6 +11,7 @@ var fs = require('fs');
 var port = process.env.port || 1337;
 var path = require('path');
 var db = require('./db');
+var socketList = [];
 
 
 
@@ -52,8 +53,10 @@ io.on('connection', function (socket) {
 	//getUserInfo(uid)  -> name, pictureid, amount
 	socket.on('getUserInfo', function(data){
 		console.log("++++++ getUserInfoResult");
+		socketList.push(socket);
 		db.getUserInfo(data.uid, function(res){ 
-			socket.emit("getUserInfoResult", {name : res.name, pictureid : res.pictureid, amount: res.amount});
+			socketList[0].emit("getUserInfoResult", {name : res.name, pictureid : res.pictureid, amount: res.amount});
+			socketList.pop();
 		});
 		console.log("------ getUserInfoResult");
 		//var = getUserInfo();
