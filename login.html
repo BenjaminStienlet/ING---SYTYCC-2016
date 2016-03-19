@@ -22,19 +22,20 @@ Login pagina
 
 
     <script>
-        var socket = io('http://capitalize.azurewebsites.net');
+        var socket = io('capitalize.azurewebsites.net');
         var uid;
 		
 		//////////////////////////////////////////////////////////		
 		//login(username) -> uid
         function login () {
             var usern = $("#usernameInput").val();
+            console.log("emitting");
             socket.emit('login', {"username" : usern});
         }
 		
         socket.on("loginResult", function(data){
-			console.log(data.uid);
-			uid = data.uid;
+			console.log(data);
+			//uid = data.uid;
 			//getUserInfo();
 			// DIT IS ENKEL OM TE TESTEN!!!
 			//buyStock();
