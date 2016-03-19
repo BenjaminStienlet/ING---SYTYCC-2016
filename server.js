@@ -9,11 +9,12 @@
 var app = require('http').createServer(handler)
 var io = require('socket.io')(app);
 var fs = require('fs');
+var port = process.env.port || 1337;
 
-app.listen(8080);
+app.listen(port);
 
 function handler(req, res) {
-    fs.readFile(path.join(__dirname,'/index.html')),
+    fs.readFile(path.join(__dirname,'/index.html'),
         function (err, data) {
             if (err) {
                 res.writeHead(500);
