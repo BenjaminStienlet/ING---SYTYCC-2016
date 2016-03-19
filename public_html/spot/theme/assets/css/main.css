@@ -14,16 +14,16 @@
 /* OVERALL ASPECT */
 
 body {
-  background-color: #ff6600; //#f2f2f2; //origineel was grijs
-    font-family: "Lato";
-    font-weight: 300;
-    font-size: 16px;
-    color: #555;
+  background-color: #ff6600 ; //#f2f2f2; //origineel was grijs
+ font-family: "Lato";
+ font-weight: 300;
+ font-size: 16px;
+ color: #555;
 
-    -webkit-font-smoothing: antialiased;
-    -webkit-overflow-scrolling: touch;
+ -webkit-font-smoothing: antialiased;
+ -webkit-overflow-scrolling: touch;
     
-    margin-top: 70px;
+ margin-top: 70px;
 }
 
 /* Titles */
@@ -420,7 +420,7 @@ a:after {
     position: initial;
     left: 50px;
 }
-//static absolute fixed relative initial
+
 
 #cf{
     width: 100%
@@ -460,4 +460,14 @@ div.test {
 div.the-sticky-div {
     position: fixed;
     top: 0;
+}
+
+
+#footer {
+	background:#ffab62;
+	width:100%;
+	height:100px;
+	position:absolute;
+	bottom:0;
+	left:0;
 }
