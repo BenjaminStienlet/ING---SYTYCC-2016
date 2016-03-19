@@ -36,7 +36,7 @@ function requestHandler(req, res) {
 	
 
 io.on('connection', function (socket) {
-	socket.on('get', function(data){
+	socket.on('get', function(data){		
 		socket.emit("data", {data:"test"});
 	});
 	
