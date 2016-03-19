@@ -21,13 +21,6 @@ var config = {
     }
 };
 
-/*connection.on('connect', function(err) {
-    console.log("connected");
-    insertNewUser("Tom", "tom.jpg", -500);
-    //executeStatement();
-
-}); */
-
 var Request = require('tedious').Request;
 var TYPES = require('tedious').TYPES;
 
@@ -41,6 +34,10 @@ var TYPES = require('tedious').TYPES;
 // printTable("users");
 // printTable("owenedshares");
 
+
+// ===============
+// ==== USERS ====
+// ===============
 function insertNewUser(name, pictureid, amount) {
     var connection = new Connection(config);
     connection.on('connect',function(err) {
@@ -73,6 +70,42 @@ function getUserInfo(userId, callback) {
     });
 }
 
+function login(username) {
+    // TODO
+}
+
+function getLeaderBoard(amount) {
+    // TODO
+}
+
+function getFriendList(userId) {
+    // TODO
+}
+
+
+// ======================
+// ==== ACHIEVEMENTS ====
+// ======================
+function getAchievementIds() {
+    // TODO
+}
+
+function getAchievementInfo(achievementId) {
+    // TODO
+}
+
+function achieveAchievement(achievementId) {
+    // TODO
+}
+
+function getAchievedIds(userId) {
+    // TODO
+}
+
+
+// ================
+// ==== STOCKS ====
+// ================
 function getStocks(callback) {
     var connection = new Connection(config);
     connection.on('connect', function(err) {
@@ -177,6 +210,21 @@ function increaseStockAmount(userId, stockId, amount) {
         connection.execSql(request1);
     });
 }
+
+function getHistoryForUser(userID) {
+    // TODO
+}
+
+
+// ==================
+// ==== NEWSFEED ====
+// ==================
+function getNewsfeed() {
+    // TODO
+}
+
+
+// =====================================================================================================================
 
 function rowsToJson(rows) {
     var result = [];
