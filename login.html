@@ -25,7 +25,7 @@ Hello world
             var socket = io('http://capitalize.azurewebsites.net');
         
         function login () {
-            var username = $("#usernameInput").value();
+            var username = $("#usernameInput").val();
             socket.emit('login', {username : username});
         }
 		
