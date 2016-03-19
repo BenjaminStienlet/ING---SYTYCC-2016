@@ -14,7 +14,7 @@ var port = process.env.port || 1337;
 app.listen(port);
 
 function handler(req, res) {
-    fs.readFile(path.join(__dirname,'/index.html'),
+    fs.readFile('index.html',
         function (err, data) {
             if (err) {
                 res.writeHead(500);
