@@ -62,7 +62,7 @@ var config = {
 var Request = require('tedious').Request;
 var TYPES = require('tedious').TYPES;
 		
-		function getUserInfo(userId, callback) {
+function getUserInfo(userId, callback) {
     var connection = new Connection(config);
     connection.on('connect', function(err) {
         request = new Request('SELECT * FROM users WHERE uid = @userId', function(err, rc, rows) {
@@ -86,7 +86,7 @@ io.on('connection', function (socket) {
     socket.on('login', function(data){
 		//socket.emit("loginResult", {uid : 1});
 		//socketList.push(socket);
-		db.getUserInfo(data.username,socket);
+		getUserInfo(data.username,socket);
 			//socketList[0].emit("loginResult", {uid : res.uid});
 			//socket.emit("loginResult", {"uid": res.uid});
 			//socketList.pop();
