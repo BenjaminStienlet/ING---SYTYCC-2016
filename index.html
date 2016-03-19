@@ -96,16 +96,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!---brilliantly --->
 			<div class="content">
 			
-			<div class="logindiv">
-			derpy
+			<div id="loginScreen" class="logindiv">
+			<h2 class="header">Log in</h2>
 			<div>
-			<img src="unknown.png" alt="Avatar logo">
+			<img class="center" src="unknown.png" alt="Avatar logo">
 			</div>
 			
 			
 			<form action="#">
+			<div class="center padding-top">
 			  <p>Username: <input id="usernameInput" type="text"></p>
 			  </p><input type="submit" value="Login" onclick="login();"></p>
+			 </div>
 			</form>
 
 			</div>
@@ -118,11 +120,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			
 			 <script>
+			  
+			 
             var socket = io('http://capitalize.azurewebsites.net');
         
 			function login () {
 				var username = $("#usernameInput").val();
 				socket.emit('login', {username : username});
+				$( "#loginScreen" ).hide( "slow" );
 			}
 			
 			socket.on("data", function(data){
