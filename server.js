@@ -26,7 +26,7 @@ function requestHandler(req, res) {
 				if(!err){
 					//if there was no error
 					//send the contents with the default 200/ok header
-					res.end(fileName);
+					res.end(contents);
 				} else {
 					//for our own troubleshooting
 					console.dir(err);
