@@ -57,7 +57,9 @@ Login pagina
 		//buyStock(sid, amount) -> boolean
 		function buyStock () {
 			//sid MOET HIER WORDEN OPGEHAALD!!!
-			var sid = 333
+			var sid = 333;
+			//amount MOET HIER WORDEN OPGEHAALD!!!
+			var amount = 9999;
             socket.emit('buyStock', {sid : sid}, {amount : amount});
         }
 		
@@ -83,11 +85,18 @@ Login pagina
         }
 		
 		socket.on("getAchievement", function(data){
-            console.log(data.achievementSucceeded);
+            console.log(data.achievementList);
         });
 		
 		//////////////////////////////////////////////////////////
-		//achieveAhievement(aid) -> ?
+		//achieveAhievement(aid) -> boolean
+		function achieveAchievement() {
+            socket.emit('achieveAchievement', {uid : uid});
+        }
+		
+		socket.on("achieveAchievement", function(data){
+            console.log(data.achievementSucceeded);
+        });
 		
 		//////////////////////////////////////////////////////////
 		//getHistoryForStock(sid) -> ?

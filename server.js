@@ -68,10 +68,17 @@ io.on('connection', function (socket) {
 	
 	//getAchievement() -> [achievement] : listOfAchievements
 	socket.on('getAchievement', function(data){
-		socket.emit("getAchievementResult", {achievementSucceeded:"trueAchievementTest"});
+		var result = [];
+		result.push("achievementName1");
+		result.push("achievementName2");
+		socket.emit("getAchievementResult", {achievementList : result});
 	});
 	
-	//achieveAhievement(aid) -> ?
+	//achieveAhievement(aid) -> boolean
+	socket.on('achieveAchievement', function(data){
+		socket.emit("achieveAchievementResult", {achievementSucceeded:"trueAchievementTest"});
+	});
+	
 	//getHistoryForStock(sid) -> ?
 	//getLeaderBoard() -> [name] : namesList, [amount] : valuesList
 	//getFriendsList(uid) -> [name] : namesList
