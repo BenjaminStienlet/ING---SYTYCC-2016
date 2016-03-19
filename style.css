@@ -64,7 +64,7 @@ body{
 	font-family: 'Voltaire', sans-serif;
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-    color: #7277d5;
+    color: #000066; 
     background:none !important;
     border-radius: 5px;
 }
@@ -74,7 +74,7 @@ body{
 	font-family: 'Voltaire', sans-serif;
 }
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    color: #7277d5;
+    color: #000066;
     background:none !important;
     border-radius: 5px;
 }
@@ -83,7 +83,7 @@ body{
     padding-bottom: 10px;
 }
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    color: #7277d5;
+    color: #000066;
     background-color: #fff;
 }
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
@@ -100,7 +100,7 @@ body{
 }
 /*banner*/
 .banner {
-    background: #7277d5;
+    background: #000066;
 }
 .banner-grids {
     padding-top: 5em;
@@ -163,7 +163,7 @@ a.button:hover {
 }
 .brilliant-left i {
     font-size: 1.3em;
-    background: #7277d5;
+    background: #000066;
     padding: 1em 1em;
     color: #fff;
 	border-radius: 2px;
@@ -254,10 +254,7 @@ background: #e7663f;
     text-align: center;
 	margin-top:4em;
 }
-.pricing {
-    background: #7277d5;
-	 border-top: 4px solid #4E5298;
-}
+
 .price-top {
    padding: 1.5em 1em;
   
@@ -381,7 +378,7 @@ a.button1:hover {
 	border-radius: 3px;
 }
 .footer-grid ul li a:hover {
-	background: #7277d5;
+	background: #000066;
 }
 .second {
     margin-top: .5em;
@@ -472,7 +469,7 @@ a.button1:hover {
 }
 .what-left i {
     font-size: 2em;
-    background: #7277d5;
+    background: #000066;
     padding: 1em 1em;
     color: #fff;
     border-radius: 2px;
@@ -1046,7 +1043,7 @@ a.button3{
     margin-top: 1em;
 }
 a.button3:hover{
-background: #7277d5;
+background: #000066;
 }
 .blog-grids {
     margin-top: 4em;
@@ -1054,8 +1051,8 @@ background: #7277d5;
 /**single**/
 ul.blog-ic {
     margin-top: 1.5em;
-	border-top: 1px solid #7277d5;
-    border-bottom: 1px solid #7277d5;
+	border-top: 1px solid #000066;
+    border-bottom: 1px solid #000066;
     padding: 1em 0;
 }
 ul.blog-ic li {
@@ -1225,7 +1222,7 @@ ul.blog-ic li span i {
 }
 .detailed-top:hover {
     background: #e7663f;
-	border-bottom: 5px solid #7277d5;
+	border-bottom: 5px solid #000066;
 }
 .detailed-grid {
     transition: 0.5s all;
@@ -1329,7 +1326,7 @@ a.button4 {
     text-align: right;
 }
 a.button4:hover {
-    background: #7277D5;
+    background: #000066;
 }
 .table-grids {
     margin-top: 3em;
@@ -1352,7 +1349,7 @@ a.button4:hover {
     background: #e7663f;
 }
 .simple-left:hover {
-    background: #7277D5;
+    background: #000066;
 }
 .simple-right {
     width: 50%;
@@ -1383,7 +1380,7 @@ a.button4:hover {
     margin-top: 2em;
     display: block;
     text-transform: uppercase;
-    background: #7277d5;
+    background: #000066;
     width: 100%;
     padding: 1em;
 }
