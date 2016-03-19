@@ -25,6 +25,7 @@ Login pagina
         var socket = io('http://capitalize.azurewebsites.net');
         var uid;
 		
+				
 		//login(username) -> uid
         function login () {
             var username = $("#usernameInput").val();
@@ -54,8 +55,19 @@ Login pagina
         }
 		
 		socket.on("buyStockResult", function(data){
+			console.log("BuyStockTest");
             console.log(data.purchaseSucceeded);
         });
+		
+		//getStocks() -> [strings]
+		function getStocks () {
+            socket.emit('getStocks', {});
+        }
+		
+		socket.on("getStocksResult", function(data){
+            console.log(data.stocksList);
+        });
+		
 		
     </script>    
 </body>

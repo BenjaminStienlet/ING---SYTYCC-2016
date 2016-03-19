@@ -53,9 +53,14 @@ io.on('connection', function (socket) {
 		socket.emit("getUserInfoResult", {name:"GetUserDataOK", pictureid:"003", amount:"9999"});
 	});
 	
-	//buyStock(sid, amount) -> boolean
+	//buyStock(sid, amount) -> boolean : buyStockResult
 	socket.on('buyStock', function(data){
 		socket.emit("buyStockResult", {purchaseSucceeded:"trueTest"});
+	});
+	
+	//getStocks() -> [strings] : stocksList
+	socket.on('getStocks', function(data){
+		socket.emit("getStocksResult", {stocksList : [string1 : "stockName1", string2 : "stockName2"]});
 	});
 });
 
