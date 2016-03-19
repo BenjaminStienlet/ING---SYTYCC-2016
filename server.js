@@ -32,7 +32,7 @@ function requestHandler(req, res) {
 					//for our own troubleshooting
 					console.dir(err);
 					res.writeHead(404);
-					res.end("404 Not Found"),
+					res.end("404 Not Found");
 				};
 			});
 };
