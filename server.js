@@ -5,7 +5,7 @@
  */
 
 
-var app = require('http').createServer(requestHandler);
+var app = require('http').createServer(handle);
 var io = require('socket.io')(app);
 var fs = require('fs');
 var port = process.env.port || 1337;
@@ -15,38 +15,46 @@ var path = require('path');
 
 app.listen(port);
 
+function handle (request, response) {
 
-//helper function handles file verification
-function getFile(filePath,res,page404){
-	//does the requested file exist?
-	
-			//read the fiule, run the anonymous function
-			fs.readFile(filePath,function(err,contents){
-				if(!err){
-					//if there was no error
-					//send the contents with the default 200/ok header
-					res.end(contents);
-				} else {
-					//for our own troubleshooting
-					console.dir(err);
-				};
-			});
-		
-	});
-};
- 
-//a helper function to handle HTTP requests
-function requestHandler(req, res) {
-	var
-	fileName = path.basename(req.url) || 'index.html',
-	page404 =  '404.html';
- 
-	//call our helper function
-	//pass in the path to the file we want,
-	//the response object, and the 404 page path
-	//in case the requestd file is not found
-	getFile(fileName,res,page404);
-};
+  var uri = url.parse(request.url).pathname
+    , filename = path.join(process.cwd(), uri);
+
+  var contentTypesByExtension = {
+    '.html': "text/html",
+    '.css':  "text/css",
+    '.js':   "text/javascript"
+  };
+
+  fs.exists(filename, function(exists) {
+    if(!exists) {
+      response.writeHead(404, {"Content-Type": "text/plain"});
+      response.write("404 Not Found\n");
+      response.end();
+      return;
+    }
+
+    if (fs.statSync(filename).isDirectory()) filename += '/index.html';
+
+    fs.readFile(filename, "binary", function(err, file) {
+      if(err) {        
+        response.writeHead(500, {"Content-Type": "text/plain"});
+        response.write(err + "\n");
+        response.end();
+        return;
+      }
+
+      var headers = {};
+      var contentType = contentTypesByExtension[path.extname(filename)];
+      if (contentType) headers["Content-Type"] = contentType;
+      response.writeHead(200, headers);
+      response.write(file, "binary");
+      response.end();
+    });
+  });
+}
+
+/*
 	
 
 io.on('connection', function (socket) {
@@ -55,3 +63,4 @@ io.on('connection', function (socket) {
 	});
 });
 
+*/
