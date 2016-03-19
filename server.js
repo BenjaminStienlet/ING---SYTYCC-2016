@@ -20,10 +20,9 @@ app.listen(port);
  
 //a helper function to handle HTTP requests
 function requestHandler(req, res) {
-	var
-	fileName = path.basename(req.url) || 'index.html';
+	var fileName = path.basename(req.url) || 'index.html';
  
-		fs.readFile(filePath,function(err,contents){
+		fs.readFile(fileName,function(err,contents){
 				if(!err){
 					//if there was no error
 					//send the contents with the default 200/ok header
