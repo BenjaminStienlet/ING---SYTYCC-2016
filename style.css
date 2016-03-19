@@ -1,9 +1,32 @@
 
 
-.logindiv{
-	float: right;
-	color: white;
+div.logindiv{
+	
+	color: #000066;
 	background-color:#ff6600;
+	margin-left: auto ;
+	margin-right: auto ;
+	width: 450px;
+	border-radius: 25px;
+}
+
+img.center{
+	 display: block;
+    margin: 0 auto;
+}
+
+div.padding-top{
+	padding-top: 20px;
+}
+
+div.center{
+	text-align: center;
+}
+
+h2.header{
+	color: white;
+	text-align: center;
+	padding-top: 10px;
 }
 
 /*--
