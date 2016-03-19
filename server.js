@@ -76,11 +76,28 @@ io.on('connection', function (socket) {
 	
 	//achieveAhievement(aid) -> boolean
 	socket.on('achieveAchievement', function(data){
-		socket.emit("achieveAchievementResult", {achievementSucceeded:"trueAchievementTest"});
+		socket.emit("achieveAchievementResult", {achievementSucceeded : "trueAchievementTest"});
 	});
 	
-	//getHistoryForStock(sid) -> ?
+	//getHistoryForStock(sid) -> list van data?
+	socket.on('getHistoryForStock', function(data){
+		var result = [];
+		result.push("stockHistoryItem1");
+		result.push("stockHistoryItem2");
+		socket.emit("getHistoryForStockResult", {achievementList : result});
+	});
+	
 	//getLeaderBoard() -> [name] : namesList, [amount] : valuesList
+	socket.on('getLeaderBoard', function(data){
+		var result1 = [];
+		result.push("user1");
+		result.push("user2");
+		var result2 = [];
+		result.push("amount1");
+		result.push("amount2");
+		socket.emit("getLeaderBoardResult", {usersList : result1, amountsList : result2});
+	});
+	
 	//getFriendsList(uid) -> [name] : namesList
 	//getProfile(uid) -> ?
 	//getNewsFeed() -> ? 				// enkel relevante artikels of alles?

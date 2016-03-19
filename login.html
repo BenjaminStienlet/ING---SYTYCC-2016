@@ -39,6 +39,10 @@ Login pagina
 			// DIT IS ENKEL OM TE TESTEN!!!
 			buyStock();
 			getStocks();
+			getAchievement();
+			achieveAchievement();
+			getHistoryForStock();
+			getLeaderBoard();
         });
 		
 		//////////////////////////////////////////////////////////
@@ -48,6 +52,7 @@ Login pagina
         }
 		
 		socket.on("getUserInfoResult", function(data){
+			console.log("#### getUserInfoResult");
             console.log(data.name);
 			console.log(data.pictureid);
 			console.log(data.amount);
@@ -64,7 +69,7 @@ Login pagina
         }
 		
 		socket.on("buyStockResult", function(data){
-			console.log("BuyStockTest");
+			console.log("#### buyStockResult");
             console.log(data.buyStockSucceeded);
         });
 		
@@ -75,6 +80,7 @@ Login pagina
         }
 		
 		socket.on("getStocksResult", function(data){
+			console.log("### getStocksResult");
             console.log(data.stocksList);
         });
 		
@@ -84,7 +90,8 @@ Login pagina
             socket.emit('getAchievement', {uid : uid});
         }
 		
-		socket.on("getAchievement", function(data){
+		socket.on("getAchievementResult", function(data){
+			console.log("### getAchievementResult");
             console.log(data.achievementList);
         });
 		
@@ -94,15 +101,33 @@ Login pagina
             socket.emit('achieveAchievement', {uid : uid});
         }
 		
-		socket.on("achieveAchievement", function(data){
+		socket.on("achieveAchievementResult", function(data){
+			console.log("### achieveAchievementResult");
             console.log(data.achievementSucceeded);
         });
 		
 		//////////////////////////////////////////////////////////
-		//getHistoryForStock(sid) -> ?
+		//getHistoryForStock(sid) -> [data] : stockHistory
+		function getHistoryForStock() {
+            socket.emit('getHistoryForStock', {uid : uid});
+        }
+		
+		socket.on("getHistoryForStockResult", function(data){
+			console.log("### getHistoryForStock");
+            console.log(data.history);
+        });
 		
 		//////////////////////////////////////////////////////////
 		//getLeaderBoard() -> [name] : namesList, [amount] : valuesList
+		function getLeaderBoard() {
+            socket.emit('getLeaderBoard', {uid : uid});
+        }
+		
+		socket.on("getLeaderBoardResult", function(data){
+            console.log("### getLeaderBoardResult");
+			console.log(data.usersList);
+			console.log(data.amountsList);
+        });
 		
 		//////////////////////////////////////////////////////////
 		//getFriendsList(uid) -> [name] : namesList
