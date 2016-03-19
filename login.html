@@ -25,7 +25,7 @@ Login pagina
         var socket = io('http://capitalize.azurewebsites.net');
         var uid;
 		
-				
+		//////////////////////////////////////////////////////////		
 		//login(username) -> uid
         function login () {
             var username = $("#usernameInput").val();
@@ -36,8 +36,12 @@ Login pagina
 			console.log(data);
 			uid = data.uid;
 			getUserInfo();
+			// DIT IS ENKEL OM TE TESTEN!!!
+			buyStock();
+			getStocks();
         });
 		
+		//////////////////////////////////////////////////////////
 		//getUserInfo(uid)  -> name, pictureid, amount
 		function getUserInfo () {
             socket.emit('getUserInfo', {uid : uid});
@@ -49,6 +53,7 @@ Login pagina
 			console.log(data.amount);
         });
 		
+		//////////////////////////////////////////////////////////
 		//buyStock(sid, amount) -> boolean
 		function buyStock () {
             socket.emit('buyStock', {sid : sid}, {amount : amount});
@@ -56,9 +61,10 @@ Login pagina
 		
 		socket.on("buyStockResult", function(data){
 			console.log("BuyStockTest");
-            console.log(data.purchaseSucceeded);
+            console.log(data.buyStockSucceeded);
         });
 		
+		//////////////////////////////////////////////////////////
 		//getStocks() -> [strings]
 		function getStocks () {
             socket.emit('getStocks', {});
@@ -68,6 +74,33 @@ Login pagina
             console.log(data.stocksList);
         });
 		
+		//////////////////////////////////////////////////////////
+		//getAchievement() -> [achievement] : listOfAchievements
+		function getAchievement() {
+            socket.emit('getAchievement', {uid : uid});
+        }
+		
+		socket.on("getAchievement", function(data){
+            console.log(data.achievementSucceeded);
+        });
+		
+		//////////////////////////////////////////////////////////
+		//achieveAhievement(aid) -> ?
+		
+		//////////////////////////////////////////////////////////
+		//getHistoryForStock(sid) -> ?
+		
+		//////////////////////////////////////////////////////////
+		//getLeaderBoard() -> [name] : namesList, [amount] : valuesList
+		
+		//////////////////////////////////////////////////////////
+		//getFriendsList(uid) -> [name] : namesList
+		
+		//////////////////////////////////////////////////////////
+		//getProfile(uid) -> ?
+		
+		//////////////////////////////////////////////////////////
+		//getNewsFeed() -> ? 				// enkel relevante artikels of alles?
 		
     </script>    
 </body>

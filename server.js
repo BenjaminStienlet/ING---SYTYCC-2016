@@ -55,12 +55,24 @@ io.on('connection', function (socket) {
 	
 	//buyStock(sid, amount) -> boolean : buyStockResult
 	socket.on('buyStock', function(data){
-		socket.emit("buyStockResult", {purchaseSucceeded:"trueTest"});
+		socket.emit("buyStockResult", {buyStockSucceeded:"trueBuyStockTest"});
 	});
 	
 	//getStocks() -> [strings] : stocksList
 	socket.on('getStocks', function(data){
 		socket.emit("getStocksResult", {stocksList : [string1 : "stockName1", string2 : "stockName2"]});
 	});
+	
+	//getAchievement() -> [achievement] : listOfAchievements
+	socket.on('getAchievement', function(data){
+		socket.emit("getAchievementResult", {achievementSucceeded:"trueAchievementTest"});
+	});
+	
+	//achieveAhievement(aid) -> ?
+	//getHistoryForStock(sid) -> ?
+	//getLeaderBoard() -> [name] : namesList, [amount] : valuesList
+	//getFriendsList(uid) -> [name] : namesList
+	//getProfile(uid) -> ?
+	//getNewsFeed() -> ? 				// enkel relevante artikels of alles?
 });
 
