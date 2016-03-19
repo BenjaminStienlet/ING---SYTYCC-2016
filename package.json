@@ -1,0 +1,12 @@
+{
+  "name": "ing-sytycc",
+  "version": "0.0.1",
+  "description": "ING ",
+  "main": "server.js",
+  "author": "Tom & co",
+  "private": true,
+  "license": "BSD",
+  "dependencies": {
+    "socket.io": "1.3.5"
+  }
+}
