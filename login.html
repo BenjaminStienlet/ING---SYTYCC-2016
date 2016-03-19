@@ -56,6 +56,8 @@ Login pagina
 		//////////////////////////////////////////////////////////
 		//buyStock(sid, amount) -> boolean
 		function buyStock () {
+			//sid MOET HIER WORDEN OPGEHAALD!!!
+			var sid = 333
             socket.emit('buyStock', {sid : sid}, {amount : amount});
         }
 		
