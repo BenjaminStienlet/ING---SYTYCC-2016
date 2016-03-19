@@ -65,7 +65,7 @@ module.exports =  {
 // insertNewUser("Ben", "ben.jpg", 1000);
 // addFriendship(4, 7, 15);
 // getFriendList(7, function(res) { console.log(res) });
-getStocksForUser(1, function(res) { console.log(res) });
+// getStocksForUser(1, function(res) { console.log(res) });
 
 // ===============
 // ==== USERS ====
