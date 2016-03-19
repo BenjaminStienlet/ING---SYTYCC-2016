@@ -62,7 +62,7 @@ module.exports =  {
 // login("Tom", function(res) { console.log(res); });
 // getUsers(function(res) { console.log(res); });
 // insertNewUser("Ben", "ben.jpg", 1000);
-// addFriendship(1, 7, 15);
+// addFriendship(4, 7, 15);
 // getFriendList(7, function(res) { console.log(res) });
 
 // ===============
@@ -132,11 +132,12 @@ function login(username, callback) {
 function getFriendList(userId, callback) {
     var connection = new Connection(config);
     connection.on('connect', function(err) {
-        request = new Request('SELECT * FROM users WHERE uid = @userId', function(err, rc, rows) {
+        request = new Request('SELECT * FROM users WHERE uid IN ' +
+                            '(SELECT uid1 FROM friend WHERE uid2 = @userId)', function(err, rc, rows) {
             if (err) {
                 console.log(err);
             }
-            callback(columnsToJson(rows[0]));
+            callback(rowsToJson(rows));
             connection.close();
         });
         request.addParameter("userId", TYPES.VarChar, userId);
@@ -152,7 +153,17 @@ function addFriendship(userId1, userId2, timestamp) {
             if (err) {
                 console.log(err);
             }
-            connection.close();
+            request = new Request('INSERT INTO friend (uid1,uid2,timestamp) ' +
+                'VALUES (@userId1,@userId2,@timestamp)', function(err) {
+                if (err) {
+                    console.log(err);
+                }
+                connection.close();
+            });
+            request.addParameter("userId1", TYPES.Int, userId2);
+            request.addParameter("userId2", TYPES.Int, userId1);
+            request.addParameter("timestamp", TYPES.Int, timestamp);
+            connection.execSql(request);
         });
         request.addParameter("userId1", TYPES.Int, userId1);
         request.addParameter("userId2", TYPES.Int, userId2);
@@ -291,6 +302,10 @@ function increaseStockAmount(userId, stockId, amount) {
 }
 
 function getHistoryForUser(userID) {
+    // TODO
+}
+
+function getStocksForUser(userId) {
     // TODO
 }
 
