@@ -36,16 +36,17 @@ var TYPES = require('tedious').TYPES;
 // getUserInfo(1, function(result){ console.log("Result: "); console.log(result); });
 // printTable("users");
 // buyStock(1, "GOOG", 36000, 50, 3);
-// sellStock(1, "GOOG", 36000, 50, 3);
+// sellStock(1, "GOOG", 36000, 50, 1);
 // printTable("history");
 // printTable("users");
+// printTable("owenedshares");
 
 function insertNewUser(name, pictureid, amount) {
     var connection = new Connection(config);
     connection.on('connect',function(err) {
         request = new Request('INSERT INTO users (name,pictureid,amount) ' +
                             'VALUES (@name,@pictureid,@amount)', function(err) {
-            if(err) {
+            if (err) {
                 console.log(err);
             }
             connection.close();
@@ -87,13 +88,15 @@ function getStocks(callback) {
 }
 
 function buyStock(userId, stockId, timestamp, price, amount) {
-    insertHistory(userId, stockId, timestamp, price, -1 * amount);
+    insertHistory(userId, stockId, timestamp, price, amount);
     increaseUserAmount(userId, -1 * amount * price);
+    increaseStockAmount(userId, stockId, amount);
 }
 
 function sellStock(userId, stockId, timestamp, price, amount) {
-    insertHistory(userId, stockId, timestamp, price, amount);
+    insertHistory(userId, stockId, timestamp, price, -1 * amount);
     increaseUserAmount(userId, amount * price);
+    increaseStockAmount(userId, stockId, -1 * amount);
 }
 
 function insertHistory(userId, stockId, timestamp, price, amount) {
@@ -101,7 +104,7 @@ function insertHistory(userId, stockId, timestamp, price, amount) {
     connection.on('connect',function(err) {
         request = new Request('INSERT INTO history (uid,sid,timestamp,price,amount)' +
                             'VALUES (@userId,@stockId,@timestamp,@price,@amount)', function(err) {
-            if(err) {
+            if (err) {
                 console.log(err);
             }
             connection.close();
@@ -122,7 +125,7 @@ function increaseUserAmount(userId, amount) {
                             'SET amount=(@amount+(' +
                             'SELECT amount FROM users WHERE uid=@userId)) ' +
                             'WHERE uid=@userId', function(err) {
-            if(err) {
+            if (err) {
                 console.log(err);
             }
             connection.close();
@@ -130,6 +133,48 @@ function increaseUserAmount(userId, amount) {
         request.addParameter("userId", TYPES.Int, userId);
         request.addParameter("amount", TYPES.Float, amount);
         connection.execSql(request);
+    });
+}
+
+function increaseStockAmount(userId, stockId, amount) {
+    var connection = new Connection(config);
+
+    connection.on('connect',function(err) {
+        request1 = new Request('SELECT * FROM owenedshares WHERE uid=@userId AND sid=@stockId', function(err, rc, rows) {
+            if (err) {
+                console.log(err);
+            }
+            if (rc == 0) {
+                request2 = new Request('INSERT INTO owenedshares (uid,sid,amount)VALUES (@userId,@stockId,@amount)', function(err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    connection.close();
+                });
+                request2.addParameter("userId", TYPES.Int, userId);
+                request2.addParameter("stockId", TYPES.VarChar, stockId);
+                request2.addParameter("amount", TYPES.Float, amount);
+                connection.execSql(request2);
+            } else {
+                request3 = new Request('UPDATE owenedshares ' +
+                    'SET amount=(@amount+(' +
+                    'SELECT amount FROM owenedshares WHERE uid=@userId AND sid=@stockId)) ' +
+                    'WHERE uid=@userId AND sid=@stockId', function(err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    connection.close();
+                });
+                request3.addParameter("userId", TYPES.Int, userId);
+                request3.addParameter("stockId", TYPES.VarChar, stockId);
+                request3.addParameter("amount", TYPES.Float, amount);
+                connection.execSql(request3);
+            }
+        });
+        request1.addParameter("userId", TYPES.Int, userId);
+        request1.addParameter("stockId", TYPES.VarChar, stockId);
+        request1.addParameter("amount", TYPES.Float, amount);
+        connection.execSql(request1);
     });
 }
 
@@ -153,7 +198,7 @@ function printTable(table) {
     var connection = new Connection(config);
     connection.on('connect', function(err) {
         request = new Request("SELECT * FROM " + table, function(err) {
-            if(err) {
+            if (err) {
                 console.log(err);
             }
             connection.close();
