@@ -3,8 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Hallo</title>
+	
+	 <script src="libs/js/jquery.min.js"></script>
+        <script src="libs/js/jquery-ui.min.js"></script>
+        <script src="libs/js/socket.io.js"></script>
+        <script src="libs/js/d3.min.js"></script>
+        <script src="libs/js/hammer.min.js"></script>
+		
+		 <link rel="stylesheet" href="style/jquery-ui.css" media="screen">
+        <link rel="stylesheet" href="style/style-buttons.css" media="screen">
 </head>
 <body>
 Hello world
+   <script>
+            var socket = io('http://capitalize.azurewebsites.net');
+			socket.emit('get', {data : "derp"}));
+			socket.on("data", function(data){
+			console.log(data);
+			});
+	</script>
 </body>
 </html>

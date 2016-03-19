@@ -21,9 +21,13 @@ function handler(req, res) {
             }
 
             res.writeHead(200);
-            res.end("Tom is zotjes");
+            res.end(data);
         });
 }
 
-
+io.on('connection', function (socket) {
+	socket.on('get', function(data){
+		socket.emit("data", {data:"test"});
+	});
+});
 
