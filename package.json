@@ -15,6 +15,7 @@
     "has-binary": "0.1.7",
     "debug": "2.2.0",
 	"mysql": "2.10.2",
-    "tedious" : "1.13.2"
+    "tedious" : "1.13.2",
+    "nconf" : "0.8.4"
   }
 }
