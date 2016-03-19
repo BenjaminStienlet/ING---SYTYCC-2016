@@ -40,6 +40,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							});
 						</script>						
 <!--script-->
+
+	
+	 <script src="libs/js/jquery.min.js"></script>
+        <script src="libs/js/jquery-ui.min.js"></script>
+        <script src="libs/js/socket.io.js"></script>
+        <script src="libs/js/d3.min.js"></script>
+        <script src="libs/js/hammer.min.js"></script>
+		
+	<link rel="stylesheet" href="style/jquery-ui.css" media="screen">
+        <link rel="stylesheet" href="style/style-buttons.css" media="screen">
 </head>
 <body>
 	<!---header--->
@@ -122,7 +132,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 <script>
 			  
 			 
-            var socket = io('http://capitalize.azurewebsites.net');
+             var socket = io('http://capitalize.azurewebsites.net');
+			var uid;
         
 			function login () {
 				var username = $("#usernameInput").val();
