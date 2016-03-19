@@ -15,7 +15,7 @@
 <body>
 Login pagina
 
-<form action="#">
+<form action="#" onsubmit="return false;">
   Username: <input id="usernameInput" type="text"><br>
   <input type="submit" value="Login" onclick="login();">
 </form>
@@ -25,7 +25,7 @@ Login pagina
         var socket = io('http://capitalize.azurewebsites.net');
         var uid;
 		
-		//LOGIN
+		//login(username) -> uid
         function login () {
             var username = $("#usernameInput").val();
             socket.emit('login', {username : username});
@@ -37,15 +37,26 @@ Login pagina
 			getUserInfo();
         });
 		
-		//GET USER INFO
+		//getUserInfo(uid)  -> name, pictureid, amount
 		function getUserInfo () {
-            //var username = $("#usernameInput").val(); // aanpassen
             socket.emit('getUserInfo', {uid : uid});
         }
 		
 		socket.on("getUserInfoResult", function(data){
-            console.log(data.userdata);
+            console.log(data.name);
+			console.log(data.pictureid);
+			console.log(data.amount);
         });
+		
+		//buyStock(sid, amount) -> boolean
+		function buyStock () {
+            socket.emit('buyStock', {sid : sid}, {amount : amount});
+        }
+		
+		socket.on("buyStockResult", function(data){
+            console.log(data.purchaseSucceeded);
+        });
+		
     </script>    
 </body>
 </html>

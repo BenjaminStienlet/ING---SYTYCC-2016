@@ -43,14 +43,19 @@ io.on('connection', function (socket) {
 		socket.emit("data", {data:"test"});
 	});
 	
-	//login
+	//login(username) -> uid
     socket.on('login', function(data){
 		socket.emit("loginResult", {uid:"LoginOK"});
 	});
 	
-	//getUserInfo(uid)
-	socket.on('login', function(data){
+	//getUserInfo(uid)  -> name, pictureid, amount
+	socket.on('getUserInfo', function(data){
 		socket.emit("getUserInfoResult", {name:"GetUserDataOK", pictureid:"003", amount:"9999"});
+	});
+	
+	//buyStock(sid, amount) -> boolean
+	socket.on('buyStock', function(data){
+		socket.emit("buyStockResult", {purchaseSucceeded:"trueTest"});
 	});
 });
 
