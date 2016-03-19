@@ -9,6 +9,50 @@ div.logindiv{
 	width: 450px;
 	border-radius: 25px;
 }
+div.overviewStock{
+	width: 95%;
+	margin:auto;
+	padding:auto;
+	margin-top: 20px;
+	border-radius: 25px;
+	color: #000066;
+	background-color:#ff6600;
+	padding-bottom: 20px;
+	
+}
+div.context-text{
+	background-color: #b4c3ff;
+	color: #000066;
+	width:90%;
+	margin-left: auto ;
+	margin-right: auto ;
+	border-radius: 25px;
+	
+}
+
+p.normal-text{
+	font-size: 15px;
+	
+}
+
+li.Sitem{
+	list-style-type:none;
+}
+
+.bold{
+	font-weight: bold;
+	
+}
+
+img#loginimg{
+	margin: 10px;
+}
+
+li.Sitem{
+	font-size: 20px;
+	color: #000066;
+	margin-left: 50px;
+}
 
 img.center{
 	 display: block;
@@ -26,8 +70,28 @@ div.center{
 h2.header{
 	color: white;
 	text-align: center;
+	padding: 0px;
+	
 	padding-top: 10px;
+	margin: 0px;
+	margin-bottom: 10px;
 }
+
+h3.header{
+	text-align: center;
+	padding: 0px;
+	
+	padding-top: 10px;
+	margin: 0px;
+	margin-bottom: 10px;
+}
+
+  .ui-tabs-vertical { width: 55em; }
+  .ui-tabs-vertical .ui-tabs-nav { padding: .2em .1em .2em .2em; float: left; width: 12em; }
+  .ui-tabs-vertical .ui-tabs-nav li { clear: left; width: 100%; border-bottom-width: 1px !important; border-right-width: 0 !important; margin: 0 -1px .2em 0; }
+  .ui-tabs-vertical .ui-tabs-nav li a { display:block; }
+  .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active { padding-bottom: 0; padding-right: .1em; border-right-width: 1px; }
+  .ui-tabs-vertical .ui-tabs-panel { padding: 1em; float: right; width: 40em;}
 
 /*--
 Author: W3layouts

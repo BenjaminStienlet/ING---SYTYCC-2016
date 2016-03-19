@@ -42,8 +42,11 @@ Login pagina
 			getAchievement();
 			achieveAchievement();
 			getHistoryForStock();
+			console.log("### test123"); // dit is om te testen...
 			getLeaderBoard();
+			console.log("### test1234");
 			getFriendsList()
+			console.log("### test12345");
 			getProfile();
 			getNewsFeed();
         });
@@ -88,7 +91,7 @@ Login pagina
         });
 		
 		//////////////////////////////////////////////////////////
-		//getAchievement() -> [achievement] : listOfAchievements
+		//getAchievement(uid) -> [achievement] : listOfAchievements
 		function getAchievement() {
             socket.emit('getAchievement', {uid : uid});
         }
@@ -112,12 +115,15 @@ Login pagina
 		//////////////////////////////////////////////////////////
 		//getHistoryForStock(sid) -> [data] : stockHistory
 		function getHistoryForStock() {
+			console.log("### -");
             socket.emit('getHistoryForStock', {uid : uid});
+			console.log("### *");
         }
 		
 		socket.on("getHistoryForStockResult", function(data){
 			console.log("### getHistoryForStock");
             console.log(data.stockHistoryList);
+			console.log("### /");
         });
 		
 		//////////////////////////////////////////////////////////

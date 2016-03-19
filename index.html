@@ -26,11 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/jquery.chocolat.js"></script>
 <link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen">
 <!--lightboxfiles-->
-<script type="text/javascript">
-	$(function() {
-	$('.team a').Chocolat();
-	});
-</script>	
+	
 <script type="text/javascript" src="js/jquery.hoverdir.js"></script>	
 						<script type="text/javascript">
 							$(function() {
@@ -49,7 +45,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <script src="libs/js/hammer.min.js"></script>
 		
 	<link rel="stylesheet" href="style/jquery-ui.css" media="screen">
-        <link rel="stylesheet" href="style/style-buttons.css" media="screen">
+    <link rel="stylesheet" href="style/style-buttons.css" media="screen">
+		
+	<script src="jquery-ui.js"></script>
+
+  
+  
 </head>
 <body>
 	<!---header--->
@@ -115,30 +116,78 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			<form action="#" onsubmit="return false;">
 			<div class="center padding-top">
-			  <p>Username: <input id="usernameInput" type="text"></p>
-			  </p><input type="submit" value="Login" onclick="login();"></p>
+			  <p class="normal-text"><!--<label class="bold">Username: </label> --><input id="usernameInput" placeholder="Username" type="text"></p>
+			  <p><image id="loginimg" src="login.png" onclick="login();"></p>
 			 </div>
 			</form>
 
 			</div>
 			
+			<div class="overviewStock">
+				<h2 class="header">My Portfolio</h2>
+				<div class="context-text" >
+				
+				<ul id="yourList">
+				
+				</ul>
+				
+			 
+
+				
+				</div>
+				<div></div>
+			</div>
+			
+			<div class="overviewStock">
+				<h2 class="header">Buy Stock</h2>
+				<div class="context-text" >
+				<ul id="yourList">
+				Derp
+				</ul>
+				
+			 
+
+				
+				</div>
+				<div></div>
+				<div></div>
+			</div>
+			
+			<div id="tip">
+			</div>
 			
 			</div>
 			<!---brilliantly--->
 			
-			</div>	
+			
 
 			
 			 <script>
+			var stock =  [];
+			stock.push({name : "Google", price : 100, amount: 30});
+			
+			 
+			 
+			 loadMyStock(stock);
+			function loadMyStock(data){
+			data.forEach(function(d, i){
+				$("#yourList").append('<li class="Sitem" onclick="clickedOn('+d+','+i+')"><label id="'+i+'">►</label>'+d.name+' current price: '+d.price+' euro (number of stock items: '+d.amount+')</li>');
+			});
+			
+			}
+			function clickedOn(data, i){
+			$("#yourList").append('<li class="Sitem" onclick="clickedOn('+d+')"><label id="icon">▼</label>'+d.name+' current price: '+d.price+' euro (number of stock items: '+d.amount+')</li>');
+			}
+			
 			  
 			 
-             var socket = io('http://capitalize.azurewebsites.net');
+            var socket = io('http://capitalize.azurewebsites.net');
 			var uid;
         
 			function login () {
 				var username = $("#usernameInput").val();
 				socket.emit('login', {username : username});
-				$( "#loginScreen" ).hide( "slow" );
+				$( "#loginScreen" ).hide("slide", { direction: "left" }, 1000);
 			}
 			
 			socket.on("data", function(data){

@@ -66,7 +66,7 @@ io.on('connection', function (socket) {
 		socket.emit("getStocksResult", {stocksList : result});
 	});
 	
-	//getAchievement() -> [achievement] : listOfAchievements
+	//getAchievement(uid) -> [achievement] : listOfAchievements
 	socket.on('getAchievement', function(data){
 		var result = [];
 		result.push("achievementName1");
