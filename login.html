@@ -37,18 +37,18 @@ Login pagina
 			uid = data.uid;
 			getUserInfo();
 			// DIT IS ENKEL OM TE TESTEN!!!
-			buyStock();
-			getStocks();
-			getAchievement();
-			achieveAchievement();
-			getHistoryForStock();
-			console.log("### test123"); // dit is om te testen...
-			getLeaderBoard();
-			console.log("### test1234");
-			getFriendsList()
-			console.log("### test12345");
-			getProfile();
-			getNewsFeed();
+			//buyStock();
+			//getStocks();
+			//getAchievement();
+			//achieveAchievement();
+			//getHistoryForStock();
+			//console.log("### test123"); // dit is om te testen...
+			//getLeaderBoard(); // werkt niet -----------------------------
+			//console.log("### test1234"); 
+			//getFriendsList() // werkt niet ------------------------------
+			//console.log("### test12345");
+			//getProfile();
+			//getNewsFeed();
         });
 		
 		//////////////////////////////////////////////////////////
@@ -65,13 +65,13 @@ Login pagina
         });
 		
 		//////////////////////////////////////////////////////////
-		//buyStock(sid, amount) -> boolean
+		//buyStock(uid, sid, amount) -> boolean
 		function buyStock () {
 			//sid MOET HIER WORDEN OPGEHAALD!!!
 			var sid = 333;
 			//amount MOET HIER WORDEN OPGEHAALD!!!
-			var amount = 9999;
-            socket.emit('buyStock', {sid : sid}, {amount : amount});
+			var amount = 10;
+            socket.emit('buyStock', {uid : uid}, {sid : sid}, {amount : amount}); // AMOUNT IS HIER HET AANTAL STOCKS DA GE WILT KOPEN
         }
 		
 		socket.on("buyStockResult", function(data){
@@ -129,6 +129,7 @@ Login pagina
 		//////////////////////////////////////////////////////////
 		//getLeaderBoard() -> [name] : namesList, [amount] : valuesList
 		function getLeaderBoard() {
+		console.log("getting leader");
             socket.emit('getLeaderBoard', {});
         }
 		
