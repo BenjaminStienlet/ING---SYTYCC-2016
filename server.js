@@ -55,14 +55,13 @@ function getFile(filePath,res,page404){
 function requestHandler(req, res) {
 	var
 	fileName = path.basename(req.url) || 'index.html',
-	localFolder = __dirname ,
-	page404 = localFolder + '404.html';
+	page404 =  '404.html';
  
 	//call our helper function
 	//pass in the path to the file we want,
 	//the response object, and the 404 page path
 	//in case the requestd file is not found
-	getFile((localFolder + fileName),res,page404);
+	getFile(fileName,res,page404);
 };
 	
 	/*
