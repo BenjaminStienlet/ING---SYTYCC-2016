@@ -22,6 +22,7 @@ function handler(req, res) {
             }
 
             res.writeHead(200);
+            res.write("Tom is zotjes");
             res.end(data);
         });
 }
