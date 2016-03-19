@@ -47,7 +47,7 @@ io.on('connection', function (socket) {
 	
 	//getUserInfo(uid)
 	socket.on('login', function(data){
-		socket.emit("getUserInfoResult", {userdata:"GetUserDataOK"});
+		socket.emit("getUserInfoResult", {name:"GetUserDataOK", pictureid:"003", amount:"9999"});
 	});
 });
 
