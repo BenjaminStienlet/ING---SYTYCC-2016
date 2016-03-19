@@ -5,6 +5,10 @@
   shape-rendering: crispEdges;
 }
 
+h4.center{
+	text-align: center;
+}
+
 .x.axis path {
   display: none;
 }
