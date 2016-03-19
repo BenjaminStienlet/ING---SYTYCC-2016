@@ -161,8 +161,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="overviewStock">
 				<h2 class="header">Friends & Competitions</h2>
 				<div class="context-text" >
-				<p class="searchField normal-text" ><label class="bold"> <input type="text" placeholder="Filter" ></label> </p>
-			
+				<h4 class="center" >Add a Friends</h4>
+				<p class="searchField normal-text" ><label class="bold"> <input type="text" placeholder="Friend name" ></label>  </p>
+				  <p><image id="loginimg" src="addfriend.png" onclick="addFriend();"></p>
+			    <h4 class="center">Your Friends</h4>
 				</div>
 				<div></div>
 				<div></div>
@@ -183,7 +185,7 @@ function callD3(body, stockName){
 
 
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = 960 - margin.left - margin.right,
+    width = $(body).width() - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 var formatDate = d3.time.format("%Y-%m-%d");
