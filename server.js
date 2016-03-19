@@ -84,11 +84,12 @@ io.on('connection', function (socket) {
 		var result = [];
 		result.push("stockHistoryItem1");
 		result.push("stockHistoryItem2");
-		socket.emit("getHistoryForStockResult", {achievementList : result});
+		socket.emit("getHistoryForStockResult", {stockHistoryList : result});
 	});
 	
 	//getLeaderBoard() -> [name] : namesList, [amount] : valuesList
 	socket.on('getLeaderBoard', function(data){
+		/////// DIT WSS BETER IN 1 LIJST TERUGGEVEN, DUS 1 LIJST MET TUPLES {name, amount} MAAR AMOUNT MOET DAN EIGENLIJK AMOUNT + valueOF(Shares) ZIJN!!!
 		var result1 = [];
 		result.push("user1");
 		result.push("user2");
@@ -99,7 +100,25 @@ io.on('connection', function (socket) {
 	});
 	
 	//getFriendsList(uid) -> [name] : namesList
+	socket.on('getFriendsList', function(data){
+		/////// DIT WSS BETER IN 1 LIJST TERUGGEVEN, DUS 1 LIJST MET TUPLES {name, amount} MAAR AMOUNT MOET DAN EIGENLIJK AMOUNT + valueOF(Shares) ZIJN!!!
+		var result = [];
+		result.push("user1");
+		result.push("user2");
+		socket.emit("getFriendsListResult", {usersList : result1});
+	});
+	
 	//getProfile(uid) -> ?
-	//getNewsFeed() -> ? 				// enkel relevante artikels of alles?
+	socket.on('getProfile', function(data){
+		socket.emit("getProfileResult", {profile : "getProfileTest"});
+	});
+	
+	//getNewsFeed() -> [articles] 				// alle artikels
+	socket.on('getNewsFeed', function(data){
+		var result = [];
+		result.push("article1");
+		result.push("article2");
+		socket.emit("getNewsFeedResult", {articlesList : result});
+	});
 });
 

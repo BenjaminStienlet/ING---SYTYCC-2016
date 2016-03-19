@@ -114,13 +114,13 @@ Login pagina
 		
 		socket.on("getHistoryForStockResult", function(data){
 			console.log("### getHistoryForStock");
-            console.log(data.history);
+            console.log(data.stockHistoryList);
         });
 		
 		//////////////////////////////////////////////////////////
 		//getLeaderBoard() -> [name] : namesList, [amount] : valuesList
 		function getLeaderBoard() {
-            socket.emit('getLeaderBoard', {uid : uid});
+            socket.emit('getLeaderBoard', {});
         }
 		
 		socket.on("getLeaderBoardResult", function(data){
@@ -131,12 +131,36 @@ Login pagina
 		
 		//////////////////////////////////////////////////////////
 		//getFriendsList(uid) -> [name] : namesList
+		function getFriendsList() {
+            socket.emit('getFriendsList', {uid : uid});
+        }
+		
+		socket.on("getFriendsListResult", function(data){
+            console.log("### getFriendsListesult");
+			console.log(data.usersList);
+        });
 		
 		//////////////////////////////////////////////////////////
 		//getProfile(uid) -> ?
+		function getProfile() {
+            socket.emit('getProfile', {uid : uid});
+        }
+		
+		socket.on("getProfileResult", function(data){
+            console.log("### getProfileResult");
+			console.log(data.profile);
+        });
 		
 		//////////////////////////////////////////////////////////
-		//getNewsFeed() -> ? 				// enkel relevante artikels of alles?
+		//getNewsFeed() -> [articles] 				// alle artikels
+		function getNewsFeed() {
+            socket.emit('getNewsFeed', {});
+        }
+		
+		socket.on("getNewsFeedResult", function(data){
+            console.log("### getNewsFeedResult");
+			console.log(data.articlesList);
+        });
 		
     </script>    
 </body>
