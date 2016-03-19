@@ -123,7 +123,8 @@ function login(username, socket) {
             if (err) {
                 console.log(err);
             }
-            socket.emit("loginResult",rows);
+            console.log("emmitting");
+            socket.emit("loginResult",columnsToJson(rows[0]));
             connection.close();
         });
         request.addParameter("username", TYPES.VarChar, username);
