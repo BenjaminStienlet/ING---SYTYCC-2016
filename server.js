@@ -39,6 +39,43 @@ function requestHandler(req, res) {
 			});
 };
 	
+	
+			var nconf = require('nconf');
+nconf.file('settings.json').env();
+
+var username =
+    password = nconf.get('password');
+
+var Connection = require("tedious").Connection;
+var config = {
+    userName: nconf.get('username'),
+    password: nconf.get('password'),
+    server: 'ing.database.windows.net',
+    options: {
+        encrypt: true,
+        database: 'stock',
+        rowCollectionOnDone: true,
+        rowCollectionOnRequestCompletion: true
+    }
+};
+
+var Request = require('tedious').Request;
+var TYPES = require('tedious').TYPES;
+		
+		function getUserInfo(userId, callback) {
+    var connection = new Connection(config);
+    connection.on('connect', function(err) {
+        request = new Request('SELECT * FROM users WHERE uid = @userId', function(err, rc, rows) {
+            if (err) {
+                console.log(err);
+            }
+            callback(columnsToJson(rows[0]));
+            connection.close();
+        });
+        request.addParameter("userId", TYPES.Int, userId);
+        connection.execSql(request);
+    });
+}
 
 io.on('connection', function (socket) {
 	socket.on('get', function(data){		
