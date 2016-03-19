@@ -9,7 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <head>
 <title>ING - Stock Exchange</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+<link href="style.css" rel="stylesheet" type="text/css" media="all"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Planet Hosting Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -96,12 +96,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!---brilliantly --->
 			<div class="content">
 			
+			<div class="logindiv">
+			derpy
+			<div>
+			<img src="unknown.png" alt="Avatar logo">
+			</div>
+			
+			
+			<form action="#">
+			  <p>Username: <input id="usernameInput" type="text"></p>
+			  </p><input type="submit" value="Login" onclick="login();"></p>
+			</form>
+
+			</div>
+			
+			
 			</div>
 			<!---brilliantly--->
 			
 			</div>	
 
 			
+			 <script>
+            var socket = io('http://capitalize.azurewebsites.net');
+        
+			function login () {
+				var username = $("#usernameInput").val();
+				socket.emit('login', {username : username});
+			}
 			
+			socket.on("data", function(data){
+				console.log(data);
+			});
+		</script>    
 </body>
 </html>
