@@ -147,10 +147,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<ul id="buyList">
 				
 				</ul>
-				
+				<ul id="buyVis">
+				</ul>
 			 
 
 				
+				</div>
+				<div></div>
+				<div></div>
+			</div>
+			
+			
+			<div class="overviewStock">
+				<h2 class="header">Friends & Competitions</h2>
+				<div class="context-text" >
+				<p class="searchField normal-text" ><label class="bold"> <input type="text" placeholder="Filter" ></label> </p>
+			
 				</div>
 				<div></div>
 				<div></div>
@@ -259,7 +271,12 @@ function type(d) {
 			 
 			 function loadBuyStack(){
 			 stocksNames.forEach(function(d,i){
-				$("#buyList").append('<li class="buyItem"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+')</li>');
+				$("#buyList").append('<li class="buyItem" onclick="clickedOnBuy('+i+');"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+')</li>');
+				$("#buyVis").append('<li class="visItem" ><div class="vis" id="vg'+i+'"></div></li>');
+				
+				callD3("#vg"+i, d.ab);
+				$("#vg"+i).hide();
+				
 			 });
 			 
 			 
@@ -268,7 +285,7 @@ function type(d) {
 			function loadMyStock(data){
 			data.forEach(function(d, i){
 				$("#yourList").append('<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">►</label>'+d.name+' current price: '+d.price+' euro (number of stock items: '+d.amount+')</li>');
-				$("#visList").append('<li class="visItem" onclick="clickedOn('+i+')"><div class="vis" id="g'+i+'"></div></li>');
+				$("#visList").append('<li class="visItem" ><div class="vis" id="g'+i+'"></div></li>');
 				callD3("#g"+i, stock[i].sid);
 				$("#g"+i).hide();
 			});
@@ -293,7 +310,27 @@ function type(d) {
 			$("#g"+i).show();
 			
 			}
-			//$("#yourList").append('<li class="Sitem" onclick="clickedOn('+i+')"><label id="icon">▼</label>'+d.name+' current price: '+d.price+' euro (number of stock items: '+d.amount+')</li>');
+			
+			}
+			
+			function clickedOnBuy(i){
+			
+				if($("#p"+i).html() == "▼"){
+					$("#p"+i).html("►");
+					$("#vg"+i).hide();
+				}
+				else{
+				
+				stocksNames.forEach(function(d, i){
+					$("#p"+i).html("►");
+					$("#vg"+i).hide();
+				});
+				
+				$("#p"+i).html("▼");
+				$("#vg"+i).show();
+				
+				}
+			
 			}
 			
 			  
