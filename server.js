@@ -57,6 +57,5 @@ io.on('connection', function (socket) {
 	socket.on('buyStock', function(data){
 		socket.emit("buyStockResult", {purchaseSucceeded:"trueTest"});
 	});
-	purchaseSucceeded
 });
 
