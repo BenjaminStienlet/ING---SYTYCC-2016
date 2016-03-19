@@ -26,10 +26,13 @@ function requestHandler(req, res) {
 				if(!err){
 					//if there was no error
 					//send the contents with the default 200/ok header
+					res.writeHead(200);
 					res.end(contents);
 				} else {
 					//for our own troubleshooting
 					console.dir(err);
+					res.writeHead(404);
+					res.end("404 Not Found"),
 				};
 			});
 };
@@ -40,9 +43,14 @@ io.on('connection', function (socket) {
 		socket.emit("data", {data:"test"});
 	});
 	
-	// 
+	//login
     socket.on('login', function(data){
-		socket.emit("data", {data:"LoginOK"});
+		socket.emit("loginResult", {uid:"LoginOK"});
+	});
+	
+	//getUserInfo(uid)
+	socket.on('login', function(data){
+		socket.emit("getUserInfoResult", {name:"GetUserDataOK", pictureid:"003", amount:"9999"});
 	});
 });
 

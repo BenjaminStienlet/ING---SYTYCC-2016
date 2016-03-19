@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hallo</title>
+    <title>Login pagina</title>
 	
 	 <script src="libs/js/jquery.min.js"></script>
         <script src="libs/js/jquery-ui.min.js"></script>
@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="style/style-buttons.css" media="screen">
 </head>
 <body>
-Hello world
+Login pagina
 
 <form action="#">
   Username: <input id="usernameInput" type="text"><br>
@@ -22,15 +22,29 @@ Hello world
 
 
     <script>
-            var socket = io('http://capitalize.azurewebsites.net');
-        
+        var socket = io('http://capitalize.azurewebsites.net');
+        var uid;
+		
+		//LOGIN
         function login () {
             var username = $("#usernameInput").val();
             socket.emit('login', {username : username});
         }
 		
-        socket.on("data", function(data){
-            console.log(data);
+        socket.on("loginResult", function(data){
+			console.log(data);
+			uid = data.uid;
+			getUserInfo();
+        });
+		
+		//GET USER INFO
+		function getUserInfo () {
+            //var username = $("#usernameInput").val(); // aanpassen
+            socket.emit('getUserInfo', {uid : uid});
+        }
+		
+		socket.on("getUserInfoResult", function(data){
+            console.log(data.userdata);
         });
     </script>    
 </body>
