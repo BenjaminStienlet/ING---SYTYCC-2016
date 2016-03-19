@@ -13,7 +13,6 @@ var path = require('path');
 var db = require('./db');
 var socketList = [];
 
-db.getFriendList(7, function(res) { console.log(res) });
 
 
 app.listen(port);
