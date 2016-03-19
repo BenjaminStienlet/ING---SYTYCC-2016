@@ -40,9 +40,14 @@ io.on('connection', function (socket) {
 		socket.emit("data", {data:"test"});
 	});
 	
-	// 
+	//login
     socket.on('login', function(data){
-		socket.emit("data", {data:"LoginOK"});
+		socket.emit("loginResult", {uid:"LoginOK"});
+	});
+	
+	//getUserInfo(uid)
+	socket.on('login', function(data){
+		socket.emit("getUserInfoResult", {userdata:"GetUserDataOK"});
 	});
 });
 
