@@ -35,13 +35,13 @@ Login pagina
         socket.on("loginResult", function(data){
 			console.log(data);
 			uid = data.uid;
-			getUserInfo();
+			//getUserInfo();
 			// DIT IS ENKEL OM TE TESTEN!!!
-			buyStock();
-			getStocks();
-			getAchievement();
-			achieveAchievement();
-			getHistoryForStock();
+			//buyStock();
+			//getStocks();
+			//getAchievement();
+			//achieveAchievement();
+			//getHistoryForStock();
 			console.log("### test123"); // dit is om te testen...
 			getLeaderBoard();
 			console.log("### test1234");
@@ -129,6 +129,7 @@ Login pagina
 		//////////////////////////////////////////////////////////
 		//getLeaderBoard() -> [name] : namesList, [amount] : valuesList
 		function getLeaderBoard() {
+		console.log("getting leader");
             socket.emit('getLeaderBoard', {});
         }
 		
