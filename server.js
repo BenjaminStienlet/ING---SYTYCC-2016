@@ -53,9 +53,72 @@ io.on('connection', function (socket) {
 		socket.emit("getUserInfoResult", {name:"GetUserDataOK", pictureid:"003", amount:"9999"});
 	});
 	
-	//buyStock(sid, amount) -> boolean
+	//buyStock(sid, amount) -> boolean : buyStockResult
 	socket.on('buyStock', function(data){
-		socket.emit("buyStockResult", {purchaseSucceeded:"trueTest"});
+		socket.emit("buyStockResult", {buyStockSucceeded:"trueBuyStockTest"});
+	});
+	
+	//getStocks() -> [strings] : stocksList
+	socket.on('getStocks', function(data){
+		var result = [];
+		result.push("stockName1");
+		result.push("stockName2");
+		socket.emit("getStocksResult", {stocksList : result});
+	});
+	
+	//getAchievement(uid) -> [achievement] : listOfAchievements
+	socket.on('getAchievement', function(data){
+		var result = [];
+		result.push("achievementName1");
+		result.push("achievementName2");
+		socket.emit("getAchievementResult", {achievementList : result});
+	});
+	
+	//achieveAhievement(aid) -> boolean
+	socket.on('achieveAchievement', function(data){
+		socket.emit("achieveAchievementResult", {achievementSucceeded : "trueAchievementTest"});
+	});
+	
+	//getHistoryForStock(sid) -> list van data?
+	socket.on('getHistoryForStock', function(data){
+		var result = [];
+		result.push("stockHistoryItem1");
+		result.push("stockHistoryItem2");
+		socket.emit("getHistoryForStockResult", {stockHistoryList : result});
+	});
+	
+	//getLeaderBoard() -> [name] : namesList, [amount] : valuesList
+	socket.on('getLeaderBoard', function(data){
+		/////// DIT WSS BETER IN 1 LIJST TERUGGEVEN, DUS 1 LIJST MET TUPLES {name, amount} MAAR AMOUNT MOET DAN EIGENLIJK AMOUNT + valueOF(Shares) ZIJN!!!
+		var result1 = [];
+		result.push("user1");
+		result.push("user2");
+		var result2 = [];
+		result.push("amount1");
+		result.push("amount2");
+		socket.emit("getLeaderBoardResult", {usersList : result1, amountsList : result2});
+	});
+	
+	//getFriendsList(uid) -> [name] : namesList
+	socket.on('getFriendsList', function(data){
+		/////// DIT WSS BETER IN 1 LIJST TERUGGEVEN, DUS 1 LIJST MET TUPLES {name, amount} MAAR AMOUNT MOET DAN EIGENLIJK AMOUNT + valueOF(Shares) ZIJN!!!
+		var result = [];
+		result.push("user1");
+		result.push("user2");
+		socket.emit("getFriendsListResult", {usersList : result1});
+	});
+	
+	//getProfile(uid) -> ?
+	socket.on('getProfile', function(data){
+		socket.emit("getProfileResult", {profile : "getProfileTest"});
+	});
+	
+	//getNewsFeed() -> [articles] 				// alle artikels
+	socket.on('getNewsFeed', function(data){
+		var result = [];
+		result.push("article1");
+		result.push("article2");
+		socket.emit("getNewsFeedResult", {articlesList : result});
 	});
 });
 
