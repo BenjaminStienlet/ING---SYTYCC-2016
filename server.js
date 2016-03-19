@@ -19,9 +19,7 @@ app.listen(port);
 //helper function handles file verification
 function getFile(filePath,res,page404){
 	//does the requested file exist?
-	fs.exists(filePath,function(exists){
-		//if it does...
-		if(exists){
+	
 			//read the fiule, run the anonymous function
 			fs.readFile(filePath,function(err,contents){
 				if(!err){
@@ -33,9 +31,7 @@ function getFile(filePath,res,page404){
 					console.dir(err);
 				};
 			});
-		} else {
-			res.end(filePath);
-		};
+		
 	});
 };
  
