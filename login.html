@@ -25,7 +25,7 @@ Login pagina
         var socket = io('http://capitalize.azurewebsites.net');
         var uid;
 		
-				
+		//////////////////////////////////////////////////////////		
 		//login(username) -> uid
         function login () {
             var username = $("#usernameInput").val();
@@ -36,38 +36,134 @@ Login pagina
 			console.log(data);
 			uid = data.uid;
 			getUserInfo();
+			// DIT IS ENKEL OM TE TESTEN!!!
+			buyStock();
+			getStocks();
+			getAchievement();
+			achieveAchievement();
+			getHistoryForStock();
+			getLeaderBoard();
+			getFriendsList()
+			getProfile();
+			getNewsFeed();
         });
 		
+		//////////////////////////////////////////////////////////
 		//getUserInfo(uid)  -> name, pictureid, amount
 		function getUserInfo () {
             socket.emit('getUserInfo', {uid : uid});
         }
 		
 		socket.on("getUserInfoResult", function(data){
+			console.log("#### getUserInfoResult");
             console.log(data.name);
 			console.log(data.pictureid);
 			console.log(data.amount);
         });
 		
+		//////////////////////////////////////////////////////////
 		//buyStock(sid, amount) -> boolean
 		function buyStock () {
+			//sid MOET HIER WORDEN OPGEHAALD!!!
+			var sid = 333;
+			//amount MOET HIER WORDEN OPGEHAALD!!!
+			var amount = 9999;
             socket.emit('buyStock', {sid : sid}, {amount : amount});
         }
 		
 		socket.on("buyStockResult", function(data){
-			console.log("BuyStockTest");
-            console.log(data.purchaseSucceeded);
+			console.log("#### buyStockResult");
+            console.log(data.buyStockSucceeded);
         });
 		
+		//////////////////////////////////////////////////////////
 		//getStocks() -> [strings]
 		function getStocks () {
             socket.emit('getStocks', {});
         }
 		
 		socket.on("getStocksResult", function(data){
+			console.log("### getStocksResult");
             console.log(data.stocksList);
         });
 		
+		//////////////////////////////////////////////////////////
+		//getAchievement() -> [achievement] : listOfAchievements
+		function getAchievement() {
+            socket.emit('getAchievement', {uid : uid});
+        }
+		
+		socket.on("getAchievementResult", function(data){
+			console.log("### getAchievementResult");
+            console.log(data.achievementList);
+        });
+		
+		//////////////////////////////////////////////////////////
+		//achieveAhievement(aid) -> boolean
+		function achieveAchievement() {
+            socket.emit('achieveAchievement', {uid : uid});
+        }
+		
+		socket.on("achieveAchievementResult", function(data){
+			console.log("### achieveAchievementResult");
+            console.log(data.achievementSucceeded);
+        });
+		
+		//////////////////////////////////////////////////////////
+		//getHistoryForStock(sid) -> [data] : stockHistory
+		function getHistoryForStock() {
+            socket.emit('getHistoryForStock', {uid : uid});
+        }
+		
+		socket.on("getHistoryForStockResult", function(data){
+			console.log("### getHistoryForStock");
+            console.log(data.stockHistoryList);
+        });
+		
+		//////////////////////////////////////////////////////////
+		//getLeaderBoard() -> [name] : namesList, [amount] : valuesList
+		function getLeaderBoard() {
+            socket.emit('getLeaderBoard', {});
+        }
+		
+		socket.on("getLeaderBoardResult", function(data){
+            console.log("### getLeaderBoardResult");
+			console.log(data.usersList);
+			console.log(data.amountsList);
+        });
+		
+		//////////////////////////////////////////////////////////
+		//getFriendsList(uid) -> [name] : namesList
+		function getFriendsList() {
+            socket.emit('getFriendsList', {uid : uid});
+        }
+		
+		socket.on("getFriendsListResult", function(data){
+            console.log("### getFriendsListesult");
+			console.log(data.usersList);
+        });
+		
+		//////////////////////////////////////////////////////////
+		//getProfile(uid) -> ?
+		function getProfile() {
+            socket.emit('getProfile', {uid : uid});
+        }
+		
+		socket.on("getProfileResult", function(data){
+            console.log("### getProfileResult");
+			console.log(data.profile);
+        });
+		
+		//////////////////////////////////////////////////////////
+		//getNewsFeed() -> [articles] 				// alle artikels
+		function getNewsFeed() {
+            socket.emit('getNewsFeed', {});
+        }
+		
+		socket.on("getNewsFeedResult", function(data){
+            console.log("### getNewsFeedResult");
+			console.log(data.articlesList);
+        });
 		
     </script>    
 </body>
