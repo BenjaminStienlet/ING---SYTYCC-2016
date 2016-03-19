@@ -39,5 +39,10 @@ io.on('connection', function (socket) {
 	socket.on('get', function(data){		
 		socket.emit("data", {data:"test"});
 	});
+	
+	// 
+    socket.on('login', function(data){
+		socket.emit("data", {data:"LoginOK"});
+	});
 });
 
