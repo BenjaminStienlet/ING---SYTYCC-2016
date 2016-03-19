@@ -16,7 +16,7 @@
 Hello world
    <script>
             var socket = io('http://capitalize.azurewebsites.net');
-			socket.emit('get', {data : "derp"}));
+			socket.emit('get', {data : "derp"});
 			socket.on("data", function(data){
 			console.log(data);
 			});

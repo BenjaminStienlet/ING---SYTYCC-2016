@@ -34,19 +34,7 @@ function getFile(filePath,res,page404){
 				};
 			});
 		} else {
-			//if the requested file was not found
-			//serve-up our custom 404 page
-			fs.readFile(page404,function(err,contents){
-				//if there was no error
-				if(!err){
-					//send the contents with a 404/not found header 
-					res.writeHead(404, {'Content-Type': 'text/html'});
-					res.end(contents);
-				} else {
-					//for our own troubleshooting
-					console.dir(err);
-				};
-			});
+			res.end(filePath);
 		};
 	});
 };
@@ -64,25 +52,6 @@ function requestHandler(req, res) {
 	getFile(fileName,res,page404);
 };
 	
-	/*
-function handler(req, res) {
-	
-	var fileName = path.basename(req.url) || 'index.html',
-	
-	/*
-    fs.readFile(fileName,
-        function (err, data) {
-            if (err) {
-                res.writeHead(500);
-                return res.end('Error loading index.html');
-            }
-
-            res.writeHead(200);
-            res.end(data);
-        });*/
-		/*
-}
-*/
 
 io.on('connection', function (socket) {
 	socket.on('get', function(data){
