@@ -33,7 +33,7 @@ Login pagina
         }
 		
         socket.on("loginResult", function(data){
-			console.log(data);
+			console.log(data.uid);
 			uid = data.uid;
 			getUserInfo();
 			// DIT IS ENKEL OM TE TESTEN!!!
