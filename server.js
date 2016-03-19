@@ -5,9 +5,22 @@
  */
 
 
-var http = require('http');
-var port = process.env.PORT || 1337;
-http.createServer(function(req,res){
-    res.writeHead(200, {'Content-Type' : 'text/plain'});
-    res.end('Hello World\n');
-}).listen(port);
+
+var app = require('http').createServer(handler)
+var io = require('socket.io')(app);
+var fs = require('fs');
+
+app.listen(8080);
+
+function handler(req, res) {
+    fs.readFile(__dirname + '/index.html',
+        function (err, data) {
+            if (err) {
+                res.writeHead(500);
+                return res.end('Error loading index.html');
+            }
+
+            res.writeHead(200);
+            res.end(data);
+        });
+}
