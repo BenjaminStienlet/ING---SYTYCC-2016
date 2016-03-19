@@ -51,9 +51,11 @@ io.on('connection', function (socket) {
 	
 	//getUserInfo(uid)  -> name, pictureid, amount
 	socket.on('getUserInfo', function(data){
+		console.log("++++++ getUserInfoResult");
 		db.getUserInfo(data.uid, function(res){ 
 			socket.emit("getUserInfoResult", {name : res.name, pictureid : res.pictureid, amount: res.amount});
 		});
+		console.log("------ getUserInfoResult");
 		//var = getUserInfo();
 		//socket.emit("getUserInfoResult", {name:"GetUserDataOK", pictureid:"003", amount:"9999"});
 	});
