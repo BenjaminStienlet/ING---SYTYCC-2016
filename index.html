@@ -268,27 +268,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 <script>
 			 function updateScoreBoard(){
 				$("#scoreBoard").html();
-				scores.score.sort();
-				scores.score.reverse();
+				
+				
 				scores.forEach(function (data, i ){
-					if(data.name == "You"){
-					$("#scoreBoard").append("<li><label class=\"bold\">"+data.Name +" - "+data.score+"</label></li>");
-					}
-					else {
-					$("#scoreBoard").append("<li>"+data.Name +" - "+data.score+"</li>");
-					}
-				}
+
+                    if(data.name == "You"){
+                        $("#scoreBoard").append("<li><label class=\"bold\">"+data.Name +" - "+data.score+"</label></li>");
+                    }
+                    else {
+                        $("#scoreBoard").append("<li>"+data.Name +" - "+data.score+"</li>");
+                    }
+				});
+
 			 }
 			 
 			 function updateMyScore(add){
-				
+				var scoreb;
 				scores.forEach(function(data,i){
 				
 					if(data.name == "You"){
 					data.score += add;
+					scoreb = data.score;
 					}
 				
 				});
+				
+				if(scoreb > 21){
+				temp = scores[0];
+				scores[0] = scores[1];
+				scores[1] = temp;
+				}
 			 }
 			 
 			 
@@ -461,9 +470,9 @@ function type(d) {
                 var diffDiv = '<div class="SitemDiff">€'+getRandom(-2,2,d.sid).toFixed(2)+'</div>';
                 var sItem = '<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">► </label>'+ nameDiv + euroDiv + diffDiv + '</li>';
 				$("#yourList").append(sItem);
-				$("#yourList").append('<li class="visItem" ><p class="button_b"><input class="number" id="numbers'+i+'" value="1" type="number" min="1" ><img src="sell.png" alt="sell" onclick="sell(\''+getPriceOfStocks(d.sid)+'\',\''+i+'\', \''+d.sid+'\');"></p><div class="vis" id="g'+i+'"> </div></li>');
+				$("#yourList").append('<li class="visItem" ><div id="gli'+i+'"><p class="button_b"><input class="number" id="numbers'+i+'" value="1" type="number" min="1" ><img src="sell.png" alt="sell" onclick="sell(\''+getPriceOfStocks(d.sid)+'\',\''+i+'\', \''+d.sid+'\');"></p><div class="vis" id="g'+i+'"> </div></div></li>');
 				callD3("#g"+i, d.sid);
-				$("#g"+i).hide();
+				$("#gli"+i).hide();
 			});
 
 
@@ -491,17 +500,17 @@ function type(d) {
 			function clickedOn(i){
 			if($("#"+i).html() == "▼"){
 				$("#"+i).html("►");
-				$("#g"+i).hide();
+				$("#gli"+i).hide();
 			}
 			else{
 			
 			stocks.result.forEach(function(d, i){
 				$("#"+i).html("►");
-				$("#g"+i).hide();
+				$("#gli"+i).hide();
 			});
 			
 			$("#"+i).html("▼");
-			$("#g"+i).show();
+			$("#gli"+i).show();
 			
 			}
 			
