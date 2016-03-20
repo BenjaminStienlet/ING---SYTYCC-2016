@@ -243,9 +243,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			
 					<div class="overviewStock">
-				<h2 class="header">Leaderboards</h2>
+				<h2 class="header">Achievements</h2>
 				<div class="context-text" >
-					<h3 class="center">Achievements</h3>
 						<!---<p class="searchField normal-text" ><label class="bold"> <input type="text" placeholder="Friend name" ></label>  </p>
 						<p><image id="loginimg" src="addfriend.png" onclick="addFriend();"></p>--->
 						<div class="imageCentering">
@@ -262,17 +261,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<img class="imageCentering" src="achievement3.png" />
 									<h4 class="alignment">Achievement 3: Made your first loss!</h4>
 								</li>
-<!---  ... --->
-							</ul>
-						
-							<!--- <p>
-								<image id="loginimg" src="achievement.png">
-								<span class="text-content"><span>Place Name</span></span>
-							</p>--->
-						</div>
-					<h3 class="center">Locked</h3>
-						<div class="imageCentering">
-							<ul class="img-list">
 								<li>
 									<img class="imageCentering" src="achievement.png" />
 									<h4 class="alignment">Achievement 4: Win against a friend!</h4>	
@@ -308,10 +296,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div id="dialog-message" title="Download complete">
   <p>
     <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
-    Your files have downloaded successfully into the My Downloads folder.
+    It seems like you're buying a lot of stocks in the technology sector. It's important to diversify your investment to lower your risk.
   </p>
   <p>
-    Currently using <b>36% of your storage space</b>.
+    Did you know? ING offers investment funds which help you to diversify your portfolio. <a href="https://www.ing.be/en/retail/investments/investment-funds/indexfundsguide">Click here</a> for more information.
   </p>
 </div>
 			
@@ -644,7 +632,13 @@ function type(d) {
 				updateScoreBoard();
 			});
 
+             var bought = false;
              socket.on("buyStocksResult", function(data){
+                 if (!bought) {
+                     // hint
+                     dialog();
+                     bought = true;
+                 }
 				 updateMyScore(Math.floor((Math.random() * 10)));
                  socket.emit('login', {"username" : user.name});
              });
