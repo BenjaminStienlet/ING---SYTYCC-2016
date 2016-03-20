@@ -383,7 +383,7 @@ function type(d) {
 			 function loadBuyStock(){
 			 stockNames.forEach(function(d,i){
 				$("#buyList").append('<li class="buyItem" onclick="clickedOnBuy('+i+');"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+')</li>');
-				$("#buyList").append('<li class="visItem" ><p class="button_b">Number: <input id="number'+i+'" type="number" min="1" onchange="modifyPrice('+i+','+d+')"> (Total Cost: <label id="totalPrice'+i+'"></label>) <img src="buy.png" alt="buy" data-toggle="modal" data-target="#myModal" onclick="buyStock('+i+','d')"></p><div class="vis" id="vg'+i+'"> </div></li>');
+				$("#buyList").append('<li class="visItem" ><p class="button_b">Number: <input id="number'+i+'" type="number" min="1" onchange="modifyPrice('+i+','+d+')"> (Total Cost: <label id="totalPrice'+i+'"></label>) <img src="buy.png" alt="buy" data-toggle="modal" data-target="#myModal" onclick="buyStock('+i+','+d+')"></p><div class="vis" id="vg'+i+'"> </div></li>');
 				callD3("#vg"+i, d.ab);
 				$("#vg"+i).hide();
 
