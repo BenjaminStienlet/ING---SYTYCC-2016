@@ -41,7 +41,7 @@ module.exports =  {
     getStocks : getStocks,
     buyStock : buyStock,
     sellStock : sellStock,
-
+    getStockPrice : getStockPrice,
     increaseUserAmount : increaseUserAmount,
     getHistoryForUser : getHistoryForUser,
     getNewsfeed : getNewsfeed,
@@ -266,7 +266,7 @@ function getStockPrice(stockId, callback) {
             callback(columnsToJson(rows[0]));
             connection.close();
         });
-        request.addParameter("stockId", TYPES.Float, stockId);
+        request.addParameter("stockId", TYPES.VarChar, stockId);
         connection.execSql(request);
     });
 }

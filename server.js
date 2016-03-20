@@ -71,6 +71,7 @@ io.on('connection', function (socket) {
 	//buyStock(uid, sid, amount) -> boolean : buyStockResult
 	socket.on('buyStock', function(data){
 		userInfo = db.getUserInfo(data.uid, function(userInfo) {
+			console.log(data);
 			db.getStockPrice(data.sid, function(price) {
 				var timestamp = Date.now() / 1000;
 				var costPrice = data.amount * price; // TODO
