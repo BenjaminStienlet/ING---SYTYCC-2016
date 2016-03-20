@@ -308,14 +308,14 @@ function getHistoryForUser(userID) {
     // TODO
 }
 
-function getStocksForUser(userId, callback) {
+function getStocksForUser(userId, socket) {
     var connection = new Connection(config);
     connection.on('connect', function(err) {
         request = new Request('SELECT * FROM owenedshares WHERE uid = @userId', function(err, rc, rows) {
             if (err) {
                 console.log(err);
             }
-            callback(rowsToJson(rows));
+            socket.emit("getStocksForUserResult",rowsToJson(rows));
             connection.close();
         });
         request.addParameter("userId", TYPES.Int, userId);

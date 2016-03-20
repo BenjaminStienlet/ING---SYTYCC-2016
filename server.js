@@ -149,9 +149,7 @@ io.on('connection', function (socket) {
 
 	//getStocksForUser() -> [{sid, uid, amount}] 				// alle artikels
 	socket.on('getStocksForUser', function(data){
-		db.getStocksForUser(data, function(res) {
-			socket.emit("getStocksForUserResult", res);
-		});
+		db.getStocksForUser(data,socket);
 	});
 });
 
