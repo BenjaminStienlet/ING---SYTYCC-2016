@@ -77,6 +77,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<div id="cash" class="cash">  <label id="username"> Cash: €</label> <label id="cashAmount"> unknown </label></div>
 						</div>
+						
+						
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -114,6 +116,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	<!---header--->
+	
+			<div>
+				<ul>
+  				<!---<li><div class="progress1">0</div></li>
+				<li><div class="progress2">1</div></li>
+				</ul>--->
+				<div class="allign">
+				
+				<div id="myProgress">
+					<div id="myBar">
+					<div class ="progressnumber" id="label">40%</div>
+					</div>
+				</div>
+				</div>
+				
+				<button onclick="move()" class="allign">Do something good for experience!</button> 
+				
+			</div>
+			
+			
+			<h2 class="header">News Feed</h2>
+				<div class="context-text" >
+					<h3 class="center">Recent News</h3>
+					
+				</div>
 	
 	<!---brilliantly --->
 			<div class="content">
@@ -534,6 +561,21 @@ function type(d) {
 			
 			}
 			
+			}
+			
+			function move() {
+				var elem = document.getElementById("myBar");   
+				var width = 40;
+				var id = setInterval(frame, 40);
+				function frame() {
+					if (width >= 60) {
+						clearInterval(id);
+					} else {
+						width++; 
+						elem.style.width = width + '%'; 
+						document.getElementById("label").innerHTML = width * 1  + '%';
+					}
+				}
 			}
 			
 			function clickedOnBuy(i){
