@@ -22,7 +22,9 @@ Login pagina
 
 
     <script>
-        var socket = io('capitalize.azurewebsites.net/', {transports:['websocket']});
+        var socket = io('capitalize.azurewebsites.net/',
+                    {transports:['websocket'],
+                     upgrade: false});
         var uid;
 		
 		//////////////////////////////////////////////////////////		
