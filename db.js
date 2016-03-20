@@ -185,7 +185,7 @@ function getAchievementIds(callback) {
             if (err) {
                 console.log(err);
             }
-            callback(rowsToJson(rows[0]));
+            callback(rowsToJson(rows));
             connection.close();
         });
         connection.execSql(request);
@@ -210,20 +210,32 @@ function getAchievementInfo(achievementId, socket) {
 function achieveAchievement(userId, achievementId, timestamp) {
     var connection = new Connection(config);
     connection.on('connect', function(err) {
-        request = new Request('INSERT * FROM achievements WHERE aid = @achievementId', function(err, rc, rows) {
+        request = new Request('INSERT INTO achieved (uid, aid, timestamp) VALUES (@userId, @achievementId, @timestamp)', function(err, rc, rows) {
             if (err) {
                 console.log(err);
             }
-            socket.emit("achievementResult", columnsToJson(rows[0]));
             connection.close();
         });
+        request.addParameter("userId", TYPES.Int, userId);
         request.addParameter("achievementId", TYPES.Int, achievementId);
+        request.addParameter("timestamp", TYPES.Int, timestamp);
         connection.execSql(request);
     });
 }
 
-function getAchievedIds(userId) {
-    // TODO
+function getAchievedIds(userId, callback) {
+    var connection = new Connection(config);
+    connection.on('connect', function(err) {
+        request = new Request('SELECT aid FROM achieved WHERE uid = @userId', function(err, rc, rows) {
+            if (err) {
+                console.log(err);
+            }
+            callback(rowsToJson(rows));
+            connection.close();
+        });
+        request.addParameter("userId", TYPES.Int, userId);
+        connection.execSql(request);
+    });
 }
 
 
