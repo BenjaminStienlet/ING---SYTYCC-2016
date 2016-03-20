@@ -117,23 +117,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	<!---header--->
 	
-			<div>
-				<ul>
-  				<!---<li><div class="progress1">0</div></li>
-				<li><div class="progress2">1</div></li>
-				</ul>--->
-				<div class="allign">
-				
-				<div id="myProgress">
-					<div id="myBar">
-					<div class ="progressnumber" id="label">40%</div>
-					</div>
-				</div>
-				</div>
-				
-				<button onclick="move()" class="allign">Do something good for experience!</button> 
-				
-			</div>
+
 			
 			
 			<h2 class="header">News Feed</h2>
@@ -219,14 +203,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			<div class="overviewStock">
 			<h2 class="header">Challenge</h2>
-				<div class="context-text" >
+				<div id=completion class="context-text" >
 				You are challenging: <label class="Strong">Sigert</label>!
 				<h3>Completion:</h3>
-				
-				
-				<p>Challenge a new Friend when you are done with the old one: <input type="text" placeholder="Friendname"><image id="addfriend" src="addfriend.png" onclick="addFriend();"></p>
+                    <div>
+                        <!---<ul>
+                            <li><div class="progress1">0</div></li>
+                          <li><div class="progress2">1</div></li>
+                          </ul>--->
+                            <div class="allign">
+
+                                <div id="myProgress">
+                                    <div id="myBar">
+                                        <div class ="progressnumber" id="label">0%</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="allign">Be the first to have €100 in profit.</p>
+
+                    </div>
 				
 				</div>
+
+                <div id="challenge" class="context-text" >Challenge a Friend: <input type="text" placeholder="Friendname"> <img id="challengeImg" src="challenge.png" onclick="challenge()"> </div>
 			</div>
 			
 			<div class="overviewStock">
@@ -311,6 +311,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			</div>
 			 <script>
+
+                 $("#completion").hide();
+                 function challenge() {
+                     $("#completion").show();
+
+                     $("#challenge").hide();
+                 }
 			 
 			 var score_g = 0;
 			 
@@ -565,10 +572,10 @@ function type(d) {
 			
 			function move() {
 				var elem = document.getElementById("myBar");   
-				var width = 40;
-				var id = setInterval(frame, 40);
+				var width = 0;
+				var id = setInterval(frame, 0);
 				function frame() {
-					if (width >= 60) {
+					if (width >= 10) {
 						clearInterval(id);
 					} else {
 						width++; 
@@ -602,8 +609,12 @@ function type(d) {
 			 
             var socket = io('localhost:1337');
 			var user;
-			
+			var moved = false;
 			 socket.on("sellStocksResult", function(data){
+                 if (!moved) {
+                     move();
+                     moved = true;
+                 }
                  socket.emit('login', {"username" : user.name});
              });
         

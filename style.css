@@ -13,7 +13,7 @@
 }
 #myBar {
     position: relative;
-    width: 45%;
+    width: 0%;
     height: 100%;
     background-color: green;
 }
@@ -1711,21 +1711,21 @@ a.button4:hover {
 .social-icons a i {
     width: 35px;
     height: 35px;
-    background: url(../images/img-sprite.png) no-repeat 0px 0px;
+    background: url("../images/img-sprite.png") no-repeat 0px 0px;
     display: inline-block;
 	margin: 0 4px;
 }
 .social-icons a i.icon {
-    background: url(../images/img-sprite.png) no-repeat 0px 0px;
+    background: url("../images/img-sprite.png") no-repeat 0px 0px;
 }
 .social-icons a i.icon1 {
-    background: url(../images/img-sprite.png) no-repeat -35px 0px;
+    background: url("../images/img-sprite.png") no-repeat -35px 0px;
 }
 .social-icons a i.icon2 {
-    background: url(../images/img-sprite.png) no-repeat -70px 0px;
+    background: url("../images/img-sprite.png") no-repeat -70px 0px;
 }
 .social-icons a i.icon3 {
-    background: url(../images/img-sprite.png) no-repeat -105px 0px;
+    background: url("../images/img-sprite.png") no-repeat -105px 0px;
 }
 .testimonials-grid h4 {
     font-size: 1.5em;
