@@ -345,7 +345,7 @@ function type(d) {
 			 function loadBuyStock(){
 			 stockNames.forEach(function(d,i){
 				$("#buyList").append('<li class="buyItem" onclick="clickedOnBuy('+i+');"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+')</li>');
-				$("#buyVis").append('<li class="visItem" ><div class="vis" id="vg'+i+'"></div></li>');
+				$("#buyList").append('<li class="visItem" ><div class="vis" id="vg'+i+'"> <img src="sell.png" alt="sell"></div></li>');
 				callD3("#vg"+i, d.ab);
 				$("#vg"+i).hide();
 
@@ -356,10 +356,10 @@ function type(d) {
 			 
 			function loadMyStock(data){
 			$("#yourList").html("");
-			$("#visList").html("");
+			//$("#yourList").html("");
 			data.result.forEach(function(d, i){
 				$("#yourList").append('<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">►</label>'+findNameOfStockByAb(d.sid)+' current price: '+getPriceOfStocks(d.sid)+' euro (number of stock items: '+d.amount+')</li>');
-				$("#visList").append('<li class="visItem" ><div class="vis" id="g'+i+'"></div></li>');
+				$("#yourList").append('<li class="visItem" ><div class="vis" id="g'+i+'"> <img src="buy.png" alt="buy"></div></li>');
 				callD3("#g"+i, d.sid);
 				$("#g"+i).hide();
 			});
