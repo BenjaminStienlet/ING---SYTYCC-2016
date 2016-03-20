@@ -359,10 +359,10 @@ countdown( "clock", 100, 0 );
 				scores.forEach(function (data, i ){
 
                     if(score_g > data.score){
-                        $("#scoreBoard").append("<li><label class=\"bold\">"+data.Name +" - "+data.score+"</label></li>");
+                        $("#scoreBoard").append("<li><label class=\"bold\">You - "+score_g+"</label></li>");
                     }
                    
-                        $("#scoreBoard").append("<li>"+data.Name +" - "+data.score+"</li>");
+                    $("#scoreBoard").append("<li>"+data.Name +" - "+data.score+"</li>");
                     
 				});
 
