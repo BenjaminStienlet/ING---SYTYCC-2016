@@ -287,7 +287,7 @@ function sellStock(userId, stockId, timestamp, price, amount, profit) {
 
 function insertHistory(userId, stockId, timestamp, price, amount) {
     var connection = new Connection(config);
-    console.log("insertHistory",price);
+    console.log("insertHistory",price,amount);
     connection.on('connect',function(err) {
         request = new Request('INSERT INTO history (uid,sid,timestamp,price,amount)' +
                             'VALUES (@userId,@stockId,@timestamp,@price,@amount)', function(err) {
@@ -307,6 +307,7 @@ function insertHistory(userId, stockId, timestamp, price, amount) {
 
 function increaseUserAmount(userId, amount) {
     var connection = new Connection(config);
+    console.log("increaseUserAmount",amount);
     connection.on('connect',function(err) {
         request = new Request('UPDATE users ' +
                             'SET amount=(@amount+(' +

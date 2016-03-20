@@ -74,9 +74,9 @@ io.on('connection', function (socket) {
 			console.log(data);
 			db.getStockPrice(data.sid, function(price) {
 				var timestamp = Date.now() / 1000;
-				var costPrice = data.amount * price; // TODO
+				var costPrice = data.amount * price.price; // TODO
 				if(userInfo.amount >= costPrice){
-					db.buyStock(data.uid, data.stockId, timestamp, price, data.amount, costPrice);
+					db.buyStock(data.uid, data.sid, timestamp, price.price, data.amount, costPrice);
 					socket.emit("buyStocksResult", true);
 				}
 				else{
@@ -87,7 +87,7 @@ io.on('connection', function (socket) {
 	});
 
 	//sellStock(uid, sid, amount) -> boolean : sellStockResult
-	socket.on('sellStock', function(data){
+	socket.on('sellStock', function(data) {
 		console.log("sell",data);
 		userInfo = db.getStocksForUserCB(data.uid, function(stocks) {
 			var stock = null;
@@ -101,8 +101,8 @@ io.on('connection', function (socket) {
 			} else {
 				db.getStockPrice(data.sid, function (price) {
 					var timestamp = Date.now() / 1000;
-					var profit = data.amount * price; // TODO
-					db.sellStock(data.uid, data.stockId, timestamp, price, data.amount, profit);
+					var profit = data.amount * price.price; // TODO
+					db.sellStock(data.uid, data.sid, timestamp, price.price, data.amount, profit);
 					socket.emit("sellStocksResult", true);
 				});
 			}
