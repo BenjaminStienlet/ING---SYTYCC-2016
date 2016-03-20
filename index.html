@@ -75,7 +75,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<h1><a href="index.html"><img src="logoing.gif" alt="ING logo"></a></h1>
 								
 							</div>
-							<div id="cash" class="cash">  <label id="userName"> Cash: €</label> <label id="cashAmount"> unknown </label></div>
+							<div id="cash" class="cash">  <label id="username"> Cash: €</label> <label id="cashAmount"> unknown </label></div>
 						</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -349,9 +349,9 @@ function type(d) {
 
 
 			 $("#controlpanel").hide();
-			 <!--$("#cash").hide();-->
+			 $("#cash").hide();
 			 var stockNames = [];
-			 stockNames.pushname:"Apple Inc.", ab: "AAPL"});
+			 stockNames.push({name:"Apple Inc.", ab: "AAPL"});
 			 stockNames.push({name:"Microsoft Corperation", ab: "MSFT"});
 			 stockNames.push({name:"Yahoo! Inc.", ab: "YHOO"});
 			 stockNames.push({name:"ING group n.v.", ab: "ING"});
@@ -395,7 +395,7 @@ function type(d) {
 			 function loadBuyStock(){
 			 stockNames.forEach(function(d,i){
 				$("#buyList").append('<li class="buyItem" onclick="clickedOnBuy('+i+');"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+') - '+getPriceOfStocks(d.ab)+' euros</li>');
-				$("#buyList").append('<li class="visItem" ><p id="button'+i+'" class="button_b"><input id="number'+i+'" type="number" min="1" > <img src="buy.png" alt="buy" onclick="buy('+getPriceOfStocks(d.ab)+','+i+', '+d.ab+');"></p><div class="vis" id="vg'+i+'"> </div></li>');
+				$("#buyList").append('<li class="visItem" ><p id="button'+i+'" class="button_b"><input id="number'+i+'" type="number" min="1" > <img src="buy.png" alt="buy" onclick="buy(\''+getPriceOfStocks(d.ab)+'\',\''+i+'\', \''+d.ab+'\');"></p><div class="vis" id="vg'+i+'"> </div></li>');
 				callD3("#vg"+i, d.ab);
 				$("#vg"+i).hide();
 
@@ -474,7 +474,7 @@ function type(d) {
             var socket = io('localhost:1337');
 			var user;
         
-			function login () {
+			function login() {
 				var username = $("#usernameInput").val();
 				socket.emit('login', {"username" : username});
 				
