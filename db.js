@@ -123,7 +123,6 @@ function login(username, socket) {
             if (err) {
                 console.log(err);
             }
-            console.log("emmitting");
             socket.emit("loginResult",columnsToJson(rows[0]));
             connection.close();
         });
