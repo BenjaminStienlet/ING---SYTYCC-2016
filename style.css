@@ -127,26 +127,29 @@ div.logindiv{
 	margin-left: auto ;
 	margin-right: auto ;
 	width: 450px;
-	border-radius: 25px;
+	#border-radius: 25px;
 }
+
+
 div.overviewStock{
 	width: 95%;
 	margin:auto;
 	padding:auto;
 	margin-top: 20px;
-	border-radius: 25px;
+	#border-radius: 25px;
 	color: #000066;
 	background-color:#ff6600;
 	padding-bottom: 20px;
 	
 }
 div.context-text{
-	background-color: #b4c3ff;
+    #background-color: #b4c3ff;
+    background-color: #ffffff;
 	color: #000066;
 	width:90%;
 	margin-left: auto ;
 	margin-right: auto ;
-	border-radius: 25px;
+	#border-radius: 25px;
 	
 }
 
@@ -159,6 +162,33 @@ li.Sitem{
 	list-style-type:none;
 	cursor: pointer;
 }
+div.SitemName {
+    #float:left;
+    padding-left: 0.05vw;
+    display: inline-block;
+}
+div.SitemEuro {
+    float: right;
+    padding-left : 0.05vw;
+    padding-right : 0.30vw;
+    display: inline-block;
+    width: 90px;
+    text-align: right;
+}
+
+div.SitemDiff {
+    float: right;
+    padding-left : 0.05vw;
+    padding-right : 0.05vw;
+    display: inline-block;
+    width: 80px;
+    text-align: right;
+}
+
+
+
+
+
 
 li.visItem{
 	list-style-type:none;
@@ -191,7 +221,8 @@ img#loginimg{
 li.Sitem{
 	font-size: 20px;
 	color: #000066;
-	margin-left: 50px;
+	#margin-left: 50px;
+    margin-bottom:5px;
 }
 
 img.center{

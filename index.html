@@ -422,17 +422,31 @@ function type(d) {
 			$("#yourList").html("");
 			//$("#yourList").html("");
 			data.result.forEach(function(d, i){
-				$("#yourList").append('<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">►</label>'+findNameOfStockByAb(d.sid)+' current price: '+getPriceOfStocks(d.sid)+' euro (number of stock items: '+d.amount+')</li>');
+                var nameDiv = '<div class="SitemName">'+findNameOfStockByAb(d.sid)+' ('+ d.amount + ')</div>';
+                var euroDiv = '<div class="SitemEuro">€'+getPriceOfStocks(d.sid).toFixed(2)+'</div>';
+                var diffDiv = '<div class="SitemDiff">€'+getRandom(-2,2,d.sid).toFixed(2)+'</div>';
+                var sItem = '<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">► </label>'+ nameDiv + euroDiv + diffDiv + '</li>';
+				$("#yourList").append(sItem);
 				$("#yourList").append('<li class="visItem" ><p class="button_b"><input class="number" id="numbers'+i+'" value="1" type="number" min="1" ><img src="sell.png" alt="sell" onclick="sell(\''+getPriceOfStocks(d.sid)+'\',\''+i+'\', \''+d.sid+'\');"></p><div class="vis" id="g'+i+'"> </div></li>');
 				callD3("#g"+i, d.sid);
 				$("#g"+i).hide();
 			});
-			
-			
-			
+
+
+
 			}
-			
-			function sell(price, i, sid){
+
+             function getRandom(min, max,str) {
+                 var seed = str.charCodeAt(0);
+                 function r() {
+                     var x = Math.sin(seed) * 10000;
+                     return x - Math.floor(x);
+                 }
+
+                 return r() * (max - min) + min;
+             }
+
+             function sell(price, i, sid){
                 var number = $("#numbers"+i).val();
                 socket.emit("sellStock", {"uid":user.uid ,"amount":number, "sid": sid});
 			}
