@@ -343,16 +343,21 @@ function countdown( elementName, minutes, seconds )
 			 function updateScoreBoard(){
 				$("#scoreBoard").html("");
 				
-				
+				var found = false:
 				scores.forEach(function (data, i ){
 
                     if(score_g > data.score){
                         $("#scoreBoard").append("<li><label class=\"bold\">You - "+score_g+"</label></li>");
-                    }
-                   
+						found = true;
+					}
+                    
                     $("#scoreBoard").append("<li>"+data.Name +" - "+data.score+"</li>");
                     
 				});
+				
+				if(!found){
+				 $("#scoreBoard").append("<li><label class=\"bold\">You - "+score_g+"</label></li>");
+				}
 
 			 }
 			 
