@@ -194,7 +194,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="overviewStock">
 			<h2 class="header">E-learning</h2>
 				<div class="context-text" >
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/_FJGWjUVVFk" frameborder="0" allowfullscreen></iframe>
+				<iframe width="460" height="250" src="https://www.youtube.com/embed/_FJGWjUVVFk" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div>
 			
@@ -323,8 +323,8 @@ $(function() {
 function callD3(body, stockName){
 
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = 600 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = 400 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom;
 
 var formatDate = d3.time.format("%Y-%m-%d");
 
@@ -372,7 +372,7 @@ d3.csv(stockName+".csv", type, function(error, data) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Price ($)");
+      .text("Price (€)");
 
   svg.append("path")
       .datum(data)
@@ -446,10 +446,14 @@ function type(d) {
 			 function loadBuyStock(){
 			 $("#buyList").html("");
 			 stockNames.forEach(function(d,i){
-				$("#buyList").append('<li class="buyItem" onclick="clickedOnBuy('+i+');"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+') - '+getPriceOfStocks(d.ab)+' euros</li>');
-				$("#buyList").append('<li class="visItem" ><p id="button'+i+'" class="button_b"><input class="number" id="number'+i+'" value="1" type="number" min="1" > <img src="buy.png" alt="buy" onclick="buy(\''+getPriceOfStocks(d.ab)+'\',\''+i+'\', \''+d.ab+'\');"></p><div class="vis" id="vg'+i+'"> </div></li>');
+                // var nameDiv = '<div class="SitemName">'+findNameOfStockByAb(d.sid)+' ('+ d.amount + ')</div>';
+                // var euroDiv = '<div class="SitemEuro">€'+getPriceOfStocks(d.sid).toFixed(2)+'</div>';
+                // var diffDiv = '<div class="SitemDiff">€'+getRandom(-2,2,d.sid).toFixed(2)+'</div>';
+
+                 $("#buyList").append('<li class="buyItem" onclick="clickedOnBuy('+i+');"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+') - '+getPriceOfStocks(d.ab)+' euros</li>');
+				 $("#buyList").append('<li class="visItem" ><div id="view'+i+'"><p id="button'+i+'" class="button_b"><input class="number" id="number'+i+'" value="1" type="number" min="1" > <img src="buy.png" alt="buy" onclick="buy(\''+getPriceOfStocks(d.ab)+'\',\''+i+'\', \''+d.ab+'\');"></p><div class="vis" id="vg'+i+'"> </div></div></li>');
 				callD3("#vg"+i, d.ab);
-				$("#vg"+i).hide();
+				$("#view"+i).hide();
 
              });
 			 
@@ -527,17 +531,17 @@ function type(d) {
 			
 				if($("#p"+i).html() == "▼"){
 					$("#p"+i).html("►");
-					$("#vg"+i).hide();
+					$("#view"+i).hide();
 				}
 				else{
 				
 				stockNames.forEach(function(d, i){
 					$("#p"+i).html("►");
-					$("#vg"+i).hide();
+					$("#view"+i).hide();
 				});
 				
 				$("#p"+i).html("▼");
-				$("#vg"+i).show();
+				$("#view"+i).show();
 				
 				}
 			
