@@ -205,7 +205,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<p class="searchField normal-text addfriend" ><label class="bold"> <input type="text" placeholder="Friend name" ></label> <image id="addfriend" src="addfriend.png" onclick="addFriend();"></p>
 			    <h4 class="center">Your Friends</h4>
 				<div class="center">
-					<ol class="centerF">
+					<ol id="scoreBoard" class="centerF">
 					<li>Jeroen - 105</li>
 					<li><label class="bold">You - 90</label></li>
 					<li>Sigert - 75</li>
@@ -217,6 +217,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div></div>
 			</div>
 			
+			<div class="overviewStock">
+			<h2 class="header">Challenge</h2>
+				<div class="context-text" >
+				You are challenging: <label class="Strong">Sigert</label>!
+				<h3>Completion:</h3>
+				
+				
+				<p>Challenge a new Friend when you are done with the old one: <input type="text" placeholder="Friendname"><image id="addfriend" src="addfriend.png" onclick="addFriend();"></p>
+				
+				</div>
+			</div>
+			
+			<div class="overviewStock">
+			<h2 class="header">E-learning</h2>
+				<div class="context-text" >
+				<iframe width="460" height="250" src="https://www.youtube.com/embed/_FJGWjUVVFk" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
 			
 					<div class="overviewStock">
 				<h2 class="header">Leaderboards</h2>
@@ -293,6 +311,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			</div>
 			 <script>
+			 
+			 var score_g = 0;
+			 
+			 $("#dialog-message").hide();
+			 
+			 function updateScoreBoard(){
+				$("#scoreBoard").html("");
+				
+				
+				scores.forEach(function (data, i ){
+
+                    if(score_g > data.score){
+                        $("#scoreBoard").append("<li><label class=\"bold\">"+data.Name +" - "+data.score+"</label></li>");
+                    }
+                   
+                        $("#scoreBoard").append("<li>"+data.Name +" - "+data.score+"</li>");
+                    
+				});
+
+			 }
+			 
+			 function updateMyScore(add){
+			   console.log("oke score update");
+				
+				score_g += add;
+				
+			
+			 }
+			 
+			 
+			 
 			 function dialog(){
 $(function() {
     $( "#dialog-message").dialog({
@@ -310,8 +359,8 @@ $(function() {
 function callD3(body, stockName){
 
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = 600 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = 400 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom;
 
 var formatDate = d3.time.format("%Y-%m-%d");
 
@@ -359,7 +408,7 @@ d3.csv(stockName+".csv", type, function(error, data) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Price ($)");
+      .text("Price (€)");
 
   svg.append("path")
       .datum(data)
@@ -378,6 +427,16 @@ function type(d) {
 
 			 $("#controlpanel").hide();
 			 $("#cash").hide();
+			 
+			 var scores = [];
+			 
+			 
+			 
+			 scores.push({Name: "Sigert", score: 600});
+			 scores.push({Name:"Jeroen", score: 150});
+			 scores.push({Name:"Benjamin", score:21});
+			
+			 
 			 var stockNames = [];
 			 stockNames.push({name:"Apple Inc.", ab: "AAPL"});
 			 stockNames.push({name:"Microsoft Corperation", ab: "MSFT"});
@@ -421,12 +480,16 @@ function type(d) {
 			 }
 			 
 			 function loadBuyStock(){
-			 $("#buyList").html();
+			 $("#buyList").html("");
 			 stockNames.forEach(function(d,i){
-				$("#buyList").append('<li class="buyItem" onclick="clickedOnBuy('+i+');"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+') - '+getPriceOfStocks(d.ab)+' euros</li>');
-				$("#buyList").append('<li class="visItem" ><p id="button'+i+'" class="button_b"><input class="number" id="number'+i+'" value="1" type="number" min="1" > <img src="buy.png" alt="buy" onclick="buy(\''+getPriceOfStocks(d.ab)+'\',\''+i+'\', \''+d.ab+'\');"></p><div class="vis" id="vg'+i+'"> </div></li>');
+                // var nameDiv = '<div class="SitemName">'+findNameOfStockByAb(d.sid)+' ('+ d.amount + ')</div>';
+                // var euroDiv = '<div class="SitemEuro">€'+getPriceOfStocks(d.sid).toFixed(2)+'</div>';
+                // var diffDiv = '<div class="SitemDiff">€'+getRandom(-2,2,d.sid).toFixed(2)+'</div>';
+
+                 $("#buyList").append('<li class="buyItem" onclick="clickedOnBuy('+i+');"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+') - '+getPriceOfStocks(d.ab)+' euros</li>');
+				 $("#buyList").append('<li class="visItem" ><div id="view'+i+'"><p id="button'+i+'" class="button_b"><input class="number" id="number'+i+'" value="1" type="number" min="1" > <img src="buy.png" alt="buy" onclick="buy(\''+getPriceOfStocks(d.ab)+'\',\''+i+'\', \''+d.ab+'\');"></p><div class="vis" id="vg'+i+'"> </div></div></li>');
 				callD3("#vg"+i, d.ab);
-				$("#vg"+i).hide();
+				$("#view"+i).hide();
 
              });
 			 
@@ -454,9 +517,9 @@ function type(d) {
                 var diffDiv = '<div class="SitemDiff">€'+getRandom(-2,2,d.sid).toFixed(2)+'</div>';
                 var sItem = '<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">► </label>'+ nameDiv + euroDiv + diffDiv + '</li>';
 				$("#yourList").append(sItem);
-				$("#yourList").append('<li class="visItem" ><p class="button_b"><input class="number" id="numbers'+i+'" value="1" type="number" min="1" ><img src="sell.png" alt="sell" onclick="sell(\''+getPriceOfStocks(d.sid)+'\',\''+i+'\', \''+d.sid+'\');"></p><div class="vis" id="g'+i+'"> </div></li>');
+				$("#yourList").append('<li class="visItem" ><div id="gli'+i+'"><p class="button_b"><input class="number" id="numbers'+i+'" value="1" type="number" min="1" ><img src="sell.png" alt="sell" onclick="sell(\''+getPriceOfStocks(d.sid)+'\',\''+i+'\', \''+d.sid+'\');"></p><div class="vis" id="g'+i+'"> </div></div></li>');
 				callD3("#g"+i, d.sid);
-				$("#g"+i).hide();
+				$("#gli"+i).hide();
 			});
 
 
@@ -484,17 +547,17 @@ function type(d) {
 			function clickedOn(i){
 			if($("#"+i).html() == "▼"){
 				$("#"+i).html("►");
-				$("#g"+i).hide();
+				$("#gli"+i).hide();
 			}
 			else{
 			
 			stocks.result.forEach(function(d, i){
 				$("#"+i).html("►");
-				$("#g"+i).hide();
+				$("#gli"+i).hide();
 			});
 			
 			$("#"+i).html("▼");
-			$("#g"+i).show();
+			$("#gli"+i).show();
 			
 			}
 			
@@ -519,17 +582,17 @@ function type(d) {
 			
 				if($("#p"+i).html() == "▼"){
 					$("#p"+i).html("►");
-					$("#vg"+i).hide();
+					$("#view"+i).hide();
 				}
 				else{
 				
 				stockNames.forEach(function(d, i){
 					$("#p"+i).html("►");
-					$("#vg"+i).hide();
+					$("#view"+i).hide();
 				});
 				
 				$("#p"+i).html("▼");
-				$("#vg"+i).show();
+				$("#view"+i).show();
 				
 				}
 			
@@ -561,9 +624,11 @@ function type(d) {
 				$("#controlpanel").show();
 				getStocks();
                 getStocksForUser();
+				updateScoreBoard();
 			});
 
              socket.on("buyStocksResult", function(data){
+				 updateMyScore(Math.floor((Math.random() * 10)));
                  socket.emit('login', {"username" : user.name});
              });
 
