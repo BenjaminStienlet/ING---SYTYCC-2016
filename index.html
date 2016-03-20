@@ -119,21 +119,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	<!---header--->
-	
 
-			
-			
-			<h2 class="header">News Feed</h2>
-				<div class="context-text" >
-					<h3 class="center">Recent News</h3>
-						<h3 class="articleDate">March 18, 2016 — 8:12 PM CET</h3>
-							<div class="articleTitle">Apple Prepares to Unveil Smaller iPhone</div>
-						<h3 class="articleDate">March 18, 2016 — 11:39 PM CET</h3>
-							<div class= "articleTitle">Will Apple Release an Unhackable iPhone on Monday?</div>
-						<h3 class="articleDate">March 18, 2016 — 10:00 AM CET</h3>	
-							<div class="articleTitle">Apple Prepares to Unveil Smaller iPhone With Narrower Ambitions</div>
-					
-				</div>
 	
 	<!---brilliantly --->
 			<div class="content">
@@ -212,6 +198,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			<div class="overviewStock">
 			<h2 class="header">Challenge</h2>
+                <div class="challenge">
 				<div id=completion class="context-text" >
 				You are challenging: <label class="Strong">Sigert</label>!
 				<h3>Completion:</h3>
@@ -236,8 +223,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 
                 <div id="challenge" class="context-text">Challenge a Friend: <input type="text" placeholder="Friendname"> <img id="challengeImg" src="challenge.png" onclick="challenge()"> </div>
-			</div>
-			
+
+                </div>
+            </div>
 			<div class="overviewStock">
 			<h2 class="header">E-learning</h2>
 				<div class="context-text" >
@@ -337,7 +325,6 @@ function countdown( elementName, minutes, seconds )
 }
 
 
-countdown( "clock", 100, 0 );
 
 
 
@@ -346,6 +333,7 @@ countdown( "clock", 100, 0 );
                      $("#completion").show();
 
                      $("#challenge").hide();
+                     countdown( "clock", 100, 0 );
                  }
 			 
 			 var score_g = 0;
@@ -479,16 +467,16 @@ function type(d) {
 			
 			 
 			 var stockNames = [];
-			 stockNames.push({name:"Apple Inc.", ab: "AAPL"});
-			 stockNames.push({name:"Microsoft Corperation", ab: "MSFT"});
-			 stockNames.push({name:"Yahoo! Inc.", ab: "YHOO"});
-			 stockNames.push({name:"ING group n.v.", ab: "ING"});
-			 stockNames.push({name:"Volkswagen AG", ab: "VLKAY"});
-			 stockNames.push({name:"Johnson & Johnson", ab: "JNJ"});
-			 stockNames.push({name:"Toyota Motor Corporation", ab: "TM"});
-			 stockNames.push({name:"ArcelorMittal", ab: "MT"});
-			 stockNames.push({name:"Barclays PLC", ab: "BCS"});
-			 stockNames.push({name:"BNP Paribas SA", ab: "BNP"});
+			 stockNames.push({name:"Apple Inc.", ab: "AAPL", news: '<div class="newsfeed"><h3>News</h3><div class="articleTitle">Apple Prepares to Unveil Smaller iPhone With Narrower Ambitions</div><h3 class="articleDate">March 18, 2016 — 11:39 PM CET</h3><div class= "articleTitle">Will Apple Release an Unhackable iPhone on Monday?</div> <h3 class="articleDate">March 18, 2016 — 10:00 AM CET</h3></div></div>'});
+			 stockNames.push({name:"Microsoft Corperation", ab: "MSFT", news: ''});
+			 stockNames.push({name:"Yahoo! Inc.", ab: "YHOO", news: ''});
+			 stockNames.push({name:"ING group n.v.", ab: "ING", news: ''});
+			 stockNames.push({name:"Volkswagen AG", ab: "VLKAY", news: ''});
+			 stockNames.push({name:"Johnson & Johnson", ab: "JNJ", news: ''});
+			 stockNames.push({name:"Toyota Motor Corporation", ab: "TM", news: ''});
+			 stockNames.push({name:"ArcelorMittal", ab: "MT", news: ''});
+			 stockNames.push({name:"Barclays PLC", ab: "BCS", news: ''});
+			 stockNames.push({name:"BNP Paribas SA", ab: "BNP", news: ''});
 			 
 			var stock =  [];
 			var globalStocks = [];
@@ -528,7 +516,7 @@ function type(d) {
                 // var diffDiv = '<div class="SitemDiff">€'+getRandom(-2,2,d.sid).toFixed(2)+'</div>';
 
                  $("#buyList").append('<li class="buyItem" onclick="clickedOnBuy('+i+');"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+') - '+getPriceOfStocks(d.ab)+' euros</li>');
-				 $("#buyList").append('<li class="visItem" ><div id="view'+i+'"><p id="button'+i+'" class="button_b"><input class="number" id="number'+i+'" value="1" type="number" min="1" > <img src="buy.png" alt="buy" onclick="buy(\''+getPriceOfStocks(d.ab)+'\',\''+i+'\', \''+d.ab+'\');"></p><div class="vis" id="vg'+i+'"> </div></div></li>');
+				 $("#buyList").append('<li class="visItem" ><div id="view'+i+'"><p id="button'+i+'" class="button_b"><input class="number" id="number'+i+'" value="1" type="number" min="1" > <img src="buy.png" alt="buy" onclick="buy(\''+getPriceOfStocks(d.ab)+'\',\''+i+'\', \''+d.ab+'\');"></p><div class="vis" id="vg'+i+'"> </div>'+d.news+'</div></li>');
 				callD3("#vg"+i, d.ab);
 				$("#view"+i).hide();
 
@@ -555,10 +543,21 @@ function type(d) {
 			data.result.forEach(function(d, i){
                 var nameDiv = '<div class="SitemName">'+findNameOfStockByAb(d.sid)+' ('+ d.amount + ')</div>';
                 var euroDiv = '<div class="SitemEuro">€'+getPriceOfStocks(d.sid).toFixed(2)+'</div>';
-                var diffDiv = '<div class="SitemDiff">€'+getRandom(-2,2,d.sid).toFixed(2)+'</div>';
-                var sItem = '<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">► </label>'+ nameDiv + euroDiv + diffDiv + '</li>';
+                var diff = getRandom(-2,2,d.sid).toFixed(2);
+                if (diff >= 0){
+                    var diffDiv = '<div class="SitemDiff positive">'+diff+'%</div>';
+                }
+                else{
+                    var diffDiv = '<div class="SitemDiff negative">'+diff+'%</div>';
+                }
+
+                var sItem = '<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">► </label>'+ nameDiv + diffDiv + euroDiv + '</li>';
+                var news = '';
+                if (d.sid == "AAPL") {
+                    news = stockNames[0].news;
+                }
 				$("#yourList").append(sItem);
-				$("#yourList").append('<li class="visItem" ><div id="gli'+i+'"><p class="button_b"><input class="number" id="numbers'+i+'" value="1" type="number" min="1" ><img src="sell.png" alt="sell" onclick="sell(\''+getPriceOfStocks(d.sid)+'\',\''+i+'\', \''+d.sid+'\');"></p><div class="vis" id="g'+i+'"> </div></div></li>');
+				$("#yourList").append('<li class="visItem" ><div id="gli'+i+'"><p class="button_b"><input class="number" id="numbers'+i+'" value="1" type="number" min="1" ><img src="sell.png" alt="sell" onclick="sell(\''+getPriceOfStocks(d.sid)+'\',\''+i+'\', \''+d.sid+'\');"></p><div class="vis" id="g'+i+'"> </div>'+news+'</div></li>');
 				callD3("#g"+i, d.sid);
 				$("#gli"+i).hide();
 			});
