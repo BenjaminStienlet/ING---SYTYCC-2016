@@ -227,15 +227,15 @@ function getStockPrice(stockId, callback) {
     });
 }
 
-function buyStock(userId, stockId, timestamp, price, amount) {
-    insertHistory(userId, stockId, timestamp, price, amount);
-    increaseUserAmount(userId, -1 * amount * price);
+function buyStock(userId, stockId, timestamp, price, amount, costPrice) {
+    insertHistory(userId, stockId, timestamp, price, amount, costPrice);
+    increaseUserAmount(userId, -1 * costPrice);
     increaseStockAmount(userId, stockId, amount);
 }
 
-function sellStock(userId, stockId, timestamp, price, amount) {
+function sellStock(userId, stockId, timestamp, price, amount, profit) {
     insertHistory(userId, stockId, timestamp, price, -1 * amount);
-    increaseUserAmount(userId, amount * price);
+    increaseUserAmount(userId, profit);
     increaseStockAmount(userId, stockId, -1 * amount);
 }
 
@@ -330,6 +330,21 @@ function getStocksForUser(userId, socket) {
                 console.log(err);
             }
             socket.emit("getStocksForUserResult",rowsToJson(rows));
+            connection.close();
+        });
+        request.addParameter("userId", TYPES.Int, userId);
+        connection.execSql(request);
+    });
+}
+
+function getStocksForUserCB(userId, callback) {
+    var connection = new Connection(config);
+    connection.on('connect', function(err) {
+        request = new Request('SELECT * FROM owenedshares WHERE uid = @userId', function(err, rc, rows) {
+            if (err) {
+                console.log(err);
+            }
+            callback(rowsToJson(rows));
             connection.close();
         });
         request.addParameter("userId", TYPES.Int, userId);
