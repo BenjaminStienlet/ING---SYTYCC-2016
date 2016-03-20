@@ -205,10 +205,24 @@ function getStocks(socket) {
             if (err) {
                 console.log(err);
             }
-            console.log(rows);
             socket.emit("getStocksResult", rowsToJson(rows));
             connection.close();
         });
+        connection.execSql(request);
+    });
+}
+
+function getStockPrice(stockId, callback) {
+    var connection = new Connection(config);
+    connection.on("connect", function(err) {
+        request = new Request('SELECT price FROM stock WHERE sid = @stockId', function(err, rc, rows) {
+            if (err) {
+                console.log(err);
+            }
+            callback(columnsToJson(rows[0]));
+            connection.close();
+        });
+        request.addParameter("stockId", TYPES.Float, stockId);
         connection.execSql(request);
     });
 }
@@ -308,14 +322,14 @@ function getHistoryForUser(userID) {
     // TODO
 }
 
-function getStocksForUser(userId, callback) {
+function getStocksForUser(userId, socket) {
     var connection = new Connection(config);
     connection.on('connect', function(err) {
         request = new Request('SELECT * FROM owenedshares WHERE uid = @userId', function(err, rc, rows) {
             if (err) {
                 console.log(err);
             }
-            callback(rowsToJson(rows));
+            socket.emit("getStocksForUserResult",rowsToJson(rows));
             connection.close();
         });
         request.addParameter("userId", TYPES.Int, userId);

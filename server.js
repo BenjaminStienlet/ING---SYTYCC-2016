@@ -70,16 +70,19 @@ io.on('connection', function (socket) {
 	
 	//buyStock(uid, sid, amount) -> boolean : buyStockResult
 	socket.on('buyStock', function(data){
-		//TODO: checken of ge genoeg geld hebt => nog functie voor nodig in db.js
-		var price = 99; //opzoeken
-		//var timestamp = Date.now() / 1000 | 0;
-		var enoughMoney = true;
-		if(enoughMoney){
-			db.buyStocks(data.uid, stockId, Date.now() / 1000 | 0, price, data.amount); //TIMESTAMP OPVRAGEN, amount is het AANTAL STOCKS
-		}
-		else{
-			socket.emit("buyStocksResult", true);
-		}
+		userInfo = db.getUserInfo(data.uid, function(userInfo) {
+			db.getStockPrice(function(price) {
+				var timestamp = Date.now() / 1000;
+				if(userInfo.amount >= data.amount * price){
+					db.buyStocks(data.uid, data.stockId, timestamp, price, data.amount); //TIMESTAMP OPVRAGEN, amount is het AANTAL STOCKS
+					socket.emit("buyStocksResult", true);
+				}
+				else{
+					socket.emit("buyStocksResult", false);
+				}
+			});
+		});
+
 		
 		//socket.emit("buyStockResult", {buyStockSucceeded:"trueBuyStockTest"});
 	});
@@ -149,9 +152,7 @@ io.on('connection', function (socket) {
 
 	//getStocksForUser() -> [{sid, uid, amount}] 				// alle artikels
 	socket.on('getStocksForUser', function(data){
-		db.getStocksForUser(data, function(res) {
-			socket.emit("getStocksForUserResult", res);
-		});
+		db.getStocksForUser(data.uid,socket);
 	});
 });
 
