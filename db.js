@@ -41,11 +41,12 @@ module.exports =  {
     getStocks : getStocks,
     buyStock : buyStock,
     sellStock : sellStock,
-
+    getStockPrice : getStockPrice,
     increaseUserAmount : increaseUserAmount,
     getHistoryForUser : getHistoryForUser,
     getNewsfeed : getNewsfeed,
-    getStocksForUser : getStocksForUser
+    getStocksForUser : getStocksForUser,
+    getStocksForUserCB : getStocksForUserCB
 };
 
 
@@ -260,13 +261,14 @@ function getStockPrice(stockId, callback) {
     var connection = new Connection(config);
     connection.on("connect", function(err) {
         request = new Request('SELECT price FROM stock WHERE sid = @stockId', function(err, rc, rows) {
-            if (err) {
+            if (err || !rows) {
                 console.log(err);
+                console.log(rows);
             }
             callback(columnsToJson(rows[0]));
             connection.close();
         });
-        request.addParameter("stockId", TYPES.Float, stockId);
+        request.addParameter("stockId", TYPES.VarChar, stockId);
         connection.execSql(request);
     });
 }
@@ -285,6 +287,7 @@ function sellStock(userId, stockId, timestamp, price, amount, profit) {
 
 function insertHistory(userId, stockId, timestamp, price, amount) {
     var connection = new Connection(config);
+    console.log("insertHistory",price);
     connection.on('connect',function(err) {
         request = new Request('INSERT INTO history (uid,sid,timestamp,price,amount)' +
                             'VALUES (@userId,@stockId,@timestamp,@price,@amount)', function(err) {
@@ -396,8 +399,9 @@ function getStocksForUserCB(userId, callback) {
     var connection = new Connection(config);
     connection.on('connect', function(err) {
         request = new Request('SELECT * FROM owenedshares WHERE uid = @userId', function(err, rc, rows) {
-            if (err) {
+            if (err || !rows) {
                 console.log(err);
+                console.log(userId);
             }
             callback(rowsToJson(rows));
             connection.close();
