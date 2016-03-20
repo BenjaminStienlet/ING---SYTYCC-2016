@@ -592,7 +592,7 @@ function type(d) {
 
 
              function updateAmount(amount){
-				document.getElementById("cashAmount").innerHTML = amount;
+				document.getElementById("cashAmount").innerHTML = "€" + amount.toFixed(2);
 			}
 			
 			function generateTip(text){
