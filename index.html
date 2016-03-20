@@ -271,13 +271,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				scores.score.sort();
 				scores.score.reverse();
 				scores.forEach(function (data, i ){
-				if(data.name == "You"){
-				$("#scoreBoard").append("<li><label class=\"bold\">"+data.Name +" - "+data.score+"</label></li>");
-				}
-				else {
-				$("#scoreBoard").append("<li>"+data.Name +" - "+data.score+"</li>");
-				}
-				}
+                    if(data.name == "You"){
+                        $("#scoreBoard").append("<li><label class=\"bold\">"+data.Name +" - "+data.score+"</label></li>");
+                    }
+                    else {
+                        $("#scoreBoard").append("<li>"+data.Name +" - "+data.score+"</li>");
+                    }
+				});
 			 }
 			 
 			 function updateMyScore(add){
