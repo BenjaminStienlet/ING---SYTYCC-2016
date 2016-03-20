@@ -13,11 +13,7 @@ var path = require('path');
 var db = require('./db');
 var socketList = [];
 
-
-
 app.listen(port);
-
-
 
  
 //a helper function to handle HTTP requests
