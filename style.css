@@ -5,6 +5,20 @@
   shape-rendering: crispEdges;
 }
 
+.positive {
+    color: darkgreen;
+    font-weight: bold;
+}
+
+.negative {
+    color: red;
+    font-weight: bold;
+}
+
+#challenge, #completion {
+    padding: 10px;
+}
+
 .newsfeed {
     margin: 20px 60px 20px 60px;
 }
