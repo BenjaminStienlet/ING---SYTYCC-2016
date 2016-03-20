@@ -286,10 +286,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 }
 			 
 			 function updateMyScore(add){
+			   console.log("oke score update");
 				var scoreb;
 				scores.forEach(function(data,i){
 				
 					if(data.name == "You"){
+					console.log("score updated");
 					data.score += add;
 					scoreb = data.score;
 					}
