@@ -233,9 +233,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 //D3
 function callD3(body, stockName){
 
-
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = $(body).width() - margin.left - margin.right,
+    width = 600 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 var formatDate = d3.time.format("%Y-%m-%d");
@@ -301,17 +300,17 @@ function type(d) {
 //end D3
 
 			 $("#controlpanel").hide();
-			 var stocksNames = [];
-			 stocksNames.push({name:"Apple Inc.", ab: "AAPL"});
-			 stocksNames.push({name:"Microsoft Corperation", ab: "MSFT"});
-			 stocksNames.push({name:"Yahoo! Inc.", ab: "YHOO"});
-			 stocksNames.push({name:"ING group n.v.", ab: "ING"});
-			 stocksNames.push({name:"Volkswagen AG", ab: "VLKAY"});
-			 stocksNames.push({name:"Johnson & Johnson", ab: "JNJ"});
-			 stocksNames.push({name:"Toyota Motor Corporation", ab: "TM"});
-			 stocksNames.push({name:"ArcelorMittal", ab: "MT"});
-			 stocksNames.push({name:"Barclays PLC", ab: "BCS"});
-			 stocksNames.push({name:"BNP Paribas SA", ab: "BNP"});
+			 var stockNames = [];
+			 stockNames.push({name:"Apple Inc.", ab: "AAPL"});
+			 stockNames.push({name:"Microsoft Corperation", ab: "MSFT"});
+			 stockNames.push({name:"Yahoo! Inc.", ab: "YHOO"});
+			 stockNames.push({name:"ING group n.v.", ab: "ING"});
+			 stockNames.push({name:"Volkswagen AG", ab: "VLKAY"});
+			 stockNames.push({name:"Johnson & Johnson", ab: "JNJ"});
+			 stockNames.push({name:"Toyota Motor Corporation", ab: "TM"});
+			 stockNames.push({name:"ArcelorMittal", ab: "MT"});
+			 stockNames.push({name:"Barclays PLC", ab: "BCS"});
+			 stockNames.push({name:"BNP Paribas SA", ab: "BNP"});
 			 
 			var stock =  [];
 			var globalStocks = [];
@@ -320,33 +319,37 @@ function type(d) {
 			 
 			 
 			 
-			 loadBuyStack();
+			 loadBuyStock();
 			 
 			 function findNameOfStockByAb(name){
-			 stockNames.forEach(function(d,i){
-				if(d.ab == name){
-				return d.name;
-				} 
-			 });
+                 var result;
+                 stockNames.forEach(function(d,i){
+                    if(d.ab == name){
+                    result =  d.name;
+                    }
+                 });
+                 return result;
 			 }
 			 
 			 function getPriceOfStocks(sid){
+                 var result;
+                 console.log(globalStocks);
 				globalStocks.forEach(function(d,i){
-					if(d.sid == sid){
-					return d.price
+					if(d.SID == sid){
+                        result = d.price;
 					}
 				});
+                 return result;
 			 }
 			 
-			 function loadBuyStack(){
-			 stocksNames.forEach(function(d,i){
+			 function loadBuyStock(){
+			 stockNames.forEach(function(d,i){
 				$("#buyList").append('<li class="buyItem" onclick="clickedOnBuy('+i+');"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+')</li>');
 				$("#buyVis").append('<li class="visItem" ><div class="vis" id="vg'+i+'"></div></li>');
-				
 				callD3("#vg"+i, d.ab);
 				$("#vg"+i).hide();
-				
-			 });
+
+             });
 			 
 			 
 			 }
@@ -355,7 +358,7 @@ function type(d) {
 			$("#yourList").html("");
 			$("#visList").html("");
 			data.result.forEach(function(d, i){
-				$("#yourList").append('<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">►</label>'+findNameOfStockByAb(d.sid)+' current price: '+d.price+' euro (number of stock items: '+d.amount+')</li>');
+				$("#yourList").append('<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">►</label>'+findNameOfStockByAb(d.sid)+' current price: '+getPriceOfStocks(d.sid)+' euro (number of stock items: '+d.amount+')</li>');
 				$("#visList").append('<li class="visItem" ><div class="vis" id="g'+i+'"></div></li>');
 				callD3("#g"+i, d.sid);
 				$("#g"+i).hide();
@@ -372,7 +375,7 @@ function type(d) {
 			}
 			else{
 			
-			stock.result.forEach(function(d, i){
+			stocks.result.forEach(function(d, i){
 				$("#"+i).html("►");
 				$("#g"+i).hide();
 			});
@@ -392,7 +395,7 @@ function type(d) {
 				}
 				else{
 				
-				stocksNames.forEach(function(d, i){
+				stockNames.forEach(function(d, i){
 					$("#p"+i).html("►");
 					$("#vg"+i).hide();
 				});
@@ -420,6 +423,7 @@ function type(d) {
 				$( "#loginScreen" ).hide("slide", { direction: "left" }, 1000);
 				$("#controlpanel").show();
 				getStocks();
+                getStocksForUser();
 			});
 			
 			function generateTip(text){
@@ -427,7 +431,8 @@ function type(d) {
 			}
 			
 			function getStocksForUser(){
-			socket.emit("getStocksForUser", {"uid" : uid});
+                console.log(user.uid);
+			socket.emit("getStocksForUser", {"uid" : user.uid});
 			}
 			
 			socket.on("getStocksForUserResult",function (data){

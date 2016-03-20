@@ -205,10 +205,24 @@ function getStocks(socket) {
             if (err) {
                 console.log(err);
             }
-            console.log(rows);
             socket.emit("getStocksResult", rowsToJson(rows));
             connection.close();
         });
+        connection.execSql(request);
+    });
+}
+
+function getStockPrice(stockId, callback) {
+    var connection = new Connection(config);
+    connection.on("connect", function(err) {
+        request = new Request('SELECT price FROM stock WHERE sid = @stockId', function(err, rc, rows) {
+            if (err) {
+                console.log(err);
+            }
+            callback(columnsToJson(rows[0]));
+            connection.close();
+        });
+        request.addParameter("stockId", TYPES.Float, stockId);
         connection.execSql(request);
     });
 }
