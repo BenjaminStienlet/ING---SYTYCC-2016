@@ -73,13 +73,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</button>				  
 							<div class="navbar-brand">
 								<h1><a href="index.html"><img src="logoing.gif" alt="ING logo"></a></h1>
+								
 							</div>
+							<div id="cash" class="cash">  <label id="userName"> Cash: €</label> <label id="cashAmount"> unknown </label></div>
 						</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
-								<li><div id="cash" class="cash"> Cash: € <label id="cashAmount"> unknown </label></div></li> 
 								
 								<li class="active"><a href="index.html">Home <i class="sr-only">(current)</i></a></li>
 								
@@ -348,9 +349,9 @@ function type(d) {
 
 
 			 $("#controlpanel").hide();
-			 $("#cash").hide();
+			 <!--$("#cash").hide();-->
 			 var stockNames = [];
-			 stockNames.push({name:"Apple Inc.", ab: "AAPL"});
+			 stockNames.pushname:"Apple Inc.", ab: "AAPL"});
 			 stockNames.push({name:"Microsoft Corperation", ab: "MSFT"});
 			 stockNames.push({name:"Yahoo! Inc.", ab: "YHOO"});
 			 stockNames.push({name:"ING group n.v.", ab: "ING"});
@@ -483,6 +484,7 @@ function type(d) {
 				user = data;
 				$( "#loginScreen" ).hide("slide", { direction: "left" }, 1000);
 				$("#cash").show();
+				document.getElementById("username").innerHTML = data.name;
 				<!-- $("#cashAmount").text(data.amount); -->
 				updateAmount(data.amount);
 				$("#controlpanel").show();
