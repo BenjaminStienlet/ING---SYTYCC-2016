@@ -266,6 +266,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			</div>
 			 <script>
+			 function dialog(){
 $(function() {
     $( "#dialog-message").dialog({
       modal: true,
@@ -276,7 +277,7 @@ $(function() {
       }
     });
   });
-			 
+}
 			 
 			 //D3
 function callD3(body, stockName){
@@ -395,7 +396,7 @@ function type(d) {
 			 function loadBuyStock(){
 			 stockNames.forEach(function(d,i){
 				$("#buyList").append('<li class="buyItem" onclick="clickedOnBuy('+i+');"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+') - '+getPriceOfStocks(d.ab)+' euros</li>');
-				$("#buyList").append('<li class="visItem" ><p id="button'+i+'" class="button_b"><input id="number'+i+'" type="number" min="1" > <img src="buy.png" alt="buy" onclick="buy(\''+getPriceOfStocks(d.ab)+'\',\''+i+'\', \''+d.ab+'\');"></p><div class="vis" id="vg'+i+'"> </div></li>');
+				$("#buyList").append('<li class="visItem" ><p id="button'+i+'" class="button_b"><input id="number'+i+'" value="1" type="number" min="1" > <img src="buy.png" alt="buy" onclick="buy(\''+getPriceOfStocks(d.ab)+'\',\''+i+'\', \''+d.ab+'\');"></p><div class="vis" id="vg'+i+'"> </div></li>');
 				callD3("#vg"+i, d.ab);
 				$("#vg"+i).hide();
 
@@ -421,7 +422,7 @@ function type(d) {
 			//$("#yourList").html("");
 			data.result.forEach(function(d, i){
 				$("#yourList").append('<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">►</label>'+findNameOfStockByAb(d.sid)+' current price: '+getPriceOfStocks(d.sid)+' euro (number of stock items: '+d.amount+')</li>');
-				$("#yourList").append('<li class="visItem" ><p class="button_b"><img src="sell.png" alt="sell"></p><div class="vis" id="g'+i+'"> </div></li>');
+				$("#yourList").append('<li class="visItem" ><p class="button_b"><input id="number'+i+'" value="1" type="number" min="1" ><img src="sell.png" alt="sell" onclick="buy(\''+getPriceOfStocks(d.ab)+'\',\''+i+'\', \''+d.ab+'\');"></p><div class="vis" id="g'+i+'"> </div></li>');
 				callD3("#g"+i, d.sid);
 				$("#g"+i).hide();
 			});
@@ -429,6 +430,14 @@ function type(d) {
 			
 			
 			}
+			
+			function sell(price, i, sid){
+			socket.emit("sellStock", {"uid":user.uid ,"amount":number, "sid": sid});
+			}
+			
+			socket.on("buyStocksResult", function(data){
+				socket.emit('login', {"username" : username});
+			});
 			
 			function clickedOn(i){
 			if($("#"+i).html() == "▼"){
