@@ -183,22 +183,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="overviewStock">
 				<h2 class="header">Leaderboards</h2>
 				<div class="context-text" >
-					<h4 class="center" "fontsizeBigger" >Achievements</h4>
+					<h3 class="center">Achievements</h3>
 						<!---<p class="searchField normal-text" ><label class="bold"> <input type="text" placeholder="Friend name" ></label>  </p>
 						<p><image id="loginimg" src="addfriend.png" onclick="addFriend();"></p>--->
 						<div class="imageCentering">
 							<ul class="img-list">
 								<li>
-									<img src="achievement.png" />
-									<h4 class="center">Achievement 1: Bought your first stocks!</h4>	
+									<img class="imageCentering" src="achievement3.png" />
+									<h4 class="alignment">Achievement 1: Bought your first stocks!</h4>	
 								</li>
 								<li>
-									<img src="achievement.png" />
-									<h4 class="center">Achievement 2: Made your first profit!</h4>
+									<img class="imageCentering" src="achievement3.png" />
+									<h4 class="alignment">Achievement 2: Made your first profit!</h4>
 								</li>
 								<li>
-									<img src="achievement.png" />
-									<h4 class="center">Achievement 3: Made your first loss!</h4>
+									<img class="imageCentering" src="achievement3.png" />
+									<h4 class="alignment">Achievement 3: Made your first loss!</h4>
 								</li>
 <!---  ... --->
 							</ul>
@@ -208,14 +208,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<span class="text-content"><span>Place Name</span></span>
 							</p>--->
 						</div>
-					<h4 class="center" "fontsizeBigger">Locked</h4>
-						<div>achievementlocked1</div>
-						<div>achievementlocked2</div>
-						<div>achievementlocked3</div>
+					<h3 class="center">Locked</h3>
+						<div class="imageCentering">
+							<ul class="img-list">
+								<li>
+									<img class="imageCentering" src="achievement.png" />
+									<h4 class="alignment">Achievement 4: Win against a friend!</h4>	
+								</li>
+								<li>
+									<img class="imageCentering" src="achievement.png" />
+									<h4 class="alignment">Achievement 5: Made more than five friends!</h4>
+								</li>
+								<li>
+									<img class="imageCentering" src="achievement.png" />
+									<h4 class="alignment">Achievement 6: Handled over 100 stocks!</h4>
+								</li>
+							</ul>
+					</div>
+					<div></div>
+					<div></div>
 				</div>
-				<div></div>
-				<div></div>
-			</div>
 			
 
 			
@@ -226,9 +238,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<!---brilliantly--->
 			
-			
 
+			<!-- Trigger the modal with a button -->
+			<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open hint</button>
+
+			<!-- Modal -->
+			<div id="myModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Hint!</h4>
+				</div>
+				<div class="modal-body">
+					<p>Text from the hint.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+				</div>
+			</div>
+
+
+  </div>
+</div>
 			
+			</div>
 			 <script>
 			 //D3
 function callD3(body, stockName){
@@ -299,6 +335,7 @@ function type(d) {
 }
 //end D3
 
+
 			 $("#controlpanel").hide();
 			 var stockNames = [];
 			 stockNames.push({name:"Apple Inc.", ab: "AAPL"});
@@ -345,7 +382,7 @@ function type(d) {
 			 function loadBuyStock(){
 			 stockNames.forEach(function(d,i){
 				$("#buyList").append('<li class="buyItem" onclick="clickedOnBuy('+i+');"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+')</li>');
-				$("#buyVis").append('<li class="visItem" ><div class="vis" id="vg'+i+'"></div></li>');
+				$("#buyList").append('<li class="visItem" ><div class="vis" id="vg'+i+'"> <img src="sell.png" alt="sell"></div></li>');
 				callD3("#vg"+i, d.ab);
 				$("#vg"+i).hide();
 
@@ -356,10 +393,10 @@ function type(d) {
 			 
 			function loadMyStock(data){
 			$("#yourList").html("");
-			$("#visList").html("");
+			//$("#yourList").html("");
 			data.result.forEach(function(d, i){
 				$("#yourList").append('<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">►</label>'+findNameOfStockByAb(d.sid)+' current price: '+getPriceOfStocks(d.sid)+' euro (number of stock items: '+d.amount+')</li>');
-				$("#visList").append('<li class="visItem" ><div class="vis" id="g'+i+'"></div></li>');
+				$("#yourList").append('<li class="visItem" ><div class="vis" id="g'+i+'"> <img src="buy.png" alt="buy"></div></li>');
 				callD3("#g"+i, d.sid);
 				$("#g"+i).hide();
 			});
