@@ -272,7 +272,7 @@ li.buyItem{
 	cursor: pointer;
 	font-size: 20px;
 	color: #000066;
-	margin-left: 50px;
+	#margin-left: 50px;
 }
 
 p.searchField{

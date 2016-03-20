@@ -343,7 +343,7 @@ function countdown( elementName, minutes, seconds )
 			 function updateScoreBoard(){
 				$("#scoreBoard").html("");
 				
-				var found = false:
+				var found = false;
 				scores.forEach(function (data, i ){
 
                     if(score_g > data.score){
@@ -511,11 +511,17 @@ function type(d) {
 			 function loadBuyStock(){
 			 $("#buyList").html("");
 			 stockNames.forEach(function(d,i){
-                // var nameDiv = '<div class="SitemName">'+findNameOfStockByAb(d.sid)+' ('+ d.amount + ')</div>';
-                // var euroDiv = '<div class="SitemEuro">€'+getPriceOfStocks(d.sid).toFixed(2)+'</div>';
-                // var diffDiv = '<div class="SitemDiff">€'+getRandom(-2,2,d.sid).toFixed(2)+'</div>';
+                 var nameDiv = '<div class="SitemName">'+ d.name +'</div>';
+                 var euroDiv = '<div class="SitemEuro">€'+getPriceOfStocks(d.ab).toFixed(2)+'</div>';
+                 var diff = getRandom(-2,2,d.ab).toFixed(2);
+                 if (diff >= 0){
+                     var diffDiv = '<div class="SitemDiff positive">'+diff+'%</div>';
+                 }
+                 else{
+                     var diffDiv = '<div class="SitemDiff negative">'+diff+'%</div>';
+                 }
 
-                 $("#buyList").append('<li class="buyItem" onclick="clickedOnBuy('+i+');"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+') - '+getPriceOfStocks(d.ab)+' euros</li>');
+                 $("#buyList").append('<li class="buyItem" onclick="clickedOnBuy('+i+');"><label id="p'+i+'">► </label>'+ nameDiv + diffDiv + euroDiv + '</li>');
 				 $("#buyList").append('<li class="visItem" ><div id="view'+i+'"><p id="button'+i+'" class="button_b"><input class="number" id="number'+i+'" value="1" type="number" min="1" > <img src="buy.png" alt="buy" onclick="buy(\''+getPriceOfStocks(d.ab)+'\',\''+i+'\', \''+d.ab+'\');"></p><div class="vis" id="vg'+i+'"> </div>'+d.news+'</div></li>');
 				callD3("#vg"+i, d.ab);
 				$("#view"+i).hide();
