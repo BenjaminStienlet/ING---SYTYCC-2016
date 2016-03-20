@@ -362,8 +362,19 @@ function increaseStockAmount(userId, stockId, amount) {
     });
 }
 
-function getHistoryForUser(userID) {
-    // TODO
+function getHistoryForUser(userID, callback) {
+    var connection = new Connection(config);
+    connection.on('connect', function(err) {
+        request = new Request('SELECT * FROM history WHERE uid = @userId', function(err, rc, rows) {
+            if (err) {
+                console.log(err);
+            }
+            callback(rowsToJson(rows));
+            connection.close();
+        });
+        request.addParameter("userId", TYPES.Int, userId);
+        connection.execSql(request);
+    });
 }
 
 function getStocksForUser(userId, socket) {
