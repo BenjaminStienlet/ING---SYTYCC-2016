@@ -421,12 +421,16 @@ function type(d) {
 			//$("#yourList").html("");
 			data.result.forEach(function(d, i){
 				$("#yourList").append('<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">►</label>'+findNameOfStockByAb(d.sid)+' current price: '+getPriceOfStocks(d.sid)+' euro (number of stock items: '+d.amount+')</li>');
-				$("#yourList").append('<li class="visItem" ><p class="button_b"><img src="sell.png" alt="sell"></p><div class="vis" id="g'+i+'"> </div></li>');
+				$("#yourList").append('<li class="visItem" ><p class="button_b"><input id="number'+i+'" type="number" min="1" ><img src="sell.png" alt="sell" onclick="sell('+getPriceOfStocks(d.sid)+','+i+', '+d.sid+');"></p><div class="vis" id="g'+i+'"> </div></li>');
 				callD3("#g"+i, d.sid);
 				$("#g"+i).hide();
 			});
 			
 			
+			
+			}
+			
+			function buy(price, i, sid){
 			
 			}
 			
