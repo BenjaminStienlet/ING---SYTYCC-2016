@@ -344,17 +344,19 @@ function type(d) {
 			
 			  
 			 
-            var socket = io('http://capitalize.azurewebsites.net');
-			var uid;
+            var socket = io('localhost:1337');
+			var user;
         
 			function login () {
 				var username = $("#usernameInput").val();
-				socket.emit('login', {username : username});
-				$( "#loginScreen" ).hide("slide", { direction: "left" }, 1000);
+				socket.emit('login', {"username" : username});
+				
 			}
 			
-			socket.on("data", function(data){
+			socket.on("loginResult", function(data){
+				user = data;
 				console.log(data);
+				$( "#loginScreen" ).hide("slide", { direction: "left" }, 1000);
 			});
 			
 			function generateTip(text){
