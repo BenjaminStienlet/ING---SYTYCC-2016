@@ -5,6 +5,14 @@
   shape-rendering: crispEdges;
 }
 
+.cash{
+	text-align: center;
+	font-size: 20px;
+	color: #FF6600;
+	position: relative;
+	top: 6px;
+}
+
 .tipsStyle {
 	text-align: center;
 	position: relative;

@@ -74,8 +74,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
+								<li><div id="cash" class="cash"> Cash: € <label id="cashAmount"> unknown </label></div></li> 
+								
 								<li class="active"><a href="index.html">Home <i class="sr-only">(current)</i></a></li>
-								<li><a href="about.html">About</a></li>
+								
+								<!--<li><a href="about.html">About</a></li>
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages<i class="caret"></i></a>
 										<ul class="dropdown-menu">
@@ -94,7 +97,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</ul>			
 								</li>
 								<li><a href="codes.html">Codes</a></li>
+								-->
 								<li><a href="contact.html">Contact</a></li>
+								
 							</ul>
 									  
 						</div><!-- /.navbar-collapse -->
@@ -337,6 +342,7 @@ function type(d) {
 
 
 			 $("#controlpanel").hide();
+			 $("#cash").hide();
 			 var stockNames = [];
 			 stockNames.push({name:"Apple Inc.", ab: "AAPL"});
 			 stockNames.push({name:"Microsoft Corperation", ab: "MSFT"});
@@ -458,14 +464,22 @@ function type(d) {
 			socket.on("loginResult", function(data){
 				user = data;
 				$( "#loginScreen" ).hide("slide", { direction: "left" }, 1000);
+				$("#cash").show();
+				<!-- $("#cashAmount").text(data.amount); -->
+				updateAmount(data.amount);
 				$("#controlpanel").show();
 				getStocks();
                 getStocksForUser();
 			});
 			
+			function updateAmount(amount){
+				document.getElementById("cashAmount").innerHTML = amount;
+			}
+			
 			function generateTip(text){
 			$("#tip").html(text);
 			}
+			
 			
 			function getStocksForUser(){
                 console.log(user.uid);
