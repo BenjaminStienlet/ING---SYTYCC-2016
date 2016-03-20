@@ -30,6 +30,10 @@ p.button_b{
 	
 }
 
+number{
+	width: 50px;
+}
+
 ul.img-list {
   list-style-type: none;
   margin: 0;

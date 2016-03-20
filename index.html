@@ -399,6 +399,7 @@ function type(d) {
 			 }
 			 
 			 function buyStock(number, d){
+			 console.log("calling");
 				$("#hint-title").html("Are you sure?");
 				$("#hint-text").html("You are going to buy "+$("#number"+i).val + "x the stock "+d.name+". <br/> For the total of "+ ($("#totalPrice"+i).html() * 1.03) + " euros (3% including transaction cost).");
 				$("#hint-button-sec").html('<button type="button" class="btn btn-default" data-dismiss="modal" onclick="confirmBuy()">Ok</button><button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>');
