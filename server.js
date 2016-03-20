@@ -39,6 +39,7 @@ function requestHandler(req, res) {
 io.on('connection', function (socket) {
 
 	io.set('transports', ['websocket']);
+	io.set('match origin protocol', true);
 	console.log('new connection on socket.io');
 	
 	socket.on('get', function(data){		
