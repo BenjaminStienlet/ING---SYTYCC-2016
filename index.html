@@ -437,9 +437,7 @@ function type(d) {
 			}
 
 			
-			 socket.on("sellStocksResult", function(data){
-                 socket.emit('login', {"username" : user.name});
-             });
+			
 			
 			function clickedOn(i){
 			if($("#"+i).html() == "▼"){
@@ -484,6 +482,10 @@ function type(d) {
 			 
             var socket = io('localhost:1337');
 			var user;
+			
+			 socket.on("sellStocksResult", function(data){
+                 socket.emit('login', {"username" : user.name});
+             });
         
 			function login() {
 				var username = $("#usernameInput").val();
