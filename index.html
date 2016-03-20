@@ -112,7 +112,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div>
 			<img class="center" src="unknown.png" alt="Avatar logo">
 			</div>
-			
+
+
 			
 			<form action="#" onsubmit="return false;">
 			<div class="center padding-top">
@@ -122,7 +123,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</form>
 
 			</div>
-			
+
+				<div id="controlpanel">
 			<div class="overviewStock">
 				<h2 class="header">My Portfolio</h2>
 				<div class="context-text" >
@@ -179,10 +181,53 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			<div id="tip">
 			</div>
-			
+			</div>
+
 			</div>
 			<!---brilliantly--->
 			
+			<div class="overviewStock">
+				<h2 class="header">Leaderboards</h2>
+				<div class="context-text" >
+					<h4 class="center" "fontsizeBigger" >Achievements</h4>
+						<!---<p class="searchField normal-text" ><label class="bold"> <input type="text" placeholder="Friend name" ></label>  </p>
+						<p><image id="loginimg" src="addfriend.png" onclick="addFriend();"></p>--->
+						<div class="imageCentering">
+							<ul class="img-list">
+								<li>
+									<img src="achievement.png" />
+									<h4 class="center">Achievement 1: Bought your first stocks!</h4>	
+								</li>
+								<li>
+									<img src="achievement.png" />
+									<h4 class="center">Achievement 2: Made your first profit!</h4>
+								</li>
+								<li>
+									<img src="achievement.png" />
+									<h4 class="center">Achievement 3: Made your first loss!</h4>
+								</li>
+<!---  ... --->
+							</ul>
+						
+							<!--- <p>
+								<image id="loginimg" src="achievement.png">
+								<span class="text-content"><span>Place Name</span></span>
+							</p>--->
+						</div>
+					<h4 class="center" "fontsizeBigger">Locked</h4>
+						<div>achievementlocked1</div>
+						<div>achievementlocked2</div>
+						<div>achievementlocked3</div>
+				</div>
+				<div></div>
+				<div></div>
+			</div>
+			
+			<div id="tip">
+			</div>
+			
+			</div>
+			<!---brilliantly--->
 			
 
 			
@@ -256,8 +301,8 @@ function type(d) {
 }
 }
 //end D3
-			 
-			 
+
+			 $("#controlpanel").hide();
 			 var stocksNames = [];
 			 stocksNames.push({name:"Apple Inc.", ab: "AAPL"});
 			 stocksNames.push({name:"Microsoft Corperation", ab: "MSFT"});
@@ -294,10 +339,10 @@ function type(d) {
 			function loadMyStock(data){
 			$("#yourList").html("");
 			$("#visList").html("");
-			data.forEach(function(d, i){
+			data.result.forEach(function(d, i){
 				$("#yourList").append('<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">►</label>'+d.name+' current price: '+d.price+' euro (number of stock items: '+d.amount+')</li>');
 				$("#visList").append('<li class="visItem" ><div class="vis" id="g'+i+'"></div></li>');
-				callD3("#g"+i, stock[i].sid);
+				callD3("#g"+i, d.sid);
 				$("#g"+i).hide();
 			});
 			
@@ -358,6 +403,7 @@ function type(d) {
 			socket.on("loginResult", function(data){
 				user = data;
 				$( "#loginScreen" ).hide("slide", { direction: "left" }, 1000);
+				$("#controlpanel").show();
 				getStocks();
 			});
 			

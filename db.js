@@ -200,11 +200,12 @@ function getAchievedIds(userId) {
 // ================
 function getStocks(socket) {
     var connection = new Connection(config);
-    connection.on('connect', function(err) {
+    connection.on("connect", function(err) {
         request = new Request('SELECT * FROM stock', function(err, rc, rows) {
             if (err) {
                 console.log(err);
             }
+            console.log(rows);
             socket.emit("getStocksResult", rowsToJson(rows));
             connection.close();
         });
