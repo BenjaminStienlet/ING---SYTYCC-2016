@@ -30,14 +30,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="js/jquery.hoverdir.js"></script>	
 						<script type="text/javascript">
 							$(function() {
-							
 								$(' #da-thumbs > li ').each( function() { $(this).hoverdir(); } );
-
 							});
+							
+							 
 						</script>						
 <!--script-->
-
-	
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+ 
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  
+  
 	 <script src="libs/js/jquery.min.js"></script>
         <script src="libs/js/jquery-ui.min.js"></script>
         <script src="libs/js/socket.io.js"></script>
@@ -248,30 +253,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open hint</button>-->
 
 			<!-- Modal -->
-			<div id="myModal" class="modal fade" role="dialog">
-			<div class="modal-dialog">
-
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title" id="hint-title">Hint!</h4>
-				</div>
-				<div class="modal-body">
-					<p id="hint-text">Text from the hint.</p>
-				</div>
-				<div class="modal-footer" id="hint-button-sec">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				</div>
-			</div>
-
-
-  </div>
+<div id="dialog-message" title="Download complete">
+  <p>
+    <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+    Your files have downloaded successfully into the My Downloads folder.
+  </p>
+  <p>
+    Currently using <b>36% of your storage space</b>.
+  </p>
 </div>
 			
 			</div>
 			 <script>
+$(function() {
+    $( "#dialog-message").dialog({
+      modal: true,
+      buttons: {
+        Ok: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+  });
+			 
+			 
 			 //D3
 function callD3(body, stockName){
 
@@ -389,7 +394,7 @@ function type(d) {
 			 function loadBuyStock(){
 			 stockNames.forEach(function(d,i){
 				$("#buyList").append('<li class="buyItem" onclick="clickedOnBuy('+i+');"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+') - '+getPriceOfStocks(d.ab)+' euros</li>');
-				$("#buyList").append('<li class="visItem" ><p class="button_b">Number: <input id="number'+i+'" type="number" min="1" > <img src="buy.png" alt="buy" onclick="buy();"></p><div class="vis" id="vg'+i+'"> </div></li>');
+				$("#buyList").append('<li class="visItem" ><p id="button'+i+'" class="button_b"><input id="number'+i+'" type="number" min="1" > <img src="buy.png" alt="buy" onclick="buy('+getPriceOfStocks(d.ab)+','+i+', '+d.ab+');"></p><div class="vis" id="vg'+i+'"> </div></li>');
 				callD3("#vg"+i, d.ab);
 				$("#vg"+i).hide();
 
@@ -397,16 +402,13 @@ function type(d) {
 			 
 			 }
 			 
-			function buy(){
-			$("#hint-text").html("Kopen test");
-                $('#myModal').modal('show');
+			function buy(price, i, sid){
+			var number = $("#number"+i).val();
+			socket.emit("buyStock", {"uid":user.uid ,"amount":number, "sid": sid});
             }
 
 			 function buyStock(number, d){
-			 console.log("calling");
-				$("#hint-title").html("Are you sure?");
-				$("#hint-text").html("You are going to buy "+$("#number"+i).val + "x the stock "+d.name+". <br/> For the total of "+ ($("#totalPrice"+i).html() * 1.03) + " euros (3% including transaction cost).");
-				$("#hint-button-sec").html('<button type="button" class="btn btn-default" data-dismiss="modal">Ok</button><button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>');
+				
 			 }
 
 			 function confirmBuy(){
