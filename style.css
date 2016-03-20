@@ -5,6 +5,25 @@
   shape-rendering: crispEdges;
 }
 
+.tipsStyle {
+	text-align: center;
+	position: relative;
+}
+
+.alignment{
+	position: relative;
+    left: 10px;
+}
+
+#fade-wrapper {
+    display: none;
+    position: fixed;
+    height: 1000vh;
+    width: 1000vw;
+    background: rgba(0, 0, 0, 0.5);
+	z-index:1000;
+}
+
 ul.img-list {
   list-style-type: none;
   margin: 0;
@@ -44,9 +63,9 @@ ul.img-list li:hover span.text-content {
   opacity: 1;
 }
 
-h4.center{
+.center{
 	text-align: center;
-	font-size: 20px;
+	font-size: 30px;
 }
 
 .fontsizeBigger{
@@ -55,7 +74,8 @@ h4.center{
 
 .imageCentering{
 	text-align: center;
-	padding-left: -20px;
+	position: relative;
+    left: -10px;
 }
 
 .x.axis path {
