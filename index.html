@@ -178,7 +178,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<p class="searchField normal-text addfriend" ><label class="bold"> <input type="text" placeholder="Friend name" ></label> <image id="addfriend" src="addfriend.png" onclick="addFriend();"></p>
 			    <h4 class="center">Your Friends</h4>
 				<div class="center">
-					<ol class="centerF">
+					<ol id="scoreBoard" class="centerF">
 					<li>Jeroen - 105</li>
 					<li><label class="bold">You - 90</label></li>
 					<li>Sigert - 75</li>
@@ -266,6 +266,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			</div>
 			 <script>
+			 function updateScoreBoard(){
+				$("#scoreBoard").html();
+				scores.score.sort();
+				scores.score.reverse();
+				scores.forEach(function (data, i ){
+				if(data.name == "You"){
+				$("#scoreBoard").append("<li><label class=\"bold\">"+data.Name +" - "+data.score+"</label></li>");
+				}
+				else {
+				$("#scoreBoard").append("<li>"+data.Name +" - "+data.score+"</li>");
+				}
+				}
+			 }
+			 
+			 function updateMyScore(add){
+				
+				scores.forEach(function(data,i){
+				
+					if(data.name == "You"){
+					data.score += add;
+					}
+				
+				});
+			 }
+			 
+			 
+			 
 			 function dialog(){
 $(function() {
     $( "#dialog-message").dialog({
@@ -351,6 +378,13 @@ function type(d) {
 
 			 $("#controlpanel").hide();
 			 $("#cash").hide();
+			 
+			 var scores = [];
+			 scores.push({name:"You", score:0});
+			 scores.push({Name:"Benjamin", score:21});
+			 scores.push({Name:"Jeroen", score: 150});
+			 scores.push({Name: "Sigert", score: 600});
+			 
 			 var stockNames = [];
 			 stockNames.push({name:"Apple Inc.", ab: "AAPL"});
 			 stockNames.push({name:"Microsoft Corperation", ab: "MSFT"});
@@ -519,6 +553,7 @@ function type(d) {
 				$("#controlpanel").show();
 				getStocks();
                 getStocksForUser();
+				updateScoreBoard();
 			});
 
              socket.on("buyStocksResult", function(data){
