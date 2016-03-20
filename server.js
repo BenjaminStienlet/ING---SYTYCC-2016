@@ -17,7 +17,9 @@ var socketList = [];
 
 app.listen(port);
 
-
+io.configure(function() {
+	io.set('transports', ['websocket']);
+});
 
  
 //a helper function to handle HTTP requests
@@ -49,7 +51,6 @@ io.on('connection', function (socket) {
     socket.on('login', function(data){
 		//socket.emit("loginResult", {uid : 1});
 		//socketList.push(socket);
-		console.log("getting login");
 		db.login(data.username,socket);
 			//socketList[0].emit("loginResult", {uid : res.uid});
 			//socket.emit("loginResult", {"uid": res.uid});
