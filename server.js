@@ -37,6 +37,10 @@ function requestHandler(req, res) {
 
 
 io.on('connection', function (socket) {
+
+	io.set('transports', ['websocket']);
+	console.log('new connection on socket.io');
+	
 	socket.on('get', function(data){		
 		socket.emit("data", {data:"test"});
 	});
