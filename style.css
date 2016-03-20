@@ -5,6 +5,19 @@
   shape-rendering: crispEdges;
 }
 
+.articleTitle{
+	font-size: 25px;
+	color: #ff6600;
+	padding-right: 40px;
+    padding-left: 40px;
+	
+}
+.articleDate{
+	font-size: 20px;
+	padding-right: 20px;
+    padding-left: 20px;
+}
+
 #myProgress {
     position: relative;
     width: 100%;
