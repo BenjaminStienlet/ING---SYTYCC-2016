@@ -13,13 +13,7 @@ var path = require('path');
 var db = require('./db');
 var socketList = [];
 
-
-
 app.listen(port);
-
-io.configure(function() {
-	io.set('transports', ['websocket']);
-});
 
  
 //a helper function to handle HTTP requests
@@ -92,6 +86,7 @@ io.on('connection', function (socket) {
 	
 	//getStocks() -> [strings] : stocksList
 	socket.on('getStocks', function(data){
+		db,getStocks(socket);
 		db.getStocks(function(res){ 
 			socket.emit("getStocksResult", {stocksList : res});
 		});
