@@ -32,6 +32,16 @@
 	z-index:1000;
 }
 
+p.button_b{
+	text-align: left;
+	font-size: 20px;
+	
+}
+
+number{
+	width: 50px;
+}
+
 ul.img-list {
   list-style-type: none;
   margin: 0;

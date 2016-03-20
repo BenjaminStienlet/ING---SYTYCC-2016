@@ -244,8 +244,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!---brilliantly--->
 			
 
-			<!-- Trigger the modal with a button -->
-			<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open hint</button>
+			<!-- Trigger the modal with a button 
+			<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open hint</button>-->
 
 			<!-- Modal -->
 			<div id="myModal" class="modal fade" role="dialog">
@@ -255,13 +255,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="modal-content">
 				<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Hint!</h4>
+					<h4 class="modal-title" id="hint-title">Hint!</h4>
 				</div>
 				<div class="modal-body">
-					<p>Text from the hint.</p>
+					<p id="hint-text">Text from the hint.</p>
 				</div>
-				<div class="modal-footer">
+				<div class="modal-footer" id="hint-button-sec">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 				</div>
 			</div>
 
@@ -388,12 +389,29 @@ function type(d) {
 			 function loadBuyStock(){
 			 stockNames.forEach(function(d,i){
 				$("#buyList").append('<li class="buyItem" onclick="clickedOnBuy('+i+');"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+')</li>');
-				$("#buyList").append('<li class="visItem" ><div class="vis" id="vg'+i+'"> <img src="sell.png" alt="sell"></div></li>');
+				$("#buyList").append('<li class="visItem" ><p class="button_b">Number: <input id="number'+i+'" type="number" min="1" onchange="modifyPrice('+i+','+d+')"> (Total Cost: <label id="totalPrice'+i+'"></label>) <img src="buy.png" alt="buy" data-toggle="modal" data-target="#myModal" onclick="buyStock('+i+','+d+')"></p><div class="vis" id="vg'+i+'"> </div></li>');
 				callD3("#vg"+i, d.ab);
 				$("#vg"+i).hide();
 
              });
 			 
+			 
+			 
+			 
+			 }
+			 
+			 function modifyPrice(i,d){
+			 $("#totalPrice"+i).html(getPriceOfStocks(d.ab) * i);
+			 }
+			 
+			 function buyStock(number, d){
+			 console.log("calling");
+				$("#hint-title").html("Are you sure?");
+				$("#hint-text").html("You are going to buy "+$("#number"+i).val + "x the stock "+d.name+". <br/> For the total of "+ ($("#totalPrice"+i).html() * 1.03) + " euros (3% including transaction cost).");
+				$("#hint-button-sec").html('<button type="button" class="btn btn-default" data-dismiss="modal" onclick="confirmBuy()">Ok</button><button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>');
+			 }
+			 
+			 function confirmBuy(){
 			 
 			 }
 			 
@@ -402,7 +420,7 @@ function type(d) {
 			//$("#yourList").html("");
 			data.result.forEach(function(d, i){
 				$("#yourList").append('<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">►</label>'+findNameOfStockByAb(d.sid)+' current price: '+getPriceOfStocks(d.sid)+' euro (number of stock items: '+d.amount+')</li>');
-				$("#yourList").append('<li class="visItem" ><div class="vis" id="g'+i+'"> <img src="buy.png" alt="buy"></div></li>');
+				$("#yourList").append('<li class="visItem" ><p class="button_b"><img src="sell.png" alt="sell"></p><div class="vis" id="g'+i+'"> </div></li>');
 				callD3("#g"+i, d.sid);
 				$("#g"+i).hide();
 			});
