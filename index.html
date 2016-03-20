@@ -644,6 +644,8 @@ function type(d) {
 			var user;
 			var moved = false;
 			 socket.on("sellStocksResult", function(data){
+			 	
+				updateMyScore(Math.floor((Math.random() * 10)));
                  if (!moved) {
                      move();
                      moved = true;
