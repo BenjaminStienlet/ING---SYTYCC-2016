@@ -191,6 +191,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			
 			
+			<div class="overviewStock">
+			<h2 class="header">E-learning</h2>
+				<div class="context-text" >
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/_FJGWjUVVFk" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
+			
 					<div class="overviewStock">
 				<h2 class="header">Leaderboards</h2>
 				<div class="context-text" >
@@ -287,10 +294,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 
 			 function updateMyScore(add){
 			   console.log("oke score update");
-				var scoreb;
+				
 				scores[3].score += add;
-				console.log(scores)
-				if(scoreb > 21){
+				
+				if(scores[3].score > 21){
 				temp = scores[3];
 				scores[3] = scores[2];
 				scores[2] = temp;
@@ -437,7 +444,7 @@ function type(d) {
 			 }
 			 
 			 function loadBuyStock(){
-			 $("#buyList").html();
+			 $("#buyList").html("");
 			 stockNames.forEach(function(d,i){
 				$("#buyList").append('<li class="buyItem" onclick="clickedOnBuy('+i+');"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+') - '+getPriceOfStocks(d.ab)+' euros</li>');
 				$("#buyList").append('<li class="visItem" ><p id="button'+i+'" class="button_b"><input class="number" id="number'+i+'" value="1" type="number" min="1" > <img src="buy.png" alt="buy" onclick="buy(\''+getPriceOfStocks(d.ab)+'\',\''+i+'\', \''+d.ab+'\');"></p><div class="vis" id="vg'+i+'"> </div></li>');
