@@ -357,7 +357,7 @@ function type(d) {
 			 
 			 
 			 
-			 loadBuyStock();
+
 			 
 			 function findNameOfStockByAb(name){
                  var result;
@@ -371,7 +371,7 @@ function type(d) {
 			 
 			 function getPriceOfStocks(sid){
                  var result;
-                 console.log(globalStocks);
+
 				globalStocks.forEach(function(d,i){
 					if(d.SID == sid){
                         result = d.price;
@@ -382,31 +382,28 @@ function type(d) {
 			 
 			 function loadBuyStock(){
 			 stockNames.forEach(function(d,i){
-				$("#buyList").append('<li class="buyItem" onclick="clickedOnBuy('+i+');"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+')</li>');
-				$("#buyList").append('<li class="visItem" ><p class="button_b">Number: <input id="number'+i+'" type="number" min="1" onchange="modifyPrice('+i+','+d+')"> (Total Cost: <label id="totalPrice'+i+'"></label>) <img src="buy.png" alt="buy" data-toggle="modal" data-target="#myModal" onclick="buyStock('+i+','+d+')"></p><div class="vis" id="vg'+i+'"> </div></li>');
+				$("#buyList").append('<li class="buyItem" onclick="clickedOnBuy('+i+');"><label id="p'+i+'">►</label>'+d.name+' ('+d.ab+') - '+getPriceOfStocks(d.ab)+' euros</li>');
+				$("#buyList").append('<li class="visItem" ><p class="button_b">Number: <input id="number'+i+'" type="number" min="1" > <img src="buy.png" alt="buy" onclick="buy();"></p><div class="vis" id="vg'+i+'"> </div></li>');
 				callD3("#vg"+i, d.ab);
 				$("#vg"+i).hide();
 
              });
 			 
-			 
-			 
-			 
 			 }
 			 
-			 function modifyPrice(i,d){
-			 $("#totalPrice"+i).html(getPriceOfStocks(d.ab) * i);
-			 }
-			 
+			function buy(){
+                
+            }
+
 			 function buyStock(number, d){
 			 console.log("calling");
 				$("#hint-title").html("Are you sure?");
 				$("#hint-text").html("You are going to buy "+$("#number"+i).val + "x the stock "+d.name+". <br/> For the total of "+ ($("#totalPrice"+i).html() * 1.03) + " euros (3% including transaction cost).");
-				$("#hint-button-sec").html('<button type="button" class="btn btn-default" data-dismiss="modal" onclick="confirmBuy()">Ok</button><button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>');
+				$("#hint-button-sec").html('<button type="button" class="btn btn-default" data-dismiss="modal">Ok</button><button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>');
 			 }
-			 
+
 			 function confirmBuy(){
-			 
+
 			 }
 			 
 			function loadMyStock(data){
@@ -502,6 +499,7 @@ function type(d) {
 			
 			socket.on("getStocksResult", function(data){
 				globalStocks = data.result;
+                loadBuyStock();
 				
 			});
 		</script>    
