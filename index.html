@@ -339,10 +339,10 @@ function type(d) {
 			function loadMyStock(data){
 			$("#yourList").html("");
 			$("#visList").html("");
-			data.forEach(function(d, i){
+			data.result.forEach(function(d, i){
 				$("#yourList").append('<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">►</label>'+d.name+' current price: '+d.price+' euro (number of stock items: '+d.amount+')</li>');
 				$("#visList").append('<li class="visItem" ><div class="vis" id="g'+i+'"></div></li>');
-				callD3("#g"+i, stock[i].sid);
+				callD3("#g"+i, d.sid);
 				$("#g"+i).hide();
 			});
 			
