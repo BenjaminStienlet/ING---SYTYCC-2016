@@ -123,7 +123,6 @@ function login(username, socket) {
             if (err) {
                 console.log(err);
             }
-            console.log("emmitting");
             socket.emit("loginResult",columnsToJson(rows[0]));
             connection.close();
         });
@@ -199,14 +198,14 @@ function getAchievedIds(userId) {
 // ================
 // ==== STOCKS ====
 // ================
-function getStocks(callback) {
+function getStocks(socket) {
     var connection = new Connection(config);
     connection.on('connect', function(err) {
         request = new Request('SELECT * FROM stock', function(err, rc, rows) {
             if (err) {
                 console.log(err);
             }
-            callback(rowsToJson(rows));
+            socket.emit("getStocksResult", rowsToJson(rows));
             connection.close();
         });
         connection.execSql(request);

@@ -162,9 +162,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h2 class="header">Friends & Competitions</h2>
 				<div class="context-text" >
 				<h4 class="center" >Add a Friends</h4>
-				<p class="searchField normal-text" ><label class="bold"> <input type="text" placeholder="Friend name" ></label>  </p>
-				  <p><image id="loginimg" src="addfriend.png" onclick="addFriend();"></p>
+				<p class="searchField normal-text addfriend" ><label class="bold"> <input type="text" placeholder="Friend name" ></label> <image id="addfriend" src="addfriend.png" onclick="addFriend();"></p>
 			    <h4 class="center">Your Friends</h4>
+				<div class="center">
+					<ol class="centerF">
+					<li>Jeroen - 105</li>
+					<li><label class="bold">You - 90</label></li>
+					<li>Sigert - 75</li>
+					<li>Benjamin - 50</li>
+					</ol>
+				</div>
 				</div>
 				<div></div>
 				<div></div>
@@ -306,11 +313,11 @@ function type(d) {
 			 stocksNames.push({name:"BNP Paribas SA", ab: "BNP"});
 			 
 			var stock =  [];
-			stock.push({sid : "AAPL",name : "Google", price : 100, amount: 30});
+			
 			
 			 
 			 
-			 loadMyStock(stock);
+			 
 			 loadBuyStack();
 			 
 			 function loadBuyStack(){
@@ -327,6 +334,8 @@ function type(d) {
 			 }
 			 
 			function loadMyStock(data){
+			$("#yourList").html("");
+			$("#visList").html("");
 			data.forEach(function(d, i){
 				$("#yourList").append('<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">►</label>'+d.name+' current price: '+d.price+' euro (number of stock items: '+d.amount+')</li>');
 				$("#visList").append('<li class="visItem" ><div class="vis" id="g'+i+'"></div></li>');
@@ -379,17 +388,32 @@ function type(d) {
 			
 			  
 			 
-            var socket = io('http://capitalize.azurewebsites.net');
-			var uid;
+            var socket = io('localhost:1337');
+			var user;
         
 			function login () {
 				var username = $("#usernameInput").val();
-				socket.emit('login', {username : username});
-				$( "#loginScreen" ).hide("slide", { direction: "left" }, 1000);
+				socket.emit('login', {"username" : username});
+				
 			}
 			
-			socket.on("data", function(data){
-				console.log(data);
+			socket.on("loginResult", function(data){
+				user = data;
+				$( "#loginScreen" ).hide("slide", { direction: "left" }, 1000);
+				getStocks();
+			});
+			
+			function generateTip(text){
+			$("#tip").html(text);
+			}
+			
+			function getStocks(){
+			socket.emit('getStocks', {"String":"This is not a string"});
+			}
+			
+			socket.on("getStocksResult", function(data){
+				stock = data;
+				loadMyStock(stock);
 			});
 		</script>    
 		
