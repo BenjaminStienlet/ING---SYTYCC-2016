@@ -71,11 +71,11 @@ io.on('connection', function (socket) {
 	//buyStock(uid, sid, amount) -> boolean : buyStockResult
 	socket.on('buyStock', function(data){
 		userInfo = db.getUserInfo(data.uid, function(userInfo) {
-			db.getStockPrice(function(price) {
+			db.getStockPrice(data.sid, function(price) {
 				var timestamp = Date.now() / 1000;
 				var costPrice = data.amount * price; // TODO
 				if(userInfo.amount >= costPrice){
-					db.buyStocks(data.uid, data.stockId, timestamp, price, data.amount, costPrice); //TIMESTAMP OPVRAGEN, amount is het AANTAL STOCKS
+					db.buyStocks(data.uid, data.stockId, timestamp, price, data.amount, costPrice);
 					socket.emit("buyStocksResult", true);
 				}
 				else{
@@ -90,23 +90,18 @@ io.on('connection', function (socket) {
 		userInfo = db.getStocksForUserCB(data.uid, function(stocks) {
 			var stock = null;
 			stocks.forEach(function(st) {
-				if (st.sid == sid) {
+				if (st.sid == data.sid) {
 					stock = st;
 				}
 			});
-			if (stock == null) {
+			if (stock == null || stock.amount < data.amount) {
 				socket.emit("sellStocksResult", false);
 			} else {
-				db.getStockPrice(function (price) {
+				db.getStockPrice(data.sid, function (price) {
 					var timestamp = Date.now() / 1000;
 					var profit = data.amount * price; // TODO
-					if (userInfo.amount >= costPrice) {
-						db.buyStocks(data.uid, data.stockId, timestamp, price, data.amount, profit); //TIMESTAMP OPVRAGEN, amount is het AANTAL STOCKS
-						socket.emit("sellStocksResult", true);
-					}
-					else {
-						socket.emit("sellStocksResult", false);
-					}
+					db.buyStocks(data.uid, data.stockId, timestamp, price, data.amount, profit);
+					socket.emit("sellStocksResult", true);
 				});
 			}
 		});
