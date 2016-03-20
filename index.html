@@ -494,6 +494,7 @@ function type(d) {
 			}
 			
 			socket.on("loginResult", function(data){
+				user = [];
 				user = data;
 				$( "#loginScreen" ).hide("slide", { direction: "left" }, 1000);
 				$("#cash").show();
@@ -520,11 +521,12 @@ function type(d) {
 			
 			
 			function getStocksForUser(){
-                console.log(user.uid);
+            console.log(user.uid);
 			socket.emit("getStocksForUser", {"uid" : user.uid});
 			}
 			
 			socket.on("getStocksForUserResult",function (data){
+				stocks = [];
 				stocks = data;
 				loadMyStock(data);
 			});

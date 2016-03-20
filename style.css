@@ -42,6 +42,7 @@ p.button_b{
 
 input.number{
 	width: 50px;
+	padding-left: 50px;
 }
 
 ul.img-list {
