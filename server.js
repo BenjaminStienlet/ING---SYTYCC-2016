@@ -75,7 +75,7 @@ io.on('connection', function (socket) {
 		//var timestamp = Date.now() / 1000 | 0;
 		var enoughMoney = true;
 		if(enoughMoney){
-			db.buytStocks(data.uid, stockId, Date.now() / 1000 | 0, price, data.amount); //TIMESTAMP OPVRAGEN, amount is het AANTAL STOCKS
+			db.buyStocks(data.uid, stockId, Date.now() / 1000 | 0, price, data.amount); //TIMESTAMP OPVRAGEN, amount is het AANTAL STOCKS
 		}
 		else{
 			socket.emit("buyStocksResult", true);
@@ -86,11 +86,7 @@ io.on('connection', function (socket) {
 	
 	//getStocks() -> [strings] : stocksList
 	socket.on('getStocks', function(data){
-		db,getStocks(socket);
-		db.getStocks(function(res){ 
-			socket.emit("getStocksResult", {stocksList : res});
-		});
-		
+		db.getStocks(socket);
 		//var result = [];
 		//result.push("stockName1");
 		//result.push("stockName2");

@@ -112,7 +112,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div>
 			<img class="center" src="unknown.png" alt="Avatar logo">
 			</div>
-			
+
+
 			
 			<form action="#" onsubmit="return false;">
 			<div class="center padding-top">
@@ -122,7 +123,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</form>
 
 			</div>
-			
+
+				<div id="controlpanel">
 			<div class="overviewStock">
 				<h2 class="header">My Portfolio</h2>
 				<div class="context-text" >
@@ -179,7 +181,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			<div id="tip">
 			</div>
-			
+			</div>
+
 			</div>
 			<!---brilliantly--->
 			
@@ -298,8 +301,8 @@ function type(d) {
 }
 }
 //end D3
-			 
-			 
+
+			 $("#controlpanel").hide();
 			 var stocksNames = [];
 			 stocksNames.push({name:"Apple Inc.", ab: "AAPL"});
 			 stocksNames.push({name:"Microsoft Corperation", ab: "MSFT"});
@@ -400,6 +403,7 @@ function type(d) {
 			socket.on("loginResult", function(data){
 				user = data;
 				$( "#loginScreen" ).hide("slide", { direction: "left" }, 1000);
+				$("#controlpanel").show();
 				getStocks();
 			});
 			
