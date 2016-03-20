@@ -179,14 +179,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div></div>
 			</div>
 			
-			<div id="tip">
-			</div>
-			</div>
-
-			</div>
-			<!---brilliantly--->
 			
-			<div class="overviewStock">
+					<div class="overviewStock">
 				<h2 class="header">Leaderboards</h2>
 				<div class="context-text" >
 					<h4 class="center" "fontsizeBigger" >Achievements</h4>
@@ -223,11 +217,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div></div>
 			</div>
 			
+
+			
 			<div id="tip">
 			</div>
-			
+			</div>
+
 			</div>
 			<!---brilliantly--->
+			
 			
 
 			
@@ -316,12 +314,29 @@ function type(d) {
 			 stocksNames.push({name:"BNP Paribas SA", ab: "BNP"});
 			 
 			var stock =  [];
+			var globalStocks = [];
 			
 			
 			 
 			 
 			 
 			 loadBuyStack();
+			 
+			 function findNameOfStockByAb(name){
+			 stockNames.forEach(function(d,i){
+				if(d.ab == name){
+				return d.name;
+				} 
+			 });
+			 }
+			 
+			 function getPriceOfStocks(sid){
+				globalStocks.forEach(function(d,i){
+					if(d.sid == sid){
+					return d.price
+					}
+				});
+			 }
 			 
 			 function loadBuyStack(){
 			 stocksNames.forEach(function(d,i){
@@ -340,7 +355,7 @@ function type(d) {
 			$("#yourList").html("");
 			$("#visList").html("");
 			data.result.forEach(function(d, i){
-				$("#yourList").append('<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">►</label>'+d.name+' current price: '+d.price+' euro (number of stock items: '+d.amount+')</li>');
+				$("#yourList").append('<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">►</label>'+findNameOfStockByAb(d.sid)+' current price: '+d.price+' euro (number of stock items: '+d.amount+')</li>');
 				$("#visList").append('<li class="visItem" ><div class="vis" id="g'+i+'"></div></li>');
 				callD3("#g"+i, d.sid);
 				$("#g"+i).hide();
@@ -411,13 +426,23 @@ function type(d) {
 			$("#tip").html(text);
 			}
 			
+			function getStocksForUser(){
+			socket.emit("getStocksForUser", {"uid" : uid});
+			}
+			
+			socket.on("getStocksForUserResult",function (data){
+				stocks = data;
+				loadMyStock(data);
+			});
+			
+			
 			function getStocks(){
 			socket.emit('getStocks', {"String":"This is not a string"});
 			}
 			
 			socket.on("getStocksResult", function(data){
-				stock = data;
-				loadMyStock(stock);
+				globalStocks = data.result;
+				
 			});
 		</script>    
 		
