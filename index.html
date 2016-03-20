@@ -271,11 +271,11 @@ function type(d) {
 			 stocksNames.push({name:"BNP Paribas SA", ab: "BNP"});
 			 
 			var stock =  [];
-			stock.push({sid : "AAPL",name : "Google", price : 100, amount: 30});
+			
 			
 			 
 			 
-			 loadMyStock(stock);
+			 
 			 loadBuyStack();
 			 
 			 function loadBuyStack(){
@@ -292,6 +292,8 @@ function type(d) {
 			 }
 			 
 			function loadMyStock(data){
+			$("#yourList").html("");
+			$("#visList").html("");
 			data.forEach(function(d, i){
 				$("#yourList").append('<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">►</label>'+d.name+' current price: '+d.price+' euro (number of stock items: '+d.amount+')</li>');
 				$("#visList").append('<li class="visItem" ><div class="vis" id="g'+i+'"></div></li>');
@@ -355,13 +357,22 @@ function type(d) {
 			
 			socket.on("loginResult", function(data){
 				user = data;
-				console.log(data);
 				$( "#loginScreen" ).hide("slide", { direction: "left" }, 1000);
+				getStocks();
 			});
 			
 			function generateTip(text){
 			$("#tip").html(text);
 			}
+			
+			function getStocks(){
+			socket.emit('getStocks', {"String":"This is not a string"});
+			}
+			
+			socket.on("getStocksResult", function(data){
+				stock = data;
+				loadMyStock(stock);
+			});
 		</script>    
 		
 		
