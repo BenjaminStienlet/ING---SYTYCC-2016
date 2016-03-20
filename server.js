@@ -90,6 +90,7 @@ io.on('connection', function (socket) {
 	
 	//getStocks() -> [strings] : stocksList
 	socket.on('getStocks', function(data){
+		db,getStocks(socket);
 		db.getStocks(function(res){ 
 			socket.emit("getStocksResult", {stocksList : res});
 		});
