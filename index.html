@@ -274,6 +274,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			 <script>
 			 
+			 var score_g = 0;
+			 
 			 $("#dialog-message").hide();
 			 
 			 function updateScoreBoard(){
@@ -282,12 +284,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				
 				scores.forEach(function (data, i ){
 
-                    if(data.name == "You"){
+                    if(score_g > data.score){
                         $("#scoreBoard").append("<li><label class=\"bold\">"+data.Name +" - "+data.score+"</label></li>");
                     }
-                    else {
+                   
                         $("#scoreBoard").append("<li>"+data.Name +" - "+data.score+"</li>");
-                    }
+                    
 				});
 
 			 }
@@ -295,13 +297,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 function updateMyScore(add){
 			   console.log("oke score update");
 				
-				scores[3].score += add;
+				score_g += add;
 				
-				if(scores[3].score > 21){
-				temp = scores[3];
-				scores[3] = scores[2];
-				scores[2] = temp;
-				}
+			
 			 }
 			 
 			 
@@ -399,7 +397,7 @@ function type(d) {
 			 scores.push({Name: "Sigert", score: 600});
 			 scores.push({Name:"Jeroen", score: 150});
 			 scores.push({Name:"Benjamin", score:21});
-			 scores.push({Name:"You", score:0});
+			
 			 
 			 var stockNames = [];
 			 stockNames.push({name:"Apple Inc.", ab: "AAPL"});
