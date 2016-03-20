@@ -422,7 +422,7 @@ function type(d) {
 			//$("#yourList").html("");
 			data.result.forEach(function(d, i){
 				$("#yourList").append('<li class="Sitem" onclick="clickedOn('+i+')"><label id="'+i+'">►</label>'+findNameOfStockByAb(d.sid)+' current price: '+getPriceOfStocks(d.sid)+' euro (number of stock items: '+d.amount+')</li>');
-				$("#yourList").append('<li class="visItem" ><p class="button_b"><input id="number'+i+'" value="1" type="number" min="1" ><img src="sell.png" alt="sell" onclick="buy(\''+getPriceOfStocks(d.ab)+'\',\''+i+'\', \''+d.ab+'\');"></p><div class="vis" id="g'+i+'"> </div></li>');
+				$("#yourList").append('<li class="visItem" ><p class="button_b"><input id="numbers'+i+'" value="1" type="number" min="1" ><img src="sell.png" alt="sell" onclick="sell(\''+getPriceOfStocks(d.sid)+'\',\''+i+'\', \''+d.sid+'\');"></p><div class="vis" id="g'+i+'"> </div></li>');
 				callD3("#g"+i, d.sid);
 				$("#g"+i).hide();
 			});
@@ -432,13 +432,10 @@ function type(d) {
 			}
 			
 			function sell(price, i, sid){
-			socket.emit("sellStock", {"uid":user.uid ,"amount":number, "sid": sid});
+                var number = $("#numbers"+i).val();
+                socket.emit("sellStock", {"uid":user.uid ,"amount":number, "sid": sid});
 			}
-			
-			socket.on("buyStocksResult", function(data){
-				socket.emit('login', {"username" : username});
-			});
-			
+
 			function clickedOn(i){
 			if($("#"+i).html() == "▼"){
 				$("#"+i).html("►");
@@ -500,8 +497,13 @@ function type(d) {
 				getStocks();
                 getStocksForUser();
 			});
-			
-			function updateAmount(amount){
+
+             socket.on("buyStocksResult", function(data){
+                 socket.emit('login', {"username" : user.name});
+             });
+
+
+             function updateAmount(amount){
 				document.getElementById("cashAmount").innerHTML = amount;
 			}
 			
