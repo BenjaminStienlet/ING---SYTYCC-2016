@@ -19,6 +19,17 @@ h4.center{
   stroke-width: 1.5px;
 }
 
+p.addfriend{
+	text-align: center;
+}
+
+ol.centerF{
+	margin: auto;
+	padding:auto;
+	
+	font-size: 20px;
+}
+
 div.logindiv{
 	
 	color: #000066;
