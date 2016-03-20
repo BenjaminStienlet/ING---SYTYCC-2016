@@ -17,7 +17,9 @@ var socketList = [];
 
 app.listen(port);
 
-
+io.configure(function() {
+	io.set('transports', ['websocket']);
+});
 
  
 //a helper function to handle HTTP requests
